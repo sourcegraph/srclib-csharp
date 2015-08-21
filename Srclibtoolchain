@@ -1,0 +1,27 @@
+{
+  "Tools": [
+    {
+      "Subcmd": "scan",
+      "Op": "scan",
+      "SourceUnitTypes": [
+        "CSharpPackage"
+      ]
+    },
+    
+    {
+      "Subcmd": "depresolve",
+      "Op": "depresolve",
+      "SourceUnitTypes": [
+        "CSharpPackage"
+      ]
+    },
+    
+    {
+      "Subcmd": "graph",
+      "Op": "graph",
+      "SourceUnitTypes": [
+        "CSharpPackage"
+      ]
+    }
+  ]
+}

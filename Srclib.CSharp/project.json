@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0-beta-*",
+  
+  "dependencies": {
+    "Newtonsoft.Json": "7.0.1",
+    "Microsoft.Dnx.Runtime": "1.0.0-*",
+    "Microsoft.Dnx.Runtime.Abstractions": "1.0.0-*",
+    "Microsoft.Framework.CommandLineUtils.Sources": {"type": "build", "version": "1.0.0-*"}
+  },
+  
+  "frameworks": {
+    "dnx451": {},
+    "dotnet": {
+      
+    }
+  }
+}
