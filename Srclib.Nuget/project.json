@@ -1,17 +1,24 @@
 {
   "version": "1.0.0-beta-*",
-  
+
   "dependencies": {
     "Newtonsoft.Json": "7.0.1",
     "Microsoft.Dnx.Runtime": "1.0.0-*",
     "Microsoft.Dnx.Runtime.Abstractions": "1.0.0-*",
     "Microsoft.Framework.CommandLineUtils.Sources": {"type": "build", "version": "1.0.0-*"}
   },
-  
+
   "frameworks": {
     "dnx451": {},
-    "dotnet": {
-      
+    "dnxcore50": {
+      "dependencies": {
+        "System.Console": "4.0.0-*",
+        "System.Collections": "4.0.11-*",
+        "System.IO": "4.0.11-*",
+        "System.IO.FileSystem": "4.0.1-*",
+        "System.Linq": "4.0.1-*",
+        "System.Diagnostics.Process": "4.1.0-*"
+      }
     }
   }
 }

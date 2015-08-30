@@ -2,7 +2,7 @@ using System;
 using System.Net;
 using System.IO;
 
-namespace Srclib.CSharp
+namespace Srclib.Nuget
 {
   static class Utils
   {

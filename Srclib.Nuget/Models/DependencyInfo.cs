@@ -2,19 +2,19 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Microsoft.Dnx.Runtime;
 
-namespace Srclib.CSharp
+namespace Srclib.Nuget
 {
   public class DependencyInfo
   {
     [JsonProperty]
     public string Name { get; set; }
-    
+
     [JsonProperty]
     public string Range { get; set; }
-    
+
     [JsonProperty]
     public string Identity { get; set; }
-    
+
     public static DependencyInfo FromLibraryDependency(LibraryDependency lib)
     {
       return new DependencyInfo {

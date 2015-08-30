@@ -2,9 +2,9 @@ using System;
 using Microsoft.Dnx.Runtime;
 using Microsoft.Dnx.Runtime.Common.CommandLine;
 
-namespace Srclib.CSharp
+namespace Srclib.Nuget
 {
-  public class Program 
+  public class Program
   {
     readonly IApplicationEnvironment _env;
     readonly IRuntimeEnvironment _runtimeEnv;
@@ -33,7 +33,7 @@ namespace Srclib.CSharp
 
       ScanConsoleCommand.Register(app, _env);
       GraphConsoleCommand.Register(app, _env);
-      DepresolveConsoleCommand.Register(app, _env);
+      DepresolveConsoleCommand.Register(app, _env, _runtimeEnv);
 
       return app.Execute(args);
     }
