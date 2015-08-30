@@ -31,7 +31,7 @@ namespace Srclib.Nuget
         c.HelpOption("-?|-h|--help");
 
         c.OnExecute(async () => {
-          System.Diagnostics.Debugger.Launch();
+          //System.Diagnostics.Debugger.Launch();
           var jsonIn = await Console.In.ReadToEndAsync();
           var sourceUnit = JsonConvert.DeserializeObject<SourceUnit>(jsonIn);
 
@@ -101,7 +101,7 @@ namespace Srclib.Nuget
       p.WaitForExit();
 
       // in the future, actually parse output or something
-      Console.WriteLine(outs[0]);
+      //Console.WriteLine(outs[0]);
     }
 
     static string FindDnuWindows()
@@ -127,7 +127,7 @@ namespace Srclib.Nuget
       p.StartInfo.RedirectStandardError = false;
 
       p.Start();
-      var result = p.StandardOutput.ReadToEnd();
+      var result = p.StandardOutput.ReadToEnd().Trim();
       p.WaitForExit();
       return result;
     }
