@@ -1024,7 +1024,7 @@
     "Microsoft.Dnx.Loader/1.0.0-beta8-15530": {
       "type": "package",
       "serviceable": true,
-      "sha512": "dsrn8UhDQmf8DmhgjC1Hth3Rr5L3K55O7Eolkz4VxlhlIT+E8Y2F2pPyHHA5KVY0VbPbJ2rd/8kT7+BP/HX7wQ==",
+      "sha512": "VLYXR6L3Z/LMhHVUUxtJm/qsXw24Mk0xvl3e+wH5NprX/zhOuTvdfg/reC9ryXdZ8ZcTPe+s80mBRvzQCRpsSg==",
       "files": [
         "lib/dnx451/Microsoft.Dnx.Loader.dll",
         "lib/dnx451/Microsoft.Dnx.Loader.xml",
@@ -1038,7 +1038,7 @@
     "Microsoft.Dnx.Runtime/1.0.0-beta8-15530": {
       "type": "package",
       "serviceable": true,
-      "sha512": "G0KyH7EhJJRCqud8Oxv7wUuxNsbqhmh1MVD3S6H9zuDEfB4fzTiUdgxBImpZgAPzXMGCFNWd3Sz4NRoziJcITA==",
+      "sha512": "Cw9Qf6sGnYmjRWmL/oKGbrzn2VBukTcOgc03qaoH0lEuzcwQdj/KmZ4ero/71q31KiB5s8NPDmjz5EOu7zEw/w==",
       "files": [
         "lib/dnx451/Microsoft.Dnx.Runtime.dll",
         "lib/dnx451/Microsoft.Dnx.Runtime.xml",
@@ -1052,7 +1052,7 @@
     "Microsoft.Dnx.Runtime.Abstractions/1.0.0-beta8-15530": {
       "type": "package",
       "serviceable": true,
-      "sha512": "TNMLud0OL0muaSE5RMpUNjO0PVLEVY2vjCuFciKwlrtyk3rvDBrHtyXR2oZ84SjnRFSCnQemjHi0zsoRt+JfFQ==",
+      "sha512": "bXt5USJyzqfNvPo72mgq5AeNJ9Dm7ASFzqkcXmYLOHVtOxlAHBzQ5SaNFxhB1aWCTCJsHsRkTGhDhKaj/iLCdQ==",
       "files": [
         "lib/dnx451/Microsoft.Dnx.Runtime.Abstractions.dll",
         "lib/dnx451/Microsoft.Dnx.Runtime.Abstractions.xml",

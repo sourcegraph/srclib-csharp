@@ -4,7 +4,7 @@
       "Subcmd": "scan",
       "Op": "scan",
       "SourceUnitTypes": [
-        "CSharpPackage"
+        "NugetPackage"
       ]
     },
     
@@ -12,7 +12,7 @@
       "Subcmd": "depresolve",
       "Op": "depresolve",
       "SourceUnitTypes": [
-        "CSharpPackage"
+        "NugetPackage"
       ]
     },
     
@@ -20,7 +20,7 @@
       "Subcmd": "graph",
       "Op": "graph",
       "SourceUnitTypes": [
-        "CSharpPackage"
+        "NugetPackage"
       ]
     }
   ]
