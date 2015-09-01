@@ -18,4 +18,10 @@ namespace Srclib.Nuget
       return Uri.UnescapeDataString(folderUri.MakeRelativeUri(pathUri).ToString().Replace('/', Path.DirectorySeparatorChar));
     }
   }
+
+  // TODO: Remove, for testing purposes only
+  static class Utils<TInner>
+  {
+    static void SomeMethod<TOuter>(TInner inner, TOuter outer) { }
+  }
 }

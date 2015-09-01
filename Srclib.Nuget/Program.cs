@@ -8,11 +8,13 @@ namespace Srclib.Nuget
   {
     readonly IApplicationEnvironment _env;
     readonly IRuntimeEnvironment _runtimeEnv;
+    readonly IAssemblyLoadContextAccessor _loadContextAccessor;
 
-    public Program(IApplicationEnvironment env, IRuntimeEnvironment runtimeEnv)
+    public Program(IApplicationEnvironment env, IRuntimeEnvironment runtimeEnv, IAssemblyLoadContextAccessor loadContextAccessor)
     {
       _env = env;
       _runtimeEnv = runtimeEnv;
+      _loadContextAccessor = loadContextAccessor;
     }
 
     public int Main(string[] args)
@@ -32,7 +34,7 @@ namespace Srclib.Nuget
       });
 
       ScanConsoleCommand.Register(app, _env);
-      GraphConsoleCommand.Register(app, _env);
+      GraphConsoleCommand.Register(app, _env, _loadContextAccessor);
       DepresolveConsoleCommand.Register(app, _env, _runtimeEnv);
 
       return app.Execute(args);
