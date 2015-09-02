@@ -222,7 +222,21 @@ namespace Srclib.Nuget.Graph
 
         var symbol = _sm.GetSymbolInfo(node);
         if (symbol.Symbol == null)
+        {
+          // it might be a declaration
+          var declaration = _sm.GetDeclaredSymbol(node);
+          if (_defined.Contains(declaration))
+          {
+            var reference = Ref.To(declaration)
+              .At(_path, token.Span);
+
+            reference.Def = true;
+
+            _output.Refs.Add(reference);
+          }
+
           goto skip;
+        }
 
         var definition = symbol.Symbol.OriginalDefinition;
         if (_defined.Contains(definition))
