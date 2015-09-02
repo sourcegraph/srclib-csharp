@@ -26,6 +26,13 @@ namespace Srclib.Nuget.Graph
     {
     }
 
+    void AddDef(Def def)
+    {
+      var r = Ref.AtDef(def);
+      _output.Defs.Add(def);
+      _output.Refs.Add(r);
+    }
+
     internal static async Task<Output> Graph(GraphContext context)
     {
       if (context.Project == null)
@@ -101,7 +108,7 @@ namespace Srclib.Nuget.Graph
             def.Exported = true;
           }
 
-          _output.Defs.Add(def);
+          AddDef(def);
         }
       }
 
@@ -124,7 +131,7 @@ namespace Srclib.Nuget.Graph
           def.Exported = true;
         }
 
-        _output.Defs.Add(def);
+        AddDef(def);
       }
 
       base.VisitMethodDeclaration(node);
@@ -143,7 +150,7 @@ namespace Srclib.Nuget.Graph
 
         def.Local = true;
 
-        _output.Defs.Add(def);
+        AddDef(def);
       }
 
       base.VisitParameter(node);
@@ -162,7 +169,7 @@ namespace Srclib.Nuget.Graph
 
         def.Local = true;
 
-        _output.Defs.Add(def);
+        AddDef(def);
       }
 
       base.VisitTypeParameter(node);
@@ -205,7 +212,7 @@ namespace Srclib.Nuget.Graph
         def.Local = local;
         def.Exported = exported;
 
-        _output.Defs.Add(def);
+        AddDef(def);
       }
 
       skip:
@@ -223,18 +230,6 @@ namespace Srclib.Nuget.Graph
         var symbol = _sm.GetSymbolInfo(node);
         if (symbol.Symbol == null)
         {
-          // it might be a declaration
-          var declaration = _sm.GetDeclaredSymbol(node);
-          if (_defined.Contains(declaration))
-          {
-            var reference = Ref.To(declaration)
-              .At(_path, token.Span);
-
-            reference.Def = true;
-
-            _output.Refs.Add(reference);
-          }
-
           goto skip;
         }
 

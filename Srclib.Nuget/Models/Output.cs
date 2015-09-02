@@ -218,6 +218,18 @@ namespace Srclib.Nuget
       End = (uint)span.End;
       return this;
     }
+
+    internal static Ref AtDef(Def def)
+    {
+      return new Ref
+      {
+        DefPath = def.DefKey,
+        File = def.File,
+        Start = def.DefStart,
+        End = def.DefEnd,
+        Def = true
+      };
+    }
   }
 
   public class Doc
