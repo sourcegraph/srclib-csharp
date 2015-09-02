@@ -28,7 +28,7 @@ namespace Srclib.Nuget
     /// (subsequent runs of a grapher will emit the same defs with the same
     /// DefKeys).
     /// </summary>
-    [JsonProperty]
+    [JsonProperty("Path")]
     public string DefKey { get; set; }
 
     /// <summary>
@@ -207,7 +207,7 @@ namespace Srclib.Nuget
 
       return new Ref
       {
-        DefPath = key.Path
+        DefPath = key.Key
       };
     }
 
