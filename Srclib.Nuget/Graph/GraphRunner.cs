@@ -16,7 +16,7 @@ namespace Srclib.Nuget.Graph
   public class GraphRunner : CSharpSyntaxWalker
   {
     readonly Output _output = new Output();
-    readonly List<Tuple<SyntaxToken, ISymbol>> _refs = new List<Tuple<SyntaxToken, ISymbol>>();
+    readonly List<Tuple<SyntaxToken, ISymbol, string>> _refs = new List<Tuple<SyntaxToken, ISymbol, string>>();
     readonly HashSet<ISymbol> _defined = new HashSet<ISymbol>();
     SemanticModel _sm;
     string _path;
@@ -39,11 +39,12 @@ namespace Srclib.Nuget.Graph
       {
         var token = r.Item1;
         var definition = r.Item2;
+        var file = r.Item3;
 
         if (_defined.Contains(definition))
         {
           var reference = Ref.To(definition)
-            .At(_path, token.Span);
+            .At(file, token.Span);
 
           _output.Refs.Add(reference);
         }
@@ -318,7 +319,7 @@ namespace Srclib.Nuget.Graph
         }
 
         var definition = symbol.Symbol.OriginalDefinition;
-        _refs.Add(Tuple.Create(token, definition));
+        _refs.Add(Tuple.Create(token, definition, _path));
       }
 
       skip:

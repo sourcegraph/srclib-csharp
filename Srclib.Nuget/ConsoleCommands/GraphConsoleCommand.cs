@@ -18,7 +18,6 @@ namespace Srclib.Nuget
         c.HelpOption("-?|-h|--help");
 
         c.OnExecute((Func<System.Threading.Tasks.Task<int>>)(async () => {
-          System.Diagnostics.Debugger.Launch();
           var jsonIn = await Console.In.ReadToEndAsync();
           var sourceUnit = JsonConvert.DeserializeObject<SourceUnit>(jsonIn);
 
