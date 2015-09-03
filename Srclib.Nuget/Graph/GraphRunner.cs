@@ -145,7 +145,7 @@ namespace Srclib.Nuget.Graph
 
         _defined.Add(symbol);
 
-        var def = Def.For(symbol: symbol, type: "method", name: symbol.Name)
+        var def = Def.For(symbol: symbol, type: "ctor", name: symbol.Name)
           .At(_path, node.Identifier.Span);
 
         if (symbol.IsExported())
@@ -157,6 +157,50 @@ namespace Srclib.Nuget.Graph
       }
 
       base.VisitConstructorDeclaration(node);
+    }
+
+    public override void VisitPropertyDeclaration(PropertyDeclarationSyntax node)
+    {
+      if (!node.Identifier.Span.IsEmpty)
+      {
+        var symbol = _sm.GetDeclaredSymbol(node);
+
+        _defined.Add(symbol);
+
+        var def = Def.For(symbol: symbol, type: "property", name: symbol.Name)
+          .At(_path, node.Identifier.Span);
+
+        if (symbol.IsExported())
+        {
+          def.Exported = true;
+        }
+
+        AddDef(def);
+      }
+
+      base.VisitPropertyDeclaration(node);
+    }
+
+    public override void VisitEventDeclaration(EventDeclarationSyntax node)
+    {
+      if (!node.Identifier.Span.IsEmpty)
+      {
+        var symbol = _sm.GetDeclaredSymbol(node);
+
+        _defined.Add(symbol);
+
+        var def = Def.For(symbol: symbol, type: "event", name: symbol.Name)
+          .At(_path, node.Identifier.Span);
+
+        if (symbol.IsExported())
+        {
+          def.Exported = true;
+        }
+
+        AddDef(def);
+      }
+
+      base.VisitEventDeclaration(node);
     }
 
     public override void VisitParameter(ParameterSyntax node)
