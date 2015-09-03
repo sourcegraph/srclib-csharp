@@ -137,6 +137,28 @@ namespace Srclib.Nuget.Graph
       base.VisitMethodDeclaration(node);
     }
 
+    public override void VisitConstructorDeclaration(ConstructorDeclarationSyntax node)
+    {
+      if (!node.Identifier.Span.IsEmpty)
+      {
+        var symbol = _sm.GetDeclaredSymbol(node);
+
+        _defined.Add(symbol);
+
+        var def = Def.For(symbol: symbol, type: "method", name: symbol.Name)
+          .At(_path, node.Identifier.Span);
+
+        if (symbol.IsExported())
+        {
+          def.Exported = true;
+        }
+
+        AddDef(def);
+      }
+
+      base.VisitConstructorDeclaration(node);
+    }
+
     public override void VisitParameter(ParameterSyntax node)
     {
       if (!node.Identifier.Span.IsEmpty)
