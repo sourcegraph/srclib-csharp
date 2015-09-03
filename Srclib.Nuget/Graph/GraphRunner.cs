@@ -105,6 +105,8 @@ namespace Srclib.Nuget.Graph
         }
       }
 
+      runner._sm = null;
+      runner._path = null;
       runner.RunTokens();
       return runner._output;
     }
