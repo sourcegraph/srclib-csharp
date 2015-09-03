@@ -16,7 +16,7 @@ namespace Srclib.Nuget.Graph
   public class GraphRunner : CSharpSyntaxWalker
   {
     readonly Output _output = new Output();
-    //readonly HashSet<string> _defined = new HashSet<string>();
+    readonly List<Tuple<SyntaxToken, ISymbol>> _refs = new List<Tuple<SyntaxToken, ISymbol>>();
     readonly HashSet<ISymbol> _defined = new HashSet<ISymbol>();
     SemanticModel _sm;
     string _path;
@@ -31,6 +31,23 @@ namespace Srclib.Nuget.Graph
       var r = Ref.AtDef(def);
       _output.Defs.Add(def);
       _output.Refs.Add(r);
+    }
+
+    void RunTokens()
+    {
+      foreach(var r in _refs)
+      {
+        var token = r.Item1;
+        var definition = r.Item2;
+
+        if (_defined.Contains(definition))
+        {
+          var reference = Ref.To(definition)
+            .At(_path, token.Span);
+
+          _output.Refs.Add(reference);
+        }
+      }
     }
 
     internal static async Task<Output> Graph(GraphContext context)
@@ -87,6 +104,7 @@ namespace Srclib.Nuget.Graph
         }
       }
 
+      runner.RunTokens();
       return runner._output;
     }
 
@@ -300,13 +318,7 @@ namespace Srclib.Nuget.Graph
         }
 
         var definition = symbol.Symbol.OriginalDefinition;
-        if (_defined.Contains(definition))
-        {
-          var reference = Ref.To(definition)
-            .At(_path, token.Span);
-
-          _output.Refs.Add(reference);
-        }
+        _refs.Add(Tuple.Create(token, definition));
       }
 
       skip:
