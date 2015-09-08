@@ -34,7 +34,7 @@ namespace Srclib.Nuget
       });
 
       ScanConsoleCommand.Register(app, _env);
-      GraphConsoleCommand.Register(app, _env, _loadContextAccessor);
+      GraphConsoleCommand.Register(app, _env, _loadContextAccessor, _runtimeEnv);
       DepresolveConsoleCommand.Register(app, _env, _runtimeEnv);
 
       return app.Execute(args);

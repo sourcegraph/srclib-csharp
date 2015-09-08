@@ -34,7 +34,7 @@ namespace Srclib.Nuget
     public DependencyInfo[] Dependencies { get; set; }
 
     [JsonProperty]
-    public object Data { get; set; }
+    public SourceUnit Data { get; set; }
 
     [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
     public Dictionary<string, string> Ops { get; set; }

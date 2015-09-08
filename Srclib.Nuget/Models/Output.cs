@@ -100,7 +100,8 @@ namespace Srclib.Nuget
     [JsonProperty]
     public string TreePath { get; set; }
 
-    // TODO: Data, docs
+    [JsonProperty]
+    public DefFormatStrings Data { get; set; }
 
     internal static Def For(ISymbol symbol, string type, string name)
     {
@@ -111,7 +112,8 @@ namespace Srclib.Nuget
         DefKey = key.Key,
         TreePath = key.Path,
         Kind = type,
-        Name = name
+        Name = name,
+        Data = DefFormatStrings.From(symbol, key, type)
       };
     }
 
@@ -235,5 +237,210 @@ namespace Srclib.Nuget
   public class Doc
   {
 
+  }
+
+  public class DefFormatStrings
+  {
+    [JsonProperty]
+    public QualFormatStrings Name { get; set; }
+
+    [JsonProperty]
+    public QualFormatStrings Type { get; set; }
+
+    [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+    public string NameAndTypeSeparator { get; set; }
+
+    [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+    public string Language { get; set; }
+
+    [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+    public string DefKeyword { get; set; }
+
+    [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+    public string Kind { get; set; }
+
+    static SymbolDisplayFormat Unqualified { get; } =
+      new SymbolDisplayFormat(
+        globalNamespaceStyle: SymbolDisplayGlobalNamespaceStyle.Omitted,
+        genericsOptions: SymbolDisplayGenericsOptions.IncludeTypeParameters,
+        memberOptions:
+          SymbolDisplayMemberOptions.IncludeParameters |
+          SymbolDisplayMemberOptions.IncludeType,
+        kindOptions: SymbolDisplayKindOptions.IncludeMemberKeyword,
+        parameterOptions:
+          SymbolDisplayParameterOptions.IncludeName |
+          SymbolDisplayParameterOptions.IncludeType |
+          SymbolDisplayParameterOptions.IncludeParamsRefOut |
+          SymbolDisplayParameterOptions.IncludeExtensionThis |
+          SymbolDisplayParameterOptions.IncludeOptionalBrackets,
+        localOptions: SymbolDisplayLocalOptions.IncludeType,
+        miscellaneousOptions:
+          SymbolDisplayMiscellaneousOptions.EscapeKeywordIdentifiers |
+          SymbolDisplayMiscellaneousOptions.UseSpecialTypes);
+
+    static SymbolDisplayFormat ScopeQualified { get; } =
+      new SymbolDisplayFormat(
+        globalNamespaceStyle: SymbolDisplayGlobalNamespaceStyle.Omitted,
+        typeQualificationStyle: SymbolDisplayTypeQualificationStyle.NameAndContainingTypes,
+        genericsOptions: SymbolDisplayGenericsOptions.IncludeTypeParameters,
+        memberOptions:
+          SymbolDisplayMemberOptions.IncludeParameters |
+          SymbolDisplayMemberOptions.IncludeType |
+          SymbolDisplayMemberOptions.IncludeContainingType,
+        kindOptions: SymbolDisplayKindOptions.IncludeMemberKeyword,
+        parameterOptions:
+          SymbolDisplayParameterOptions.IncludeName |
+          SymbolDisplayParameterOptions.IncludeType |
+          SymbolDisplayParameterOptions.IncludeParamsRefOut |
+          SymbolDisplayParameterOptions.IncludeExtensionThis |
+          SymbolDisplayParameterOptions.IncludeOptionalBrackets,
+        localOptions: SymbolDisplayLocalOptions.IncludeType,
+        miscellaneousOptions:
+          SymbolDisplayMiscellaneousOptions.EscapeKeywordIdentifiers |
+          SymbolDisplayMiscellaneousOptions.UseSpecialTypes);
+
+    static SymbolDisplayFormat DepQualified { get; } =
+      new SymbolDisplayFormat(
+        globalNamespaceStyle: SymbolDisplayGlobalNamespaceStyle.Omitted,
+        typeQualificationStyle: SymbolDisplayTypeQualificationStyle.NameAndContainingTypesAndNamespaces,
+        genericsOptions: SymbolDisplayGenericsOptions.IncludeTypeParameters,
+        memberOptions:
+          SymbolDisplayMemberOptions.IncludeParameters |
+          SymbolDisplayMemberOptions.IncludeType |
+          SymbolDisplayMemberOptions.IncludeContainingType,
+        kindOptions: SymbolDisplayKindOptions.IncludeMemberKeyword,
+        parameterOptions:
+          SymbolDisplayParameterOptions.IncludeName |
+          SymbolDisplayParameterOptions.IncludeType |
+          SymbolDisplayParameterOptions.IncludeParamsRefOut |
+          SymbolDisplayParameterOptions.IncludeExtensionThis |
+          SymbolDisplayParameterOptions.IncludeOptionalBrackets,
+        localOptions: SymbolDisplayLocalOptions.IncludeType,
+        miscellaneousOptions:
+          SymbolDisplayMiscellaneousOptions.EscapeKeywordIdentifiers |
+          SymbolDisplayMiscellaneousOptions.UseSpecialTypes);
+
+    static SymbolDisplayFormat RepositoryWideQualified { get; } =
+      DepQualified;
+
+    static SymbolDisplayFormat LanguageWideQualified { get; } =
+      RepositoryWideQualified;
+
+    internal static DefFormatStrings From(ISymbol symbol, SymbolExtensions.KeyData key, string typeString)
+    {
+      var name = new QualFormatStrings
+      {
+        Unqualified = symbol.ToDisplayString(Unqualified),
+        ScopeQualified = symbol.ToDisplayString(ScopeQualified),
+        DepQualified = symbol.ToDisplayString(DepQualified),
+        RepositoryWideQualified = symbol.ToDisplayString(RepositoryWideQualified),
+        LanguageWideQualified = symbol.ToDisplayString(LanguageWideQualified)
+      };
+
+      var type = QualFormatStrings.Single(typeString);
+
+      return new DefFormatStrings
+      {
+        Name = name,
+        Type = type,
+        NameAndTypeSeparator = " ",
+        Language = "C#",
+        DefKeyword = "",
+        Kind = typeString
+      };
+    }
+  }
+
+  public class QualFormatStrings
+  {
+    /// <summary>
+    /// An Unqualified name is just the def's name.
+    ///
+    /// Examples:
+    ///
+    ///   Go method         `MyMethod`
+    ///   Python method     `my_method`
+    ///   JavaScript method `myMethod`
+    /// </summary>
+    [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+    public string Unqualified { get; set; }
+
+    /// <summary>
+    /// A ScopeQualified name is the language-specific description of the
+    /// def's defining scope plus the def's unqualified name. It should
+    /// uniquely describe the def among all other defs defined in the same
+    /// logical package (but this is not strictly defined or enforced).
+    ///
+    /// Examples:
+    ///
+    ///   Go method         `(*MyType).MyMethod`
+    ///   Python method     `MyClass.my_method`
+    ///   JavaScript method `MyConstructor.prototype.myMethod`
+    /// </summary>
+    [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+    public string ScopeQualified { get; set; }
+
+    /// <summary>
+    /// A DepQualified name is the package/module name (as seen by an external
+    /// library that imports/depends on the def's package/module) plus the
+    /// def's scope-qualified name. If there are nested packages, it should
+    /// describe enough of the package hierarchy to distinguish it from other
+    /// similarly named defs (but this is not strictly defined or enforced).
+    ///
+    /// Examples:
+    ///
+    ///   Go method       `(*mypkg.MyType).MyMethod`
+    ///   Python method   `mypkg.MyClass.my_method`
+    ///   CommonJS method `mymodule.MyConstructor.prototype.myMethod`
+    /// </summary>
+    [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+    public string DepQualified { get; set; }
+
+    /// <summary>
+    /// A RepositoryWideQualified name is the full package/module name(s) plus
+    /// the def's scope-qualified name. It should describe enough of the
+    /// package hierarchy so that it is unique in its repository.
+    /// RepositoryWideQualified differs from DepQualified in that the former
+    /// includes the full nested package/module path from the repository root
+    /// (e.g., 'a/b.C' for a Go func C in the repository 'github.com/user/a'
+    /// subdirectory 'b'), while DepQualified would only be the last directory
+    /// component (e.g., 'b.C' in that example).
+    ///
+    /// Examples:
+    ///
+    ///   Go method       `(*mypkg/subpkg.MyType).MyMethod`
+    ///   Python method   `mypkg.subpkg.MyClass.my_method` (unless mypkg =~ subpkg)
+    ///   CommonJS method `mypkg.mymodule.MyConstructor.prototype.myMethod` (unless mypkg =~ mymodule)
+    /// </summary>
+    [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+    public string RepositoryWideQualified { get; set; }
+
+    /// <summary>
+    /// A LanguageWideQualified name is the library/repository name plus the
+    /// package-qualified def name. It should describe the def so that it
+    /// is logically unique among all defs that could reasonably exist for the
+    /// language that the def is written in (but this is not strictly defined
+    /// or enforced).
+    ///
+    /// Examples:
+    ///
+    ///   Go method       `(*github.com/user/repo/mypkg.MyType).MyMethod`
+    ///   Python method   `mylib.MyClass.my_method` (if mylib =~ mypkg, as for Django, etc.)
+    ///   CommonJS method `mylib.MyConstructor.prototype.myMethod` (if mylib =~ mymod, as for caolan/async, etc.)
+    /// </summary>
+    [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+    public string LanguageWideQualified { get; set; }
+
+    internal static QualFormatStrings Single(string val)
+    {
+      return new QualFormatStrings
+      {
+        Unqualified = val,
+        ScopeQualified = val,
+        DepQualified = val,
+        RepositoryWideQualified = val,
+        LanguageWideQualified = val
+      };
+    }
   }
 }

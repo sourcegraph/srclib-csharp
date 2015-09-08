@@ -75,7 +75,7 @@ namespace Srclib.Nuget.Graph
         "Debug",
         context.HostEnvironment);
 
-      context.CompilationContext = new CompilationEngineContext(context.ApplicationEnvironment, context.LoadContextAccessor.Default, new CompilationCache());
+      context.CompilationContext = new CompilationEngineContext(context.ApplicationEnvironment, context.RuntimeEnvironment, context.LoadContextAccessor.Default, new CompilationCache());
 
       context.CompilationEngine = new CompilationEngine(context.CompilationContext);
       context.LibraryExporter = context.CompilationEngine.CreateProjectExporter(context.Project, context.ApplicationHostContext.TargetFramework, "Debug");

@@ -24,5 +24,6 @@ namespace Srclib.Nuget.Graph
     public LibraryExport Export { get; set; }
     public CSharpCompilation Compilation { get; set; }
     public string RootPath { get; set; }
+    public IRuntimeEnvironment RuntimeEnvironment { get; set; }
   }
 }
