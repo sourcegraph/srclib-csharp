@@ -101,7 +101,7 @@ namespace Srclib.Nuget
     public string TreePath { get; set; }
 
     [JsonProperty]
-    public DefFormatStrings Data { get; set; }
+    public DefData Data { get; set; }
 
     internal static Def For(ISymbol symbol, string type, string name)
     {
@@ -113,7 +113,10 @@ namespace Srclib.Nuget
         TreePath = key.Path,
         Kind = type,
         Name = name,
-        Data = DefFormatStrings.From(symbol, key, type)
+        Data = new DefData
+        {
+          FmtStrings = DefFormatStrings.From(symbol, key, type)
+        }
       };
     }
 
@@ -237,6 +240,12 @@ namespace Srclib.Nuget
   public class Doc
   {
 
+  }
+
+  public class DefData
+  {
+    [JsonProperty]
+    public DefFormatStrings FmtStrings { get; set; }
   }
 
   public class DefFormatStrings
