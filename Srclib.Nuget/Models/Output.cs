@@ -239,7 +239,46 @@ namespace Srclib.Nuget
 
   public class Doc
   {
+    [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+    public string UnitType { get; set; }
 
+    [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+    public string Unit { get; set; }
+
+    [JsonProperty]
+    public string Path { get; set; }
+
+    /// <summary>
+    /// Format is the the MIME-type that the documentation is stored
+    /// in. Valid formats include 'text/html', 'text/plain',
+    /// 'text/x-markdown', text/x-rst'.
+    /// </summary>
+    [JsonProperty]
+    public string Format { get; set; }
+
+    /// <summary>
+    /// Data is the actual documentation text.
+    /// </summary>
+    [JsonProperty]
+    public string Data { get; set; }
+
+    /// <summary>
+    /// File is the filename where this Doc exists.
+    /// </summary>
+    [JsonProperty]
+    public string File { get; set; }
+
+    /// <summary>
+    /// Start is the byte offset of this Doc's first byte in File.
+    /// </summary>
+    [JsonProperty]
+    public uint Start { get; set; }
+
+    /// <summary>
+    /// End is the byte offset of this Doc's last byte in File.
+    /// </summary>
+    [JsonProperty]
+    public uint End { get; set; }
   }
 
   public class DefData

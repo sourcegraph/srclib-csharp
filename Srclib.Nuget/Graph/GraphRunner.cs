@@ -10,9 +10,15 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Globalization;
+using System.Xml.Linq;
+using Srclib.Nuget.Documentation;
 
 namespace Srclib.Nuget.Graph
 {
+  /// <summary>
+  /// C# syntax walker that produces graph output.
+  /// </summary>
   public class GraphRunner : CSharpSyntaxWalker
   {
     readonly Output _output = new Output();
@@ -26,11 +32,26 @@ namespace Srclib.Nuget.Graph
     {
     }
 
-    void AddDef(Def def)
+    /// <summary>
+    /// Add a definition to the output.
+    /// Also adds a ref to the def, and
+    /// potentially a doc.
+    /// </summary>
+    /// <param name="def">The def to add.</param>
+    /// <param name="symbol">The symbol the def was created from.</param>
+    void AddDef(Def def, Doc doc = null)
     {
       var r = Ref.AtDef(def);
       _output.Defs.Add(def);
       _output.Refs.Add(r);
+
+      if (doc != null)
+      {
+        doc.UnitType = r.DefUnitType;
+        doc.Unit = r.DefUnit;
+        doc.Path = r.DefPath;
+        _output.Docs.Add(doc);
+      }
     }
 
     void RunTokens()
@@ -129,7 +150,7 @@ namespace Srclib.Nuget.Graph
             def.Exported = true;
           }
 
-          AddDef(def);
+          AddDef(def, DocProcessor.ForClass(symbol));
         }
       }
 
