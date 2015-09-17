@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace Srclib.Nuget.Documentation
 {
@@ -24,23 +25,15 @@ namespace Srclib.Nuget.Documentation
         return null;
       }
 
-      var result = new List<Tuple<string, string>>();
-      using (var sr = new StringReader($"{doc}"))
-      using (var reader = XmlReader.Create(sr))
-      {
-        // move to <member>
-        reader.MoveToContent();
+      var sections = new List<Tuple<int, string, string>>();
+      var xdoc = XDocument.Parse(doc).Root;
 
-        // move to content
-        reader.Read();
+      ProcessFull(xdoc, sections);
 
-        ProcessFull(reader, result);
-      }
-
-      if (result.Count == 0)
+      if (sections.Count == 0)
         return null;
 
-      var resultString = String.Join("\n", result.Select(t => $"<h1>{t.Item1}</h1>{t.Item2}"));
+      var resultString = String.Join("\n", sections.Select(t => $"<h{t.Item1 + 2}>{t.Item2}</h{t.Item1 + 2}>{t.Item3}"));
 
       return new Doc
       {
@@ -49,69 +42,135 @@ namespace Srclib.Nuget.Documentation
       };
     }
 
-    static void ProcessFull(XmlReader reader, List<Tuple<string, string>> sections)
+    /// <summary>
+    /// Process a method declaration for documentation.
+    /// </summary>
+    /// <param name="symbol">The method in question.</param>
+    /// <returns><c>Docs</c> if the method contains any, otherwise <c>null</c>.</returns>
+    public static Doc ForMethod(IMethodSymbol symbol)
     {
-      var summary = new StringBuilder();
-      var remarks = new StringBuilder();
+      var doc = symbol.GetDocumentationCommentXml();
+      if (string.IsNullOrEmpty(doc))
+      {
+        return null;
+      }
 
-      while (!reader.EOF) {
-        switch (reader.LocalName)
+      var sections = new List<Tuple<int, string, string>>();
+      var xdoc = XDocument.Parse(doc).Root;
+
+      ProcessFull(xdoc, sections);
+      var cursor = sections.FindIndex(t => t.Item2 == "Summary");
+      var paramsSection = ProcessParameters(xdoc, symbol.Parameters.Select(p => p.Name).ToList());
+      sections.Insert(cursor + 1, paramsSection);
+
+      var returnElement = xdoc.Element("returns");
+      if (returnElement != null)
+      {
+        var content = ProcessContent(returnElement);
+        if (!string.IsNullOrEmpty(content))
         {
-          case "summary":
-            ProcessContent(reader.ReadSubtree(), summary);
-            break;
-
-          case "remarks":
-            ProcessContent(reader.ReadSubtree(), remarks);
-            break;
+          sections.Insert(cursor + 2, Tuple.Create(2, "Return value", $"<p>{content}</p>"));
         }
-
-        reader.Read();
       }
 
-      if (summary.Length > 0)
+      var resultString = string.Join("\n", sections.Select(t => $"<h{t.Item1 + 2}>{t.Item2}</h{t.Item1 + 2}>{t.Item3}"));
+
+      return new Doc
       {
-        sections.Add(Tuple.Create("Summary", summary.ToString()));
+        Format = "text/html",
+        Data = resultString
+      };
+    }
+
+    public static Tuple<int, string, string> ProcessParameters(XElement doc, IList<string> names)
+    {
+      var sb = new StringBuilder();
+      using (var writer = XmlWriter.Create(sb, new XmlWriterSettings { OmitXmlDeclaration = true, ConformanceLevel = ConformanceLevel.Fragment }))
+      {
+        writer.WriteStartElement("dl");
+        foreach (var name in names)
+        {
+          writer.WriteStartElement("dt");
+          writer.WriteStartElement("em");
+          writer.WriteString(name);
+          writer.WriteEndElement();
+          writer.WriteEndElement();
+
+          writer.WriteStartElement("dd");
+          var node = doc.Elements("param").Where(e => e.Attribute("name").Value == name).FirstOrDefault();
+          if (node != null)
+          {
+            ProcessContent(node, writer);
+          }
+          else
+          {
+            writer.WriteStartElement("span");
+            writer.WriteAttributeString("class", "empty-param");
+            writer.WriteString("No documentation found.");
+            writer.WriteEndElement();
+          }
+          writer.WriteEndElement();
+        }
+        writer.WriteEndElement();
       }
 
-      if (remarks.Length > 0)
+      return Tuple.Create(2, "Parameters", sb.ToString());
+    }
+
+    static void ProcessFull(XElement doc, List<Tuple<int, string, string>> sections)
+    {
+      var summary = doc.Element("summary");
+      var remarks = doc.Element("remarks");
+
+      if (summary != null)
       {
-        sections.Add(Tuple.Create("Remarks", remarks.ToString()));
+        var text = ProcessContent(summary);
+        if (!string.IsNullOrEmpty(text))
+          sections.Add(Tuple.Create(1, "Summary", $"<p>{text}</p>"));
+      }
+
+      if (remarks != null)
+      {
+        var text = ProcessContent(remarks);
+        if (!string.IsNullOrEmpty(text))
+          sections.Add(Tuple.Create(1, "Remarks", $"<p>{text}</p>"));
       }
     }
 
-    static void ProcessContent(XmlReader reader, StringBuilder builder)
+    static string ProcessContent(XElement node)
     {
-      reader.MoveToContent();
-      reader.Read();
-      var started = false;
+      var sb = new StringBuilder();
+      using (var writer = XmlWriter.Create(sb, new XmlWriterSettings { OmitXmlDeclaration = true, ConformanceLevel = ConformanceLevel.Fragment }))
+      {
+        var notEmpty = ProcessContent(node, writer);
+        if (!notEmpty)
+        {
+          return null;
+        }
+      }
 
-      using (var writer = XmlWriter.Create(builder, new XmlWriterSettings { OmitXmlDeclaration = true, ConformanceLevel = ConformanceLevel.Fragment }))
+      return sb.ToString();
+    }
+
+    static bool ProcessContent(XElement node, XmlWriter writer)
+    {
+      bool written = false;
+      using (var reader = node.CreateReader())
       {
         while (!reader.EOF)
         {
-          switch(reader.NodeType)
+          switch (reader.NodeType)
           {
             case XmlNodeType.Text:
-              if (!started)
-              {
-                started = true;
-                writer.WriteStartElement("p");
-              }
-
+              written = true;
               writer.WriteString(reader.Value);
               break;
 
             case XmlNodeType.Element:
-              switch(reader.LocalName)
+              switch (reader.LocalName)
               {
                 case "see":
-                  if (!started)
-                  {
-                    started = true;
-                    writer.WriteStartElement("span");
-                  }
-
+                  written = true;
                   var cref = reader.GetAttribute("cref");
                   writer.WriteStartElement("span");
 
@@ -121,6 +180,20 @@ namespace Srclib.Nuget.Documentation
                   writer.WriteEndElement();
                   break;
 
+                case "c":
+                  written = true;
+                  writer.WriteStartElement("strong");
+                  break;
+              }
+
+              break;
+
+            case XmlNodeType.EndElement:
+              switch (reader.LocalName)
+              {
+                case "c":
+                  writer.WriteEndElement();
+                  break;
               }
 
               break;
@@ -128,12 +201,9 @@ namespace Srclib.Nuget.Documentation
 
           reader.Read();
         }
-
-        if (started)
-        {
-          writer.WriteEndElement();
-        }
       }
+
+      return written;
     }
   }
 }

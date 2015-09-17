@@ -173,7 +173,7 @@ namespace Srclib.Nuget.Graph
           def.Exported = true;
         }
 
-        AddDef(def);
+        AddDef(def, DocProcessor.ForMethod(symbol));
       }
 
       base.VisitMethodDeclaration(node);
