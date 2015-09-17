@@ -212,7 +212,7 @@ namespace Srclib.Nuget
 
       return new Ref
       {
-        DefPath = key.Key
+        DefPath = key.Path
       };
     }
 
@@ -228,7 +228,7 @@ namespace Srclib.Nuget
     {
       return new Ref
       {
-        DefPath = def.DefKey,
+        DefPath = def.TreePath,
         File = def.File,
         Start = def.DefStart,
         End = def.DefEnd,
