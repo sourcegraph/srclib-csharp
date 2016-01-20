@@ -1,4 +1,4 @@
-﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.Dnx.Compilation;
 using Microsoft.Dnx.Compilation.Caching;
@@ -96,7 +96,8 @@ namespace Srclib.Nuget.Graph
         "Debug",
         context.HostEnvironment);
 
-      context.CompilationContext = new CompilationEngineContext(context.ApplicationEnvironment, context.RuntimeEnvironment, context.LoadContextAccessor.Default, new CompilationCache());
+            //Microsoft.Extensions.PlatformAbstractions.IApplicationEnvironment f = null;
+      context.CompilationContext = new CompilationEngineContext(/*f*/context.ApplicationEnvironment, context.RuntimeEnvironment, context.LoadContextAccessor.Default, new CompilationCache());
 
       context.CompilationEngine = new CompilationEngine(context.CompilationContext);
       context.LibraryExporter = context.CompilationEngine.CreateProjectExporter(context.Project, context.ApplicationHostContext.TargetFramework, "Debug");

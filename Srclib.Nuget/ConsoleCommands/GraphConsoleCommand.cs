@@ -10,7 +10,7 @@ namespace Srclib.Nuget
 {
   class GraphConsoleCommand
   {
-    public static void Register(CommandLineApplication cmdApp, IApplicationEnvironment appEnvironment, IAssemblyLoadContextAccessor loadContextAccessor, IRuntimeEnvironment runtimeEnvironment)
+    public static void Register(CommandLineApplication cmdApp, Microsoft.Extensions.PlatformAbstractions.IApplicationEnvironment appEnvironment, Microsoft.Extensions.PlatformAbstractions.IAssemblyLoadContextAccessor loadContextAccessor, Microsoft.Extensions.PlatformAbstractions.IRuntimeEnvironment runtimeEnvironment)
     {
       cmdApp.Command("graph", (Action<CommandLineApplication>)(c => {
         c.Description = "Perform parsing, static analysis, semantic analysis, and type inference";

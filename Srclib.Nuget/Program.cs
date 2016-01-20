@@ -6,11 +6,11 @@ namespace Srclib.Nuget
 {
   public class Program
   {
-    readonly IApplicationEnvironment _env;
-    readonly IRuntimeEnvironment _runtimeEnv;
-    readonly IAssemblyLoadContextAccessor _loadContextAccessor;
+    readonly Microsoft.Extensions.PlatformAbstractions.IApplicationEnvironment _env;
+    readonly Microsoft.Extensions.PlatformAbstractions.IRuntimeEnvironment _runtimeEnv;
+    readonly Microsoft.Extensions.PlatformAbstractions.IAssemblyLoadContextAccessor _loadContextAccessor;
 
-    public Program(IApplicationEnvironment env, IRuntimeEnvironment runtimeEnv, IAssemblyLoadContextAccessor loadContextAccessor)
+    public Program(Microsoft.Extensions.PlatformAbstractions.IApplicationEnvironment env, Microsoft.Extensions.PlatformAbstractions.IRuntimeEnvironment runtimeEnv, Microsoft.Extensions.PlatformAbstractions.IAssemblyLoadContextAccessor loadContextAccessor)
     {
       _env = env;
       _runtimeEnv = runtimeEnv;
@@ -24,7 +24,7 @@ namespace Srclib.Nuget
       app.FullName = "Scrlib C# toolchain";
 
       app.HelpOption("-?|-h|--help");
-      app.VersionOption("--version", () => _runtimeEnv.GetShortVersion(), () => _runtimeEnv.GetFullVersion());
+      //app.VersionOption("--version", () => _runtimeEnv.GetShortVersion(), () => _runtimeEnv.GetFullVersion());
 
       // Show help information if no subcommand/option was specified
       app.OnExecute(() =>

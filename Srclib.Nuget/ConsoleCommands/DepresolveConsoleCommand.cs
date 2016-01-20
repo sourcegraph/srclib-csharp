@@ -14,7 +14,7 @@ namespace Srclib.Nuget
   {
     static Lazy<string> _dnuPath;
 
-    public static void Register(CommandLineApplication cmdApp, IApplicationEnvironment appEnv, IRuntimeEnvironment runtimeEnv)
+    public static void Register(CommandLineApplication cmdApp, Microsoft.Extensions.PlatformAbstractions.IApplicationEnvironment appEnv, Microsoft.Extensions.PlatformAbstractions.IRuntimeEnvironment runtimeEnv)
     {
       if (runtimeEnv.OperatingSystem == "Windows")
       {

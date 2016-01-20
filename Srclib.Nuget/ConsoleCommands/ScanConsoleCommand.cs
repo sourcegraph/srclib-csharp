@@ -9,7 +9,7 @@ namespace Srclib.Nuget
 {
   class ScanConsoleCommand
   {
-    public static void Register(CommandLineApplication cmdApp, IApplicationEnvironment appEnvironment)
+    public static void Register(CommandLineApplication cmdApp, Microsoft.Extensions.PlatformAbstractions.IApplicationEnvironment appEnvironment)
     {
       cmdApp.Command("scan", c => {
         c.Description = "Scan a directory tree and produce a JSON array of source units";
@@ -43,10 +43,10 @@ namespace Srclib.Nuget
 
     static IEnumerable<Project> Scan(string dir)
     {
-      //Console.Error.Write($"Scan dir: {dir}\n");
+      //Console.WriteLine($"Scan dir: {dir}\n");
       if (Project.HasProjectFile(dir))
       {
-        //Console.Error.Write($"Dir has project: {dir}\n");
+        //Console.WriteLine($"Dir has project: {dir}\n");
         Project proj;
         if (Project.TryGetProject(dir, out proj) && proj.CompilerServices == null)
           yield return proj;

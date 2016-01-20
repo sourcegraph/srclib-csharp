@@ -8,14 +8,34 @@ namespace Srclib.Nuget
   {
     public static string GetRelativePath(string filespec, string folder)
     {
-      Uri pathUri = new Uri(filespec);
-      // Folders must end in a slash
-      if (!folder.EndsWith(Path.DirectorySeparatorChar.ToString()))
-      {
-        folder += Path.DirectorySeparatorChar;
-      }
-      Uri folderUri = new Uri(folder);
-      return Uri.UnescapeDataString(folderUri.MakeRelativeUri(pathUri).ToString().Replace('/', Path.DirectorySeparatorChar));
+      //try
+      //{
+          //Uri qq = new Uri("file:///etc/fstab");
+          //Console.Error.WriteLine("qq");
+          filespec = "file://" + filespec;
+          folder = "file://" + folder;
+          //Console.Error.WriteLine("filespec=" + filespec + " folder=" + folder);
+          Uri pathUri = new Uri(filespec);
+          //Console.Error.WriteLine("15");
+          // Folders must end in a slash
+          if (!folder.EndsWith(Path.DirectorySeparatorChar.ToString()))
+          {
+            //Console.Error.WriteLine("17");
+            folder += Path.DirectorySeparatorChar;
+            //Console.Error.WriteLine("19");
+          }
+          //Console.Error.WriteLine("21");
+          Uri folderUri = new Uri(folder);
+          //Console.Error.WriteLine("23");
+          String s = Uri.UnescapeDataString(folderUri.MakeRelativeUri(pathUri).ToString().Replace('/', Path.DirectorySeparatorChar));
+          //Console.Error.WriteLine(s);
+          return s;
+      //}
+      //catch (Exception e)
+      //{
+      //    Console.Error.WriteLine(String.Concat("Uri exception for filespec ", filespec));
+      //    return null;
+      //}
     }
   }
 
