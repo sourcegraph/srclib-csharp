@@ -123,8 +123,9 @@ namespace Srclib.Nuget
     internal Def At(string file, TextSpan span)
     {
       File = file;
-      DefStart = (uint)span.Start;
-      DefEnd = (uint)span.End;
+      DefStart = 3 + (uint)span.Start;
+      DefEnd = 3 + (uint)span.End;
+      //Console.Error.WriteLine("DefStart=" + DefStart + " DefEnd=" + DefEnd);
       return this;
     }
   }
