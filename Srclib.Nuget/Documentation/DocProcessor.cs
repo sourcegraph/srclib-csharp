@@ -19,27 +19,34 @@ namespace Srclib.Nuget.Documentation
   {
     public static Doc ForClass(INamedTypeSymbol symbol)
     {
-      var doc = symbol.GetDocumentationCommentXml();
-      if (string.IsNullOrEmpty(doc))
+      try 
+      {
+        var doc = symbol.GetDocumentationCommentXml();
+        if (string.IsNullOrEmpty(doc))
+        {
+          return null;
+        }
+
+        var sections = new List<Tuple<int, string, string>>();
+        var xdoc = XDocument.Parse(doc).Root;
+
+        ProcessFull(xdoc, sections);
+
+        if (sections.Count == 0)
+          return null;
+
+        var resultString = String.Join("\n", sections.Select(t => $"<h{t.Item1 + 2}>{t.Item2}</h{t.Item1 + 2}>{t.Item3}"));
+
+        return new Doc
+        {
+          Format = "text/html",
+          Data = resultString
+        };
+      }
+      catch (Exception e)
       {
         return null;
       }
-
-      var sections = new List<Tuple<int, string, string>>();
-      var xdoc = XDocument.Parse(doc).Root;
-
-      ProcessFull(xdoc, sections);
-
-      if (sections.Count == 0)
-        return null;
-
-      var resultString = String.Join("\n", sections.Select(t => $"<h{t.Item1 + 2}>{t.Item2}</h{t.Item1 + 2}>{t.Item3}"));
-
-      return new Doc
-      {
-        Format = "text/html",
-        Data = resultString
-      };
     }
 
     /// <summary>
@@ -49,37 +56,44 @@ namespace Srclib.Nuget.Documentation
     /// <returns><c>Docs</c> if the method contains any, otherwise <c>null</c>.</returns>
     public static Doc ForMethod(IMethodSymbol symbol)
     {
-      var doc = symbol.GetDocumentationCommentXml();
-      if (string.IsNullOrEmpty(doc))
+      try 
+      {
+        var doc = symbol.GetDocumentationCommentXml();
+        if (string.IsNullOrEmpty(doc))
+        {
+          return null;
+        }
+
+        var sections = new List<Tuple<int, string, string>>();
+        var xdoc = XDocument.Parse(doc).Root;
+
+        ProcessFull(xdoc, sections);
+        var cursor = sections.FindIndex(t => t.Item2 == "Summary");
+        var paramsSection = ProcessParameters(xdoc, symbol.Parameters.Select(p => p.Name).ToList());
+        sections.Insert(cursor + 1, paramsSection);
+
+        var returnElement = xdoc.Element("returns");
+        if (returnElement != null)
+        {
+          var content = ProcessContent(returnElement);
+          if (!string.IsNullOrEmpty(content))
+          {
+            sections.Insert(cursor + 2, Tuple.Create(2, "Return value", $"<p>{content}</p>"));
+          }
+        }
+
+        var resultString = string.Join("\n", sections.Select(t => $"<h{t.Item1 + 2}>{t.Item2}</h{t.Item1 + 2}>{t.Item3}"));
+
+        return new Doc
+        {
+          Format = "text/html",
+          Data = resultString
+        };
+      }
+      catch (Exception e)
       {
         return null;
       }
-
-      var sections = new List<Tuple<int, string, string>>();
-      var xdoc = XDocument.Parse(doc).Root;
-
-      ProcessFull(xdoc, sections);
-      var cursor = sections.FindIndex(t => t.Item2 == "Summary");
-      var paramsSection = ProcessParameters(xdoc, symbol.Parameters.Select(p => p.Name).ToList());
-      sections.Insert(cursor + 1, paramsSection);
-
-      var returnElement = xdoc.Element("returns");
-      if (returnElement != null)
-      {
-        var content = ProcessContent(returnElement);
-        if (!string.IsNullOrEmpty(content))
-        {
-          sections.Insert(cursor + 2, Tuple.Create(2, "Return value", $"<p>{content}</p>"));
-        }
-      }
-
-      var resultString = string.Join("\n", sections.Select(t => $"<h{t.Item1 + 2}>{t.Item2}</h{t.Item1 + 2}>{t.Item3}"));
-
-      return new Doc
-      {
-        Format = "text/html",
-        Data = resultString
-      };
     }
 
     public static Tuple<int, string, string> ProcessParameters(XElement doc, IList<string> names)
