@@ -158,6 +158,31 @@ namespace Srclib.Nuget.Graph
       base.VisitClassDeclaration(node);
     }
 
+    public override void VisitInterfaceDeclaration(InterfaceDeclarationSyntax node)
+    {
+      if (!node.Identifier.Span.IsEmpty)
+      {
+        var symbol = _sm.GetDeclaredSymbol(node);
+        // Interfaces can be partial as well: this is a problem
+        if (!_defined.Contains(symbol))
+        {
+          _defined.Add(symbol);
+
+          var def = Def.For(symbol: symbol, type: "interface", name: symbol.Name)
+            .At(_path, node.Identifier.Span);
+
+          if (symbol.IsExported())
+          {
+            def.Exported = true;
+          }
+
+          AddDef(def, DocProcessor.ForClass(symbol));
+        }
+      }
+
+      base.VisitInterfaceDeclaration(node);
+    }
+
     public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
     {
       if (!node.Identifier.Span.IsEmpty)
