@@ -183,6 +183,74 @@ namespace Srclib.Nuget.Graph
       base.VisitInterfaceDeclaration(node);
     }
 
+        public override void VisitStructDeclaration(StructDeclarationSyntax node)
+        {
+            if (!node.Identifier.Span.IsEmpty)
+            {
+                var symbol = _sm.GetDeclaredSymbol(node);
+                // Structs can also be partial
+                if (!_defined.Contains(symbol))
+                {
+                    _defined.Add(symbol);
+
+                    var def = Def.For(symbol: symbol, type: "struct", name: symbol.Name)
+                      .At(_path, node.Identifier.Span);
+
+                    if (symbol.IsExported())
+                    {
+                        def.Exported = true;
+                    }
+
+                    AddDef(def, DocProcessor.ForClass(symbol));
+                }
+            }
+            base.VisitStructDeclaration(node);
+        }
+
+
+        public override void VisitEnumDeclaration(EnumDeclarationSyntax node)
+        {
+            if (!node.Identifier.Span.IsEmpty)
+            {
+                var symbol = _sm.GetDeclaredSymbol(node);
+                if (!_defined.Contains(symbol))
+                {
+                    _defined.Add(symbol);
+
+                    var def = Def.For(symbol: symbol, type: "enum", name: symbol.Name)
+                      .At(_path, node.Identifier.Span);
+
+                    if (symbol.IsExported())
+                    {
+                        def.Exported = true;
+                    }
+
+                    AddDef(def, DocProcessor.ForClass(symbol));
+                }
+            }
+            base.VisitEnumDeclaration(node);
+        }
+
+        public override void VisitEnumMemberDeclaration(EnumMemberDeclarationSyntax node)
+        {
+            if (!node.Identifier.Span.IsEmpty)
+            {
+                var symbol = _sm.GetDeclaredSymbol(node);
+                if (!_defined.Contains(symbol))
+                {
+                    _defined.Add(symbol);
+
+                    var def = Def.For(symbol: symbol, type: "enum field", name: symbol.Name)
+                      .At(_path, node.Identifier.Span);
+
+                    def.Exported = true;
+                    AddDef(def);
+                }
+            }
+            base.VisitEnumMemberDeclaration(node);
+        }
+
+
     public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
     {
       if (!node.Identifier.Span.IsEmpty)
