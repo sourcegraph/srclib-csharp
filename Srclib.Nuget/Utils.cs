@@ -21,10 +21,4 @@ namespace Srclib.Nuget
       return s;
     }
   }
-
-  // TODO: Remove, for testing purposes only
-  static class Utils<TInner>
-  {
-    static void SomeMethod<TOuter>(TInner inner, TOuter outer) { }
-  }
 }

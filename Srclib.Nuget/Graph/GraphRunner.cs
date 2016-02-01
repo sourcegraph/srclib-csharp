@@ -96,14 +96,13 @@ namespace Srclib.Nuget.Graph
         "Debug",
         context.HostEnvironment);
 
-            //Microsoft.Extensions.PlatformAbstractions.IApplicationEnvironment f = null;
-      context.CompilationContext = new CompilationEngineContext(/*f*/context.ApplicationEnvironment, context.RuntimeEnvironment, context.LoadContextAccessor.Default, new CompilationCache());
+      context.CompilationContext = new CompilationEngineContext(context.ApplicationEnvironment, context.RuntimeEnvironment, context.LoadContextAccessor.Default, new CompilationCache());
 
       context.CompilationEngine = new CompilationEngine(context.CompilationContext);
       context.LibraryExporter = context.CompilationEngine.CreateProjectExporter(context.Project, context.ApplicationHostContext.TargetFramework, "Debug");
       context.Export = context.LibraryExporter.GetExport(context.Project.Name);
 
-      // TODO: If other languages are to be supported, this part needs to change.
+      //If other languages are to be supported, this part needs to change.
       var roslynRef = (IRoslynMetadataReference)context.Export.MetadataReferences[0];
       var compilationRef = (CompilationReference)roslynRef.MetadataReference;
       var csCompilation = (CSharpCompilation)compilationRef.Compilation;

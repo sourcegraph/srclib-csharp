@@ -17,7 +17,6 @@ namespace Srclib.Nuget.Graph
     public ApplicationHostContext ApplicationHostContext { get; set; }
     public Microsoft.Extensions.PlatformAbstractions.IApplicationEnvironment HostEnvironment { get; set; }
     public Microsoft.Extensions.PlatformAbstractions.IApplicationEnvironment ApplicationEnvironment { get; set; }
-    //public IFileWatcher FileWatcher { get; set; }
     public Microsoft.Extensions.PlatformAbstractions.IAssemblyLoadContextAccessor LoadContextAccessor { get; set; }
     public CompilationEngineContext CompilationContext { get; set; }
     public CompilationEngine CompilationEngine { get; set; }

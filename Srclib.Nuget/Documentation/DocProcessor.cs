@@ -188,7 +188,7 @@ namespace Srclib.Nuget.Documentation
                   var cref = reader.GetAttribute("cref");
                   writer.WriteStartElement("span");
 
-                  // todo, lookup actual symbol.
+                  //TODO($Alxandr): lookup actual symbol.
                   writer.WriteAttributeString("data-cref", cref);
                   writer.WriteString(cref);
                   writer.WriteEndElement();

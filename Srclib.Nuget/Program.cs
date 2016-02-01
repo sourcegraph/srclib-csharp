@@ -24,7 +24,6 @@ namespace Srclib.Nuget
       app.FullName = "Scrlib C# toolchain";
 
       app.HelpOption("-?|-h|--help");
-      //app.VersionOption("--version", () => _runtimeEnv.GetShortVersion(), () => _runtimeEnv.GetFullVersion());
 
       // Show help information if no subcommand/option was specified
       app.OnExecute(() =>

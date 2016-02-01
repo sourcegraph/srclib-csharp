@@ -23,17 +23,12 @@ namespace Srclib.Nuget
           var repository = repoName.Value();
           var dir = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), subdir.Value()));
 
-          //Console.WriteLine($"Repository: {repository}");
-          //Console.WriteLine($"Directory: {dir}");
-
           var sourceUnits = new List<SourceUnit>();
           foreach(var proj in Scan(dir))
           {
-            //Console.WriteLine($"Found project: {proj.Name} ({proj.Version}, {proj.CompilerServices})");
             sourceUnits.Add(SourceUnit.FromProject(proj, dir));
           }
 
-          //Console.Error.Write($"Current dir: {Environment.CurrentDirectory}\n");
           Console.WriteLine(JsonConvert.SerializeObject(sourceUnits, Formatting.Indented));
 
           return 0;
@@ -43,10 +38,8 @@ namespace Srclib.Nuget
 
     static IEnumerable<Project> Scan(string dir)
     {
-      //Console.WriteLine($"Scan dir: {dir}\n");
       if (Project.HasProjectFile(dir))
       {
-        //Console.WriteLine($"Dir has project: {dir}\n");
         Project proj;
         if (Project.TryGetProject(dir, out proj) && proj.CompilerServices == null)
           yield return proj;
