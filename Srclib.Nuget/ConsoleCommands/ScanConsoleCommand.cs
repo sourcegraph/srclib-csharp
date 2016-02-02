@@ -14,14 +14,10 @@ namespace Srclib.Nuget
       cmdApp.Command("scan", c => {
         c.Description = "Scan a directory tree and produce a JSON array of source units";
 
-        var repoName = c.Option ("--repo <REPOSITORY_URL>",   "The URI of the repository that contains the directory tree being scanned", CommandOptionType.SingleValue);
-        var subdir   = c.Option ("--subdir <SUBDIR_PATH>", "The path of the current directory (in which the scanner is run), relative to the root directory of the repository being scanned", CommandOptionType.SingleValue);
-
         c.HelpOption("-?|-h|--help");
 
         c.OnExecute(() => {
-          var repository = repoName.Value();
-          var dir = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), subdir.Value()));
+          var dir = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "."));
 
           var sourceUnits = new List<SourceUnit>();
           foreach(var proj in Scan(dir))
