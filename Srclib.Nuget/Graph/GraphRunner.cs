@@ -54,6 +54,10 @@ namespace Srclib.Nuget.Graph
       }
     }
 
+    /// <summary>
+    /// Scan a collection of resolved tokens and generate a ref for all 
+    /// tokens that have a corresponding def 
+    /// </summary>
     void RunTokens()
     {
       foreach(var r in _refs)
@@ -132,6 +136,10 @@ namespace Srclib.Nuget.Graph
       return runner._output;
     }
 
+    /// <summary>
+    /// Traverse AST node that represents class declaration
+    /// </summary>
+    /// <param name="node">AST node.</param>
     public override void VisitClassDeclaration(ClassDeclarationSyntax node)
     {
       if (!node.Identifier.Span.IsEmpty)
@@ -157,6 +165,10 @@ namespace Srclib.Nuget.Graph
       base.VisitClassDeclaration(node);
     }
 
+    /// <summary>
+    /// Traverse AST node that represents interface declaration
+    /// </summary>
+    /// <param name="node">AST node.</param>
     public override void VisitInterfaceDeclaration(InterfaceDeclarationSyntax node)
     {
       if (!node.Identifier.Span.IsEmpty)
@@ -182,6 +194,10 @@ namespace Srclib.Nuget.Graph
       base.VisitInterfaceDeclaration(node);
     }
 
+        /// <summary>
+        /// Traverse AST node that represents struct declaration
+        /// </summary>
+        /// <param name="node">AST node.</param>
         public override void VisitStructDeclaration(StructDeclarationSyntax node)
         {
             if (!node.Identifier.Span.IsEmpty)
@@ -207,6 +223,10 @@ namespace Srclib.Nuget.Graph
         }
 
 
+        /// <summary>
+        /// Traverse AST node that represents enumeration declaration
+        /// </summary>
+        /// <param name="node">AST node.</param>
         public override void VisitEnumDeclaration(EnumDeclarationSyntax node)
         {
             if (!node.Identifier.Span.IsEmpty)
@@ -230,6 +250,10 @@ namespace Srclib.Nuget.Graph
             base.VisitEnumDeclaration(node);
         }
 
+        /// <summary>
+        /// Traverse AST node that represents enumeration constant declaration
+        /// </summary>
+        /// <param name="node">AST node.</param>
         public override void VisitEnumMemberDeclaration(EnumMemberDeclarationSyntax node)
         {
             if (!node.Identifier.Span.IsEmpty)
@@ -250,6 +274,10 @@ namespace Srclib.Nuget.Graph
         }
 
 
+    /// <summary>
+    /// Traverse AST node that represents method declaration
+    /// </summary>
+    /// <param name="node">AST node.</param>
     public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
     {
       if (!node.Identifier.Span.IsEmpty)
@@ -272,6 +300,10 @@ namespace Srclib.Nuget.Graph
       base.VisitMethodDeclaration(node);
     }
 
+    /// <summary>
+    /// Traverse AST node that represents constructor declaration
+    /// </summary>
+    /// <param name="node">AST node.</param>
     public override void VisitConstructorDeclaration(ConstructorDeclarationSyntax node)
     {
       if (!node.Identifier.Span.IsEmpty)
@@ -294,6 +326,10 @@ namespace Srclib.Nuget.Graph
       base.VisitConstructorDeclaration(node);
     }
 
+    /// <summary>
+    /// Traverse AST node that represents property declaration
+    /// </summary>
+    /// <param name="node">AST node.</param>
     public override void VisitPropertyDeclaration(PropertyDeclarationSyntax node)
     {
       if (!node.Identifier.Span.IsEmpty)
@@ -316,6 +352,10 @@ namespace Srclib.Nuget.Graph
       base.VisitPropertyDeclaration(node);
     }
 
+    /// <summary>
+    /// Traverse AST node that represents event declaration
+    /// </summary>
+    /// <param name="node">AST node.</param>
     public override void VisitEventDeclaration(EventDeclarationSyntax node)
     {
       if (!node.Identifier.Span.IsEmpty)
@@ -338,6 +378,10 @@ namespace Srclib.Nuget.Graph
       base.VisitEventDeclaration(node);
     }
 
+    /// <summary>
+    /// Traverse AST node that represents method or constructor parameter
+    /// </summary>
+    /// <param name="node">AST node.</param>
     public override void VisitParameter(ParameterSyntax node)
     {
       if (!node.Identifier.Span.IsEmpty)
@@ -357,6 +401,10 @@ namespace Srclib.Nuget.Graph
       base.VisitParameter(node);
     }
 
+    /// <summary>
+    /// Traverse AST node that represents type parameter (in generic declarations)
+    /// </summary>
+    /// <param name="node">AST node.</param>
     public override void VisitTypeParameter(TypeParameterSyntax node)
     {
       if (!node.Identifier.Span.IsEmpty)
@@ -376,6 +424,10 @@ namespace Srclib.Nuget.Graph
       base.VisitTypeParameter(node);
     }
 
+    /// <summary>
+    /// Traverse AST node that represents field and variable declarations
+    /// </summary>
+    /// <param name="node">AST node.</param>
     public override void VisitVariableDeclarator(VariableDeclaratorSyntax node)
     {
       if (!node.Identifier.Span.IsEmpty)
@@ -420,6 +472,10 @@ namespace Srclib.Nuget.Graph
       base.VisitVariableDeclarator(node);
     }
 
+    /// <summary>
+    /// If a token is resolved by parser, add a token to collection of resolved tokens
+    /// </summary>
+    /// <param name="token">token to check</param>
     public override void VisitToken(SyntaxToken token)
     {
       if (token.IsKind(SyntaxKind.IdentifierToken) || token.IsKind(SyntaxKind.IdentifierName))

@@ -6,6 +6,11 @@ namespace Srclib.Nuget
 {
   static class Utils
   {
+    /// <summary>
+    /// gets a relative filepath from folder to filespec
+    /// </summary>
+    /// <param name="folder">base path</param>
+    /// <param name="filepec">destination path</param>
     public static string GetRelativePath(string filespec, string folder)
     {
       filespec = "file://" + filespec;

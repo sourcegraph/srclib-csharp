@@ -17,6 +17,11 @@ namespace Srclib.Nuget.Documentation
   /// </remarks>
   public static class DocProcessor
   {
+    /// <summary>
+    /// Process a type (class or struct or interface) declaration for documentation.
+    /// </summary>
+    /// <param name="symbol">The type in question.</param>
+    /// <returns><c>Docs</c> if the type contains any, otherwise <c>null</c>.</returns>
     public static Doc ForClass(INamedTypeSymbol symbol)
     {
       try 
