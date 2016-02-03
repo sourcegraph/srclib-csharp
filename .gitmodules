@@ -1,6 +1,0 @@
-[submodule "testdata/case/YoloDev.BadCode"]
-	path = testdata/case/YoloDev.BadCode
-	url = https://github.com/YoloDev/YoloDev.BadCode.git
-[submodule "testdata/case/Proxy"]
-	path = testdata/case/Proxy
-	url = https://github.com/aspnet/Proxy.git
