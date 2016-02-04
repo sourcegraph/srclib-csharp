@@ -3,3 +3,6 @@ docker-image:
 
 release: docker-image
 	docker push srclib/srclib-csharp
+
+dep:
+	dnu restore Srclib.Nuget/project.json
