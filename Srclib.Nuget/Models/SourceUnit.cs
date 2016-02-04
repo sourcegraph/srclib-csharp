@@ -45,7 +45,7 @@ namespace Srclib.Nuget
       {
         Name = project.Name,
         Dir = Utils.GetRelativePath(project.ProjectDirectory, root),
-        Files = project.Files.SourceFiles.Select(p => Utils.GetRelativePath(p, root)).ToArray(),
+        Files = project.Files.SourceFiles.Select(p => Utils.GetRelativePath(p, root)).OrderByDescending(p => p).ToArray(),
         Dependencies = project.Dependencies.Select(DependencyInfo.FromLibraryDependency).ToArray(),
         Ops = new Dictionary<string, string> { { "depresolve", null } }
       };
