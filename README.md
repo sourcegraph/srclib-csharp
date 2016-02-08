@@ -28,7 +28,7 @@ With DNX framework there is no explicit building, so just add a new toolchain to
 
 You should also load project dependencies by running
 
-    dnu restore Srclin.Nuget/project.json
+    dnu restore Srclib.Nuget/project.json
 
 or using
 
