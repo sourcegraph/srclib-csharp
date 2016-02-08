@@ -1,0 +1,1613 @@
+{
+  "Defs": [
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest",
+      "Name": "ProxyTest",
+      "Kind": "class",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 469,
+      "DefEnd": 478,
+      "Exported": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": "ProxyTest",
+            "ScopeQualified": "ProxyTest",
+            "DepQualified": "Microsoft.AspNet.Proxy.Test.ProxyTest",
+            "RepositoryWideQualified": "Microsoft.AspNet.Proxy.Test.ProxyTest",
+            "LanguageWideQualified": "Microsoft.AspNet.Proxy.Test.ProxyTest"
+          },
+          "Type": {
+            "Unqualified": "class",
+            "ScopeQualified": "class",
+            "DepQualified": "class",
+            "RepositoryWideQualified": "class",
+            "LanguageWideQualified": "class"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "class"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$0(Microsoft.AspNet.Proxy.Test|)!hostValue$0",
+      "Name": "hostValue",
+      "Kind": "local",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 1117,
+      "DefEnd": 1126,
+      "Local": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": "IEnumerable\u003cstring\u003e hostValue",
+            "ScopeQualified": "IEnumerable\u003cstring\u003e hostValue",
+            "DepQualified": "IEnumerable\u003cstring\u003e hostValue",
+            "RepositoryWideQualified": "IEnumerable\u003cstring\u003e hostValue",
+            "LanguageWideQualified": "IEnumerable\u003cstring\u003e hostValue"
+          },
+          "Type": {
+            "Unqualified": "local",
+            "ScopeQualified": "local",
+            "DepQualified": "local",
+            "RepositoryWideQualified": "local",
+            "LanguageWideQualified": "local"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "local"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)/-lambda$0(Microsoft.AspNet.Proxy.Test|)/hostValue$0"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$0(Microsoft.AspNet.Proxy.Test|)!req",
+      "Name": "req",
+      "Kind": "param",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 1052,
+      "DefEnd": 1055,
+      "Local": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": " req",
+            "ScopeQualified": " req",
+            "DepQualified": " req",
+            "RepositoryWideQualified": " req",
+            "LanguageWideQualified": " req"
+          },
+          "Type": {
+            "Unqualified": "param",
+            "ScopeQualified": "param",
+            "DepQualified": "param",
+            "RepositoryWideQualified": "param",
+            "LanguageWideQualified": "param"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "param"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)/-lambda$0(Microsoft.AspNet.Proxy.Test|)/req"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$0(Microsoft.AspNet.Proxy.Test|)!response$0",
+      "Name": "response",
+      "Kind": "local",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 1461,
+      "DefEnd": 1469,
+      "Local": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": "HttpResponseMessage response",
+            "ScopeQualified": "HttpResponseMessage response",
+            "DepQualified": "HttpResponseMessage response",
+            "RepositoryWideQualified": "HttpResponseMessage response",
+            "LanguageWideQualified": "HttpResponseMessage response"
+          },
+          "Type": {
+            "Unqualified": "local",
+            "ScopeQualified": "local",
+            "DepQualified": "local",
+            "RepositoryWideQualified": "local",
+            "LanguageWideQualified": "local"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "local"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)/-lambda$0(Microsoft.AspNet.Proxy.Test|)/response$0"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$3(Microsoft.AspNet.Proxy.Test|)!app",
+      "Name": "app",
+      "Kind": "param",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 1785,
+      "DefEnd": 1788,
+      "Local": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": " app",
+            "ScopeQualified": " app",
+            "DepQualified": " app",
+            "RepositoryWideQualified": " app",
+            "LanguageWideQualified": " app"
+          },
+          "Type": {
+            "Unqualified": "param",
+            "ScopeQualified": "param",
+            "DepQualified": "param",
+            "RepositoryWideQualified": "param",
+            "LanguageWideQualified": "param"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "param"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)/-lambda$3(Microsoft.AspNet.Proxy.Test|)/app"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!MethodType",
+      "Name": "MethodType",
+      "Kind": "param",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 735,
+      "DefEnd": 745,
+      "Local": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": "string MethodType",
+            "ScopeQualified": "string MethodType",
+            "DepQualified": "string MethodType",
+            "RepositoryWideQualified": "string MethodType",
+            "LanguageWideQualified": "string MethodType"
+          },
+          "Type": {
+            "Unqualified": "param",
+            "ScopeQualified": "param",
+            "DepQualified": "param",
+            "RepositoryWideQualified": "param",
+            "LanguageWideQualified": "param"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "param"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)/MethodType"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!Port",
+      "Name": "Port",
+      "Kind": "param",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 754,
+      "DefEnd": 758,
+      "Local": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": "string Port",
+            "ScopeQualified": "string Port",
+            "DepQualified": "string Port",
+            "RepositoryWideQualified": "string Port",
+            "LanguageWideQualified": "string Port"
+          },
+          "Type": {
+            "Unqualified": "param",
+            "ScopeQualified": "param",
+            "DepQualified": "param",
+            "RepositoryWideQualified": "param",
+            "LanguageWideQualified": "param"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "param"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)/Port"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!options$0",
+      "Name": "options",
+      "Kind": "local",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 786,
+      "DefEnd": 793,
+      "Local": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": "ProxyOptions options",
+            "ScopeQualified": "ProxyOptions options",
+            "DepQualified": "ProxyOptions options",
+            "RepositoryWideQualified": "ProxyOptions options",
+            "LanguageWideQualified": "ProxyOptions options"
+          },
+          "Type": {
+            "Unqualified": "local",
+            "ScopeQualified": "local",
+            "DepQualified": "local",
+            "RepositoryWideQualified": "local",
+            "LanguageWideQualified": "local"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "local"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)/options$0"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!requestMessage$0",
+      "Name": "requestMessage",
+      "Kind": "local",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 1878,
+      "DefEnd": 1892,
+      "Local": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": "HttpRequestMessage requestMessage",
+            "ScopeQualified": "HttpRequestMessage requestMessage",
+            "DepQualified": "HttpRequestMessage requestMessage",
+            "RepositoryWideQualified": "HttpRequestMessage requestMessage",
+            "LanguageWideQualified": "HttpRequestMessage requestMessage"
+          },
+          "Type": {
+            "Unqualified": "local",
+            "ScopeQualified": "local",
+            "DepQualified": "local",
+            "RepositoryWideQualified": "local",
+            "LanguageWideQualified": "local"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "local"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)/requestMessage$0"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!responseContent$0",
+      "Name": "responseContent",
+      "Kind": "local",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 2134,
+      "DefEnd": 2149,
+      "Local": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": " responseContent",
+            "ScopeQualified": " responseContent",
+            "DepQualified": " responseContent",
+            "RepositoryWideQualified": " responseContent",
+            "LanguageWideQualified": " responseContent"
+          },
+          "Type": {
+            "Unqualified": "local",
+            "ScopeQualified": "local",
+            "DepQualified": "local",
+            "RepositoryWideQualified": "local",
+            "LanguageWideQualified": "local"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "local"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)/responseContent$0"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!responseMessage$0",
+      "Name": "responseMessage",
+      "Kind": "local",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 1967,
+      "DefEnd": 1982,
+      "Local": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": " responseMessage",
+            "ScopeQualified": " responseMessage",
+            "DepQualified": " responseMessage",
+            "RepositoryWideQualified": " responseMessage",
+            "LanguageWideQualified": " responseMessage"
+          },
+          "Type": {
+            "Unqualified": "local",
+            "ScopeQualified": "local",
+            "DepQualified": "local",
+            "RepositoryWideQualified": "local",
+            "LanguageWideQualified": "local"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "local"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)/responseMessage$0"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!server$0",
+      "Name": "server",
+      "Kind": "local",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 1758,
+      "DefEnd": 1764,
+      "Local": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": " server",
+            "ScopeQualified": " server",
+            "DepQualified": " server",
+            "RepositoryWideQualified": " server",
+            "LanguageWideQualified": " server"
+          },
+          "Type": {
+            "Unqualified": "local",
+            "ScopeQualified": "local",
+            "DepQualified": "local",
+            "RepositoryWideQualified": "local",
+            "LanguageWideQualified": "local"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "local"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)/server$0"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!testHeaderValue$0",
+      "Name": "testHeaderValue",
+      "Kind": "local",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 2379,
+      "DefEnd": 2394,
+      "Local": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": "IEnumerable\u003cstring\u003e testHeaderValue",
+            "ScopeQualified": "IEnumerable\u003cstring\u003e testHeaderValue",
+            "DepQualified": "IEnumerable\u003cstring\u003e testHeaderValue",
+            "RepositoryWideQualified": "IEnumerable\u003cstring\u003e testHeaderValue",
+            "LanguageWideQualified": "IEnumerable\u003cstring\u003e testHeaderValue"
+          },
+          "Type": {
+            "Unqualified": "local",
+            "ScopeQualified": "local",
+            "DepQualified": "local",
+            "RepositoryWideQualified": "local",
+            "LanguageWideQualified": "local"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "local"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)/testHeaderValue$0"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)",
+      "Name": "PassthroughRequestsWithoutBodyWithResponseHeaders",
+      "Kind": "method",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 678,
+      "DefEnd": 727,
+      "Exported": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": "Task PassthroughRequestsWithoutBodyWithResponseHeaders(string MethodType, string Port)",
+            "ScopeQualified": "Task ProxyTest.PassthroughRequestsWithoutBodyWithResponseHeaders(string MethodType, string Port)",
+            "DepQualified": "Task Microsoft.AspNet.Proxy.Test.ProxyTest.PassthroughRequestsWithoutBodyWithResponseHeaders(string MethodType, string Port)",
+            "RepositoryWideQualified": "Task Microsoft.AspNet.Proxy.Test.ProxyTest.PassthroughRequestsWithoutBodyWithResponseHeaders(string MethodType, string Port)",
+            "LanguageWideQualified": "Task Microsoft.AspNet.Proxy.Test.ProxyTest.PassthroughRequestsWithoutBodyWithResponseHeaders(string MethodType, string Port)"
+          },
+          "Type": {
+            "Unqualified": "method",
+            "ScopeQualified": "method",
+            "DepQualified": "method",
+            "RepositoryWideQualified": "method",
+            "LanguageWideQualified": "method"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "method"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$4(Microsoft.AspNet.Proxy.Test|)!content$0",
+      "Name": "content",
+      "Kind": "local",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 3528,
+      "DefEnd": 3535,
+      "Local": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": " content",
+            "ScopeQualified": " content",
+            "DepQualified": " content",
+            "RepositoryWideQualified": " content",
+            "LanguageWideQualified": " content"
+          },
+          "Type": {
+            "Unqualified": "local",
+            "ScopeQualified": "local",
+            "DepQualified": "local",
+            "RepositoryWideQualified": "local",
+            "LanguageWideQualified": "local"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "local"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)/-lambda$4(Microsoft.AspNet.Proxy.Test|)/content$0"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$4(Microsoft.AspNet.Proxy.Test|)!hostValue$1",
+      "Name": "hostValue",
+      "Kind": "local",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 3180,
+      "DefEnd": 3189,
+      "Local": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": "IEnumerable\u003cstring\u003e hostValue",
+            "ScopeQualified": "IEnumerable\u003cstring\u003e hostValue",
+            "DepQualified": "IEnumerable\u003cstring\u003e hostValue",
+            "RepositoryWideQualified": "IEnumerable\u003cstring\u003e hostValue",
+            "LanguageWideQualified": "IEnumerable\u003cstring\u003e hostValue"
+          },
+          "Type": {
+            "Unqualified": "local",
+            "ScopeQualified": "local",
+            "DepQualified": "local",
+            "RepositoryWideQualified": "local",
+            "LanguageWideQualified": "local"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "local"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)/-lambda$4(Microsoft.AspNet.Proxy.Test|)/hostValue$1"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$4(Microsoft.AspNet.Proxy.Test|)!req",
+      "Name": "req",
+      "Kind": "param",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 3115,
+      "DefEnd": 3118,
+      "Local": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": " req",
+            "ScopeQualified": " req",
+            "DepQualified": " req",
+            "RepositoryWideQualified": " req",
+            "LanguageWideQualified": " req"
+          },
+          "Type": {
+            "Unqualified": "param",
+            "ScopeQualified": "param",
+            "DepQualified": "param",
+            "RepositoryWideQualified": "param",
+            "LanguageWideQualified": "param"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "param"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)/-lambda$4(Microsoft.AspNet.Proxy.Test|)/req"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$4(Microsoft.AspNet.Proxy.Test|)!response$1",
+      "Name": "response",
+      "Kind": "local",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 3736,
+      "DefEnd": 3744,
+      "Local": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": "HttpResponseMessage response",
+            "ScopeQualified": "HttpResponseMessage response",
+            "DepQualified": "HttpResponseMessage response",
+            "RepositoryWideQualified": "HttpResponseMessage response",
+            "LanguageWideQualified": "HttpResponseMessage response"
+          },
+          "Type": {
+            "Unqualified": "local",
+            "ScopeQualified": "local",
+            "DepQualified": "local",
+            "RepositoryWideQualified": "local",
+            "LanguageWideQualified": "local"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "local"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)/-lambda$4(Microsoft.AspNet.Proxy.Test|)/response$1"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$8(Microsoft.AspNet.Proxy.Test|)!app",
+      "Name": "app",
+      "Kind": "param",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 4060,
+      "DefEnd": 4063,
+      "Local": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": " app",
+            "ScopeQualified": " app",
+            "DepQualified": " app",
+            "RepositoryWideQualified": " app",
+            "LanguageWideQualified": " app"
+          },
+          "Type": {
+            "Unqualified": "param",
+            "ScopeQualified": "param",
+            "DepQualified": "param",
+            "RepositoryWideQualified": "param",
+            "LanguageWideQualified": "param"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "param"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)/-lambda$8(Microsoft.AspNet.Proxy.Test|)/app"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!MethodType",
+      "Name": "MethodType",
+      "Kind": "param",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 2798,
+      "DefEnd": 2808,
+      "Local": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": "string MethodType",
+            "ScopeQualified": "string MethodType",
+            "DepQualified": "string MethodType",
+            "RepositoryWideQualified": "string MethodType",
+            "LanguageWideQualified": "string MethodType"
+          },
+          "Type": {
+            "Unqualified": "param",
+            "ScopeQualified": "param",
+            "DepQualified": "param",
+            "RepositoryWideQualified": "param",
+            "LanguageWideQualified": "param"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "param"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)/MethodType"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!Port",
+      "Name": "Port",
+      "Kind": "param",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 2817,
+      "DefEnd": 2821,
+      "Local": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": "string Port",
+            "ScopeQualified": "string Port",
+            "DepQualified": "string Port",
+            "RepositoryWideQualified": "string Port",
+            "LanguageWideQualified": "string Port"
+          },
+          "Type": {
+            "Unqualified": "param",
+            "ScopeQualified": "param",
+            "DepQualified": "param",
+            "RepositoryWideQualified": "param",
+            "LanguageWideQualified": "param"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "param"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)/Port"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!options$1",
+      "Name": "options",
+      "Kind": "local",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 2849,
+      "DefEnd": 2856,
+      "Local": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": "ProxyOptions options",
+            "ScopeQualified": "ProxyOptions options",
+            "DepQualified": "ProxyOptions options",
+            "RepositoryWideQualified": "ProxyOptions options",
+            "LanguageWideQualified": "ProxyOptions options"
+          },
+          "Type": {
+            "Unqualified": "local",
+            "ScopeQualified": "local",
+            "DepQualified": "local",
+            "RepositoryWideQualified": "local",
+            "LanguageWideQualified": "local"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "local"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)/options$1"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!requestMessage$1",
+      "Name": "requestMessage",
+      "Kind": "local",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 4153,
+      "DefEnd": 4167,
+      "Local": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": "HttpRequestMessage requestMessage",
+            "ScopeQualified": "HttpRequestMessage requestMessage",
+            "DepQualified": "HttpRequestMessage requestMessage",
+            "RepositoryWideQualified": "HttpRequestMessage requestMessage",
+            "LanguageWideQualified": "HttpRequestMessage requestMessage"
+          },
+          "Type": {
+            "Unqualified": "local",
+            "ScopeQualified": "local",
+            "DepQualified": "local",
+            "RepositoryWideQualified": "local",
+            "LanguageWideQualified": "local"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "local"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)/requestMessage$1"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!responseContent$1",
+      "Name": "responseContent",
+      "Kind": "local",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 4403,
+      "DefEnd": 4418,
+      "Local": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": " responseContent",
+            "ScopeQualified": " responseContent",
+            "DepQualified": " responseContent",
+            "RepositoryWideQualified": " responseContent",
+            "LanguageWideQualified": " responseContent"
+          },
+          "Type": {
+            "Unqualified": "local",
+            "ScopeQualified": "local",
+            "DepQualified": "local",
+            "RepositoryWideQualified": "local",
+            "LanguageWideQualified": "local"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "local"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)/responseContent$1"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!responseMessage$1",
+      "Name": "responseMessage",
+      "Kind": "local",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 4314,
+      "DefEnd": 4329,
+      "Local": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": " responseMessage",
+            "ScopeQualified": " responseMessage",
+            "DepQualified": " responseMessage",
+            "RepositoryWideQualified": " responseMessage",
+            "LanguageWideQualified": " responseMessage"
+          },
+          "Type": {
+            "Unqualified": "local",
+            "ScopeQualified": "local",
+            "DepQualified": "local",
+            "RepositoryWideQualified": "local",
+            "LanguageWideQualified": "local"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "local"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)/responseMessage$1"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!server$1",
+      "Name": "server",
+      "Kind": "local",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 4033,
+      "DefEnd": 4039,
+      "Local": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": " server",
+            "ScopeQualified": " server",
+            "DepQualified": " server",
+            "RepositoryWideQualified": " server",
+            "LanguageWideQualified": " server"
+          },
+          "Type": {
+            "Unqualified": "local",
+            "ScopeQualified": "local",
+            "DepQualified": "local",
+            "RepositoryWideQualified": "local",
+            "LanguageWideQualified": "local"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "local"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)/server$1"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)",
+      "Name": "PassthroughReuestWithBody",
+      "Kind": "method",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 2765,
+      "DefEnd": 2790,
+      "Exported": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": "Task PassthroughReuestWithBody(string MethodType, string Port)",
+            "ScopeQualified": "Task ProxyTest.PassthroughReuestWithBody(string MethodType, string Port)",
+            "DepQualified": "Task Microsoft.AspNet.Proxy.Test.ProxyTest.PassthroughReuestWithBody(string MethodType, string Port)",
+            "RepositoryWideQualified": "Task Microsoft.AspNet.Proxy.Test.ProxyTest.PassthroughReuestWithBody(string MethodType, string Port)",
+            "LanguageWideQualified": "Task Microsoft.AspNet.Proxy.Test.ProxyTest.PassthroughReuestWithBody(string MethodType, string Port)"
+          },
+          "Type": {
+            "Unqualified": "method",
+            "ScopeQualified": "method",
+            "DepQualified": "method",
+            "RepositoryWideQualified": "method",
+            "LanguageWideQualified": "method"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "method"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+TestMessageHandler",
+      "Name": "TestMessageHandler",
+      "Kind": "class",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 4727,
+      "DefEnd": 4745,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": "TestMessageHandler",
+            "ScopeQualified": "ProxyTest.TestMessageHandler",
+            "DepQualified": "Microsoft.AspNet.Proxy.Test.ProxyTest.TestMessageHandler",
+            "RepositoryWideQualified": "Microsoft.AspNet.Proxy.Test.ProxyTest.TestMessageHandler",
+            "LanguageWideQualified": "Microsoft.AspNet.Proxy.Test.ProxyTest.TestMessageHandler"
+          },
+          "Type": {
+            "Unqualified": "class",
+            "ScopeQualified": "class",
+            "DepQualified": "class",
+            "RepositoryWideQualified": "class",
+            "LanguageWideQualified": "class"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "class"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/TestMessageHandler"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+TestMessageHandler+SendAsync(Microsoft.AspNet.Proxy.Test|HttpRequestMessage;Microsoft.AspNet.Proxy.Test|CancellationToken)!cancellationToken",
+      "Name": "cancellationToken",
+      "Kind": "param",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 4977,
+      "DefEnd": 4994,
+      "Local": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": "CancellationToken cancellationToken",
+            "ScopeQualified": "CancellationToken cancellationToken",
+            "DepQualified": "CancellationToken cancellationToken",
+            "RepositoryWideQualified": "CancellationToken cancellationToken",
+            "LanguageWideQualified": "CancellationToken cancellationToken"
+          },
+          "Type": {
+            "Unqualified": "param",
+            "ScopeQualified": "param",
+            "DepQualified": "param",
+            "RepositoryWideQualified": "param",
+            "LanguageWideQualified": "param"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "param"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/TestMessageHandler/SendAsync(Microsoft.AspNet.Proxy.Test|HttpRequestMessage;Microsoft.AspNet.Proxy.Test|CancellationToken)/cancellationToken"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+TestMessageHandler+SendAsync(Microsoft.AspNet.Proxy.Test|HttpRequestMessage;Microsoft.AspNet.Proxy.Test|CancellationToken)!request",
+      "Name": "request",
+      "Kind": "param",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 4950,
+      "DefEnd": 4957,
+      "Local": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": "HttpRequestMessage request",
+            "ScopeQualified": "HttpRequestMessage request",
+            "DepQualified": "HttpRequestMessage request",
+            "RepositoryWideQualified": "HttpRequestMessage request",
+            "LanguageWideQualified": "HttpRequestMessage request"
+          },
+          "Type": {
+            "Unqualified": "param",
+            "ScopeQualified": "param",
+            "DepQualified": "param",
+            "RepositoryWideQualified": "param",
+            "LanguageWideQualified": "param"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "param"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/TestMessageHandler/SendAsync(Microsoft.AspNet.Proxy.Test|HttpRequestMessage;Microsoft.AspNet.Proxy.Test|CancellationToken)/request"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+TestMessageHandler+SendAsync(Microsoft.AspNet.Proxy.Test|HttpRequestMessage;Microsoft.AspNet.Proxy.Test|CancellationToken)",
+      "Name": "SendAsync",
+      "Kind": "method",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 4921,
+      "DefEnd": 4930,
+      "Exported": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": "Task\u003cHttpResponseMessage\u003e SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)",
+            "ScopeQualified": "Task\u003cHttpResponseMessage\u003e ProxyTest.TestMessageHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)",
+            "DepQualified": "Task\u003cHttpResponseMessage\u003e Microsoft.AspNet.Proxy.Test.ProxyTest.TestMessageHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)",
+            "RepositoryWideQualified": "Task\u003cHttpResponseMessage\u003e Microsoft.AspNet.Proxy.Test.ProxyTest.TestMessageHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)",
+            "LanguageWideQualified": "Task\u003cHttpResponseMessage\u003e Microsoft.AspNet.Proxy.Test.ProxyTest.TestMessageHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)"
+          },
+          "Type": {
+            "Unqualified": "method",
+            "ScopeQualified": "method",
+            "DepQualified": "method",
+            "RepositoryWideQualified": "method",
+            "LanguageWideQualified": "method"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "method"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/TestMessageHandler/SendAsync(Microsoft.AspNet.Proxy.Test|HttpRequestMessage;Microsoft.AspNet.Proxy.Test|CancellationToken)"
+    },
+    {
+      "Path": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+TestMessageHandler+Sender",
+      "Name": "Sender",
+      "Kind": "property",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "DefStart": 4842,
+      "DefEnd": 4848,
+      "Exported": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": "Func\u003cHttpRequestMessage, HttpResponseMessage\u003e Sender",
+            "ScopeQualified": "Func\u003cHttpRequestMessage, HttpResponseMessage\u003e ProxyTest.TestMessageHandler.Sender",
+            "DepQualified": "Func\u003cHttpRequestMessage, HttpResponseMessage\u003e Microsoft.AspNet.Proxy.Test.ProxyTest.TestMessageHandler.Sender",
+            "RepositoryWideQualified": "Func\u003cHttpRequestMessage, HttpResponseMessage\u003e Microsoft.AspNet.Proxy.Test.ProxyTest.TestMessageHandler.Sender",
+            "LanguageWideQualified": "Func\u003cHttpRequestMessage, HttpResponseMessage\u003e Microsoft.AspNet.Proxy.Test.ProxyTest.TestMessageHandler.Sender"
+          },
+          "Type": {
+            "Unqualified": "property",
+            "ScopeQualified": "property",
+            "DepQualified": "property",
+            "RepositoryWideQualified": "property",
+            "LanguageWideQualified": "property"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "property"
+        }
+      },
+      "TreePath": "Microsoft.AspNet.Proxy.Test/Microsoft/AspNet/Proxy/Test/ProxyTest/TestMessageHandler/Sender"
+    }
+  ],
+  "Refs": [
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$0(Microsoft.AspNet.Proxy.Test|)!hostValue$0",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 1117,
+      "End": 1126
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$0(Microsoft.AspNet.Proxy.Test|)!hostValue$0",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 1185,
+      "End": 1194
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$0(Microsoft.AspNet.Proxy.Test|)!hostValue$0",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 1251,
+      "End": 1260
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$0(Microsoft.AspNet.Proxy.Test|)!req",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 1052,
+      "End": 1055
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$0(Microsoft.AspNet.Proxy.Test|)!req",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 1148,
+      "End": 1151
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$0(Microsoft.AspNet.Proxy.Test|)!req",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 1335,
+      "End": 1338
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$0(Microsoft.AspNet.Proxy.Test|)!req",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 1424,
+      "End": 1427
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$0(Microsoft.AspNet.Proxy.Test|)!response$0",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 1461,
+      "End": 1469
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$0(Microsoft.AspNet.Proxy.Test|)!response$0",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 1541,
+      "End": 1549
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$0(Microsoft.AspNet.Proxy.Test|)!response$0",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 1616,
+      "End": 1624
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$0(Microsoft.AspNet.Proxy.Test|)!response$0",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 1698,
+      "End": 1706
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$3(Microsoft.AspNet.Proxy.Test|)!app",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 1785,
+      "End": 1788
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$3(Microsoft.AspNet.Proxy.Test|)!app",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 1822,
+      "End": 1825
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!MethodType",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 1411,
+      "End": 1421
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!MethodType",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 1933,
+      "End": 1943
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!MethodType",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 735,
+      "End": 745
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!Port",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 1245,
+      "End": 1249
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!Port",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 1325,
+      "End": 1329
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!Port",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 754,
+      "End": 758
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!Port",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 921,
+      "End": 925
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!options$0",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 1835,
+      "End": 1842
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!options$0",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 786,
+      "End": 793
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!options$0",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 954,
+      "End": 961
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!requestMessage$0",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 1878,
+      "End": 1892
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!requestMessage$0",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 2023,
+      "End": 2037
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!responseContent$0",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 2134,
+      "End": 2149
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!responseContent$0",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 2221,
+      "End": 2236
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!responseContent$0",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 2252,
+      "End": 2267
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!responseContent$0",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 2322,
+      "End": 2337
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!responseMessage$0",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 1967,
+      "End": 1982
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!responseMessage$0",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 2089,
+      "End": 2104
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!responseMessage$0",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 2152,
+      "End": 2167
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!responseMessage$0",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 2408,
+      "End": 2423
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!server$0",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 1758,
+      "End": 1764
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!server$0",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 1991,
+      "End": 1997
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!testHeaderValue$0",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 2379,
+      "End": 2394
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!testHeaderValue$0",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 2463,
+      "End": 2478
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!testHeaderValue$0",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 2525,
+      "End": 2540
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughRequestsWithoutBodyWithResponseHeaders(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 678,
+      "End": 727
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$4(Microsoft.AspNet.Proxy.Test|)!content$0",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 3528,
+      "End": 3535
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$4(Microsoft.AspNet.Proxy.Test|)!content$0",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 3603,
+      "End": 3610
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$4(Microsoft.AspNet.Proxy.Test|)!content$0",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 3626,
+      "End": 3633
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$4(Microsoft.AspNet.Proxy.Test|)!content$0",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 3695,
+      "End": 3702
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$4(Microsoft.AspNet.Proxy.Test|)!hostValue$1",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 3180,
+      "End": 3189
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$4(Microsoft.AspNet.Proxy.Test|)!hostValue$1",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 3248,
+      "End": 3257
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$4(Microsoft.AspNet.Proxy.Test|)!hostValue$1",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 3314,
+      "End": 3323
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$4(Microsoft.AspNet.Proxy.Test|)!req",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 3115,
+      "End": 3118
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$4(Microsoft.AspNet.Proxy.Test|)!req",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 3211,
+      "End": 3214
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$4(Microsoft.AspNet.Proxy.Test|)!req",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 3402,
+      "End": 3405
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$4(Microsoft.AspNet.Proxy.Test|)!req",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 3491,
+      "End": 3494
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$4(Microsoft.AspNet.Proxy.Test|)!req",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 3538,
+      "End": 3541
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$4(Microsoft.AspNet.Proxy.Test|)!response$1",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 3736,
+      "End": 3744
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$4(Microsoft.AspNet.Proxy.Test|)!response$1",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 3816,
+      "End": 3824
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$4(Microsoft.AspNet.Proxy.Test|)!response$1",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 3891,
+      "End": 3899
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$4(Microsoft.AspNet.Proxy.Test|)!response$1",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 3973,
+      "End": 3981
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$8(Microsoft.AspNet.Proxy.Test|)!app",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 4060,
+      "End": 4063
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!-lambda$8(Microsoft.AspNet.Proxy.Test|)!app",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 4097,
+      "End": 4100
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!MethodType",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 2798,
+      "End": 2808
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!MethodType",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 3478,
+      "End": 3488
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!MethodType",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 4208,
+      "End": 4218
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!Port",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 2817,
+      "End": 2821
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!Port",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 2984,
+      "End": 2988
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!Port",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 3308,
+      "End": 3312
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!Port",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 3390,
+      "End": 3394
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!options$1",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 2849,
+      "End": 2856
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!options$1",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 3017,
+      "End": 3024
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!options$1",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 4110,
+      "End": 4117
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!requestMessage$1",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 4153,
+      "End": 4167
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!requestMessage$1",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 4238,
+      "End": 4252
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!requestMessage$1",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 4370,
+      "End": 4384
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!responseContent$1",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 4403,
+      "End": 4418
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!responseContent$1",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 4490,
+      "End": 4505
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!responseContent$1",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 4521,
+      "End": 4536
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!responseContent$1",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 4591,
+      "End": 4606
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!responseMessage$1",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 4314,
+      "End": 4329
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!responseMessage$1",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 4421,
+      "End": 4436
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!responseMessage$1",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 4665,
+      "End": 4680
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!server$1",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 4033,
+      "End": 4039
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)!server$1",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 4338,
+      "End": 4344
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+PassthroughReuestWithBody(Microsoft.AspNet.Proxy.Test|System.String;Microsoft.AspNet.Proxy.Test|System.String)",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 2765,
+      "End": 2790
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+TestMessageHandler+SendAsync(Microsoft.AspNet.Proxy.Test|HttpRequestMessage;Microsoft.AspNet.Proxy.Test|CancellationToken)!cancellationToken",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 4977,
+      "End": 4994
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+TestMessageHandler+SendAsync(Microsoft.AspNet.Proxy.Test|HttpRequestMessage;Microsoft.AspNet.Proxy.Test|CancellationToken)!request",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 4950,
+      "End": 4957
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+TestMessageHandler+SendAsync(Microsoft.AspNet.Proxy.Test|HttpRequestMessage;Microsoft.AspNet.Proxy.Test|CancellationToken)!request",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 5114,
+      "End": 5121
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+TestMessageHandler+SendAsync(Microsoft.AspNet.Proxy.Test|HttpRequestMessage;Microsoft.AspNet.Proxy.Test|CancellationToken)",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 4921,
+      "End": 4930
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+TestMessageHandler+Sender",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 1043,
+      "End": 1049
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+TestMessageHandler+Sender",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 3106,
+      "End": 3112
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+TestMessageHandler+Sender",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 4842,
+      "End": 4848
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+TestMessageHandler+Sender",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 5030,
+      "End": 5036
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+TestMessageHandler",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 3057,
+      "End": 3075
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+TestMessageHandler",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 4727,
+      "End": 4745
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest+TestMessageHandler",
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 994,
+      "End": 1012
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Test|Microsoft.AspNet.Proxy.Test.ProxyTest",
+      "Def": true,
+      "File": "test/Microsoft.AspNet.Proxy.Test/PassthroughProxyTest.cs",
+      "Start": 469,
+      "End": 478
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "Tools": [
+    {
+      "Subcmd": "scan",
+      "Op": "scan",
+      "SourceUnitTypes": [
+        "NugetPackage"
+      ]
+    },
+    
+    {
+      "Subcmd": "depresolve",
+      "Op": "depresolve",
+      "SourceUnitTypes": [
+        "NugetPackage"
+      ]
+    },
+    
+    {
+      "Subcmd": "graph",
+      "Op": "graph",
+      "SourceUnitTypes": [
+        "NugetPackage"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+sudo: required
+dist: trusty
+
+language: csharp
+
+before_install:
+# installing srclib
+  - mkdir $HOME/gocode
+  - export GOPATH=$HOME/gocode
+  - go get -u -v sourcegraph.com/sourcegraph/srclib/cmd/srclib
+  - export PATH=$PATH:$HOME/gocode/bin
+  - mkdir -p $HOME/.srclib/sourcegraph.com/sourcegraph
+# installing libunwind (required by C# runtime from Microsoft)
+  - cd /tmp
+  - wget http://download.savannah.gnu.org/releases/libunwind/libunwind-1.1.tar.gz
+  - tar -xvf libunwind-1.1.tar.gz
+  - cd libunwind-1.1 && ./configure && make > /dev/null 2>&1
+  - sudo make install
+# installing C# runtime from Microsoft
+  - cd /tmp
+  - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
+  - sudo apt-get install -y gettext libssl-dev libcurl4-openssl-dev zlib1g libicu-dev uuid-dev
+  - dnvm upgrade -r coreclr
+# registering C# toolchain
+  - ln -s $TRAVIS_BUILD_DIR $HOME/.srclib/sourcegraph.com/sourcegraph/srclib-csharp
+  - srclib toolchain list
+  - cd $TRAVIS_BUILD_DIR
+
+install:
+  - dnu restore Srclib.Nuget/project.json
+
+script:
+  - srclib -v test

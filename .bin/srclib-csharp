@@ -1,0 +1,9 @@
+#!/bin/bash
+
+BIN_DIR="`dirname \"$BASH_SOURCE\"`"
+ROOT_DIR="`dirname \"$BIN_DIR\"`"
+PROJ_DIR="$ROOT_DIR/Srclib.Nuget"
+#echo "$PROJ_DIR"
+
+#echo dnx -p "$PROJ_DIR/project.json" run $*
+dnx -p "$PROJ_DIR" run $*
