@@ -26,6 +26,16 @@ With DNX framework there is no explicit building, so just add a new toolchain to
 
     ln -s . $HOME/.srclib/sourcegraph.com/sourcegraph/srclib-csharp
 
+You should also load project dependencies by running
+
+    dnu restore Srclin.Nuget/project.json
+
+or using
+
+    make dep
+
+which does exactly the same
+
 ## Testing
 
 Run `git submodule update --init` the first time to fetch the submodule test
