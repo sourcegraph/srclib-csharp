@@ -55,6 +55,12 @@ namespace Srclib.Nuget
     public UInt32 DefEnd { get; set; }
 
     /// <summary>
+    /// External
+    /// </summary>
+    [JsonProperty]
+    public bool External { get; set; } = false;
+
+    /// <summary>
     /// Exported is whether this def is part of a source unit's
     /// public API. For example, in Java a "public" field is
     /// Exported.

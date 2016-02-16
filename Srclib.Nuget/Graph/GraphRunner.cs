@@ -73,6 +73,16 @@ namespace Srclib.Nuget.Graph
 
           _output.Refs.Add(reference);
         }
+        else
+        {
+          _defined.Add(definition);
+          //at first encountering
+          var def = Def.For(symbol: definition, type: "external", name: definition.Name).At(file, token.Span);
+          //_output.Defs.Add(def);
+          def.External = true;
+          var reference = Ref.To(definition).At(file, token.Span);
+          _output.Refs.Add(reference);
+        }
       }
     }
 
@@ -111,6 +121,51 @@ namespace Srclib.Nuget.Graph
       var compilationRef = (CompilationReference)roslynRef.MetadataReference;
       var csCompilation = (CSharpCompilation)compilationRef.Compilation;
       context.Compilation = csCompilation;
+
+      IEnumerable<LibraryDescription> deps = await DepresolveConsoleCommand.DepResolve(context.Project);
+
+
+            HashSet<PortableExecutableReference> libs = new HashSet<PortableExecutableReference>();
+            try
+            {
+                libs.Add(MetadataReference.CreateFromFile("/opt/DNX_BRANCH/runtimes/dnx-coreclr-linux-x64.1.0.0-rc1-update1/bin/mscorlib.dll"));
+            }
+            catch (Exception e)
+            {
+            }
+            foreach (LibraryDescription ld in deps)
+            {
+                PortableExecutableReference r = null;
+                try
+                {
+                    string path = ld.Path + "/" + DepresolveConsoleCommand.GetDll(ld.Path);
+                    //Console.Error.WriteLine("trying to add reference to " + path);
+                    r = MetadataReference.CreateFromFile(path);
+                }
+                catch (Exception e)
+                {
+                    //Console.Error.WriteLine("caught exception");
+                    try
+                    {
+                        string name = ld.Identity.Name;
+                        string path = ld.Path;
+                        string cd = path.Substring(0, path.LastIndexOf('/'));
+                        string newpath = cd + "/" + DepresolveConsoleCommand.GetDll(cd, name);
+                        //Console.Error.WriteLine("trying to add reference to " + newpath);
+                        r = MetadataReference.CreateFromFile(newpath);
+                    }
+                    catch (Exception ee)
+                    {
+                        //Console.Error.WriteLine("caught exception");
+                    }
+                }
+                if (r != null)
+                {
+                    libs.Add(r);
+                }
+            }
+            context.Compilation = context.Compilation.WithReferences(libs);
+
 
       var runner = new GraphRunner();
       foreach (var st in context.Compilation.SyntaxTrees)
@@ -482,7 +537,9 @@ namespace Srclib.Nuget.Graph
       {
         var node = token.Parent;
         if (node == null)
+        {
           goto skip;
+        }
 
         var symbol = _sm.GetSymbolInfo(node);
         if (symbol.Symbol == null)

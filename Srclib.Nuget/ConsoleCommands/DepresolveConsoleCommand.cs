@@ -67,6 +67,18 @@ namespace Srclib.Nuget
       return allDeps;
     }
 
+
+        public static async Task<IEnumerable<LibraryDescription>> DepResolve(Project proj)
+        {
+            var allDeps = GetAllDeps(proj);
+            if (allDeps.Any(dep => !dep.Resolved))
+            {
+                await RunResolve(proj.ProjectFilePath);
+                allDeps = GetAllDeps(proj);
+            }
+            return allDeps;
+        }
+
     static IEnumerable<LibraryDescription> GetAllDeps(Project proj) =>
       proj.GetTargetFrameworks().Select(f => f.FrameworkName)
         .SelectMany(f =>
@@ -129,5 +141,15 @@ namespace Srclib.Nuget
       p.WaitForExit();
       return result;
     }
+
+        public static string GetDll(string path)
+        {
+            return RunForResult("/bin/bash", "-c \"cd " + path + " && find -name *.dll | head -1\"");
+        }
+
+        public static string GetDll(string path, string name)
+        {
+            return RunForResult("/bin/bash", "-c \"cd " + path + " && find -name " + name + ".dll | head -1\"");
+        }
   }
 }
