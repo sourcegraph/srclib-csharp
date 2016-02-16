@@ -304,6 +304,36 @@
       "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
       "Start": 256,
       "End": 263
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy",
+      "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
+      "Start": 231,
+      "End": 236
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet",
+      "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
+      "Start": 187,
+      "End": 193
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet",
+      "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
+      "Start": 224,
+      "End": 230
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft",
+      "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
+      "Start": 177,
+      "End": 186
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft",
+      "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
+      "Start": 214,
+      "End": 223
     }
   ]
 }
