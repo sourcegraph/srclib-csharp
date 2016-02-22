@@ -14,8 +14,38 @@ using System.Globalization;
 using System.Xml.Linq;
 using Srclib.Nuget.Documentation;
 
+using Newtonsoft.Json;
+
 namespace Srclib.Nuget.Graph
 {
+
+    class Wrap
+    {
+        [JsonProperty]
+        public string version;
+
+        [JsonProperty]
+        public Framework frameworks;
+    }
+
+    class Framework
+    {
+        [JsonProperty]
+        public Net451 net451;
+    }
+
+    class Net451
+    {
+        [JsonProperty]
+        public Bin bin;
+    }
+
+    class Bin
+    {
+        [JsonProperty]
+        public string assembly;
+    }
+
   /// <summary>
   /// C# syntax walker that produces graph output.
   /// </summary>
@@ -81,6 +111,13 @@ namespace Srclib.Nuget.Graph
           //_output.Defs.Add(def);
           def.External = true;
           var reference = Ref.To(definition).At(file, token.Span);
+          if (definition.ContainingAssembly.Identity.Name.Equals("TestLibrary"))
+          {
+            reference.DefRepo = "github.com/ildarisaev/TestLib";
+            reference.DefUnit = "TestLibrary";
+            reference.DefUnitType = "NugetPackage";
+            //Console.Error.WriteLine("setting a link to external project");
+          }
           _output.Refs.Add(reference);
         }
       }
@@ -117,6 +154,10 @@ namespace Srclib.Nuget.Graph
       context.Export = context.LibraryExporter.GetExport(context.Project.Name);
 
       //If other languages are to be supported, this part needs to change.
+      if (!(context.Export.MetadataReferences[0] is IRoslynMetadataReference))
+      {
+        return new Output();
+      }
       var roslynRef = (IRoslynMetadataReference)context.Export.MetadataReferences[0];
       var compilationRef = (CompilationReference)roslynRef.MetadataReference;
       var csCompilation = (CSharpCompilation)compilationRef.Compilation;
@@ -138,13 +179,34 @@ namespace Srclib.Nuget.Graph
                 PortableExecutableReference r = null;
                 try
                 {
-                    string path = ld.Path + "/" + DepresolveConsoleCommand.GetDll(ld.Path);
+                    //Console.Error.WriteLine("ld.Path=" + ld.Path);
+                    string path = "";
+                    if (ld.Path.EndsWith("project.json") && (ld.Path.IndexOf("wrap") != -1))
+                    {
+                        //Console.Error.WriteLine("178");
+                        if (File.Exists(ld.Path))
+                        {
+                            //Console.Error.WriteLine("181");
+                            var content = File.ReadAllText(ld.Path);
+                            //Console.Error.WriteLine("183");
+                            var spec = JsonConvert.DeserializeObject<Wrap>(content);
+                            //Console.Error.WriteLine("185");
+                            //Console.Error.WriteLine("assembly=" + spec.frameworks.net451.bin.assembly);
+                            path = ld.Path.Substring(0, ld.Path.Length - 12) + spec.frameworks.net451.bin.assembly;
+                        }
+                    }
+                    else
+                    {
+                        path = ld.Path + "/" + DepresolveConsoleCommand.GetDll(ld.Path);
+                    }
                     //Console.Error.WriteLine("trying to add reference to " + path);
                     r = MetadataReference.CreateFromFile(path);
                 }
                 catch (Exception e)
                 {
                     //Console.Error.WriteLine("caught exception");
+                    //Console.Error.WriteLine(e.Message);
+                    //Console.Error.WriteLine(e.StackTrace);
                     try
                     {
                         string name = ld.Identity.Name;
@@ -157,6 +219,8 @@ namespace Srclib.Nuget.Graph
                     catch (Exception ee)
                     {
                         //Console.Error.WriteLine("caught exception");
+                        //Console.Error.WriteLine(e.Message);
+                        //Console.Error.WriteLine(e.StackTrace);
                     }
                 }
                 if (r != null)
@@ -548,6 +612,22 @@ namespace Srclib.Nuget.Graph
         }
 
         var definition = symbol.Symbol.OriginalDefinition;
+        /*if (definition != null)
+        {
+          Console.Error.WriteLine("definition=" + definition.ToString());
+          if (definition.IsExported())
+          {
+            if (definition.ContainingAssembly != null)
+            {
+              Console.Error.WriteLine("assembly=" + definition.ContainingAssembly.ToString());
+              Console.Error.WriteLine("name=" + definition.ContainingAssembly.Identity.Name);
+            }
+            if (definition.ContainingModule != null)
+            {
+              Console.Error.WriteLine("module=" + definition.ContainingModule.ToString());
+            }
+          }
+        }*/
         _refs.Add(Tuple.Create(token, definition, _path));
       }
 
