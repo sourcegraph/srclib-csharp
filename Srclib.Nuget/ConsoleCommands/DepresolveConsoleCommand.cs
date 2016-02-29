@@ -14,6 +14,8 @@ namespace Srclib.Nuget
   {
     static Lazy<string> _dnuPath;
 
+    private static Dictionary<string, IEnumerable<LibraryDescription>> projDeps = new Dictionary<string, IEnumerable<LibraryDescription>>();
+
     public static void Register(CommandLineApplication cmdApp, Microsoft.Extensions.PlatformAbstractions.IApplicationEnvironment appEnv, Microsoft.Extensions.PlatformAbstractions.IRuntimeEnvironment runtimeEnv)
     {
       if (runtimeEnv.OperatingSystem == "Windows")
@@ -31,6 +33,7 @@ namespace Srclib.Nuget
         c.HelpOption("-?|-h|--help");
 
         c.OnExecute(async () => {
+          //Console.Error.WriteLine("running depresolve");
           var jsonIn = await Console.In.ReadToEndAsync();
           var sourceUnit = JsonConvert.DeserializeObject<SourceUnit>(jsonIn);
 
@@ -40,6 +43,7 @@ namespace Srclib.Nuget
           var result = new List<Resolution>();
           foreach(var dep in deps)
           {
+            //Console.Error.WriteLine("dependency path=" + dep.Path);
             result.Add(Resolution.FromLibrary(dep));
           }
 
@@ -51,33 +55,39 @@ namespace Srclib.Nuget
 
     static async Task<IEnumerable<LibraryDescription>> DepResolve(string dir)
     {
-      Project proj;
-      if(!Project.TryGetProject(dir, out proj))
-      {
-        throw new Exception("Error reading project.json");
-      }
-
-      var allDeps = GetAllDeps(proj);
-      if (allDeps.Any(dep => !dep.Resolved))
-      {
-        await RunResolve(dir);
-        allDeps = GetAllDeps(proj);
-      }
-
-      return allDeps;
+        if (projDeps.ContainsKey(dir))
+        {
+            return projDeps[dir];
+        }
+        else
+        {
+            Project proj;
+            if (!Project.TryGetProject(dir, out proj))
+            {
+                throw new Exception("Error reading project.json");
+            }
+            await RunResolve(dir);
+            var allDeps = GetAllDeps(proj);
+            projDeps[dir] = allDeps;
+            return allDeps;
+        }
     }
 
 
-        public static async Task<IEnumerable<LibraryDescription>> DepResolve(Project proj)
+    public static async Task<IEnumerable<LibraryDescription>> DepResolve(Project proj)
+    {
+        if (projDeps.ContainsKey(proj.ProjectDirectory))
         {
+            return projDeps[proj.ProjectDirectory];
+        }
+        else
+        {
+            await RunResolve(proj.ProjectDirectory);
             var allDeps = GetAllDeps(proj);
-            if (allDeps.Any(dep => !dep.Resolved))
-            {
-                await RunResolve(proj.ProjectFilePath);
-                allDeps = GetAllDeps(proj);
-            }
+            projDeps[proj.ProjectDirectory] = allDeps;
             return allDeps;
         }
+    }
 
     static IEnumerable<LibraryDescription> GetAllDeps(Project proj) =>
       proj.GetTargetFrameworks().Select(f => f.FrameworkName)
@@ -124,7 +134,7 @@ namespace Srclib.Nuget
       return RunForResult("/bin/bash", "-c \"which dnu\"");
     }
 
-    static string RunForResult(string shell, string command)
+    public static string RunForResult(string shell, string command)
     {
       var p = new Process();
       p.StartInfo.WorkingDirectory = Directory.GetCurrentDirectory();

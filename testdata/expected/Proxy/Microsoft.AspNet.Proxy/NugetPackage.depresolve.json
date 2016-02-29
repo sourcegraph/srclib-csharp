@@ -1,1 +1,444 @@
-[]
+[
+  {
+    "Raw": {
+      "Name": "Microsoft.AspNet.Http.Abstractions",
+      "Version": "1.0.0-rc1-final"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "Microsoft.AspNet.Http.Abstractions",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "1.0.0-rc1-final",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "Microsoft.AspNet.Http.Features",
+      "Version": "1.0.0-rc1-final"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "Microsoft.AspNet.Http.Features",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "1.0.0-rc1-final",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "Microsoft.Extensions.Primitives",
+      "Version": "1.0.0-rc1-final"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "Microsoft.Extensions.Primitives",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "1.0.0-rc1-final",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "Microsoft.Extensions.WebEncoders.Core",
+      "Version": "1.0.0-rc1-final"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "Microsoft.Extensions.WebEncoders.Core",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "1.0.0-rc1-final",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "Microsoft.Win32.Primitives",
+      "Version": "4.0.0"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "Microsoft.Win32.Primitives",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.0",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Collections",
+      "Version": "4.0.11-beta-23516"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Collections",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.11-beta-23516",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.ComponentModel",
+      "Version": "4.0.1-beta-23516"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.ComponentModel",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.1-beta-23516",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Diagnostics.Debug",
+      "Version": "4.0.11-beta-23516"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Diagnostics.Debug",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.11-beta-23516",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Diagnostics.Tools",
+      "Version": "4.0.1-beta-23516"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Diagnostics.Tools",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.1-beta-23516",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Globalization",
+      "Version": "4.0.11-beta-23516"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Globalization",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.11-beta-23516",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Globalization.Extensions",
+      "Version": "4.0.1-beta-23516"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Globalization.Extensions",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.1-beta-23516",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.IO",
+      "Version": "4.0.11-beta-23516"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.IO",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.11-beta-23516",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Linq",
+      "Version": "4.0.1-beta-23516"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Linq",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.1-beta-23516",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Linq.Expressions",
+      "Version": "4.0.11-beta-23516"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Linq.Expressions",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.11-beta-23516",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Net.Http",
+      "Version": "4.0.1-beta-23516"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Net.Http",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.1-beta-23516",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Net.Primitives",
+      "Version": "4.0.11-beta-23516"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Net.Primitives",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.11-beta-23516",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Net.WebSockets",
+      "Version": "4.0.0-beta-23516"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Net.WebSockets",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.0-beta-23516",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Reflection",
+      "Version": "4.0.10"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Reflection",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.10",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Reflection.Primitives",
+      "Version": "4.0.0"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Reflection.Primitives",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.0",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Reflection.TypeExtensions",
+      "Version": "4.0.1-beta-23409"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Reflection.TypeExtensions",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.1-beta-23409",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Resources.ResourceManager",
+      "Version": "4.0.1-beta-23516"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Resources.ResourceManager",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.1-beta-23516",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Runtime",
+      "Version": "4.0.21-beta-23516"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Runtime",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.21-beta-23516",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Runtime.Extensions",
+      "Version": "4.0.11-beta-23516"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Runtime.Extensions",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.11-beta-23516",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Runtime.Handles",
+      "Version": "4.0.0"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Runtime.Handles",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.0",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Runtime.InteropServices",
+      "Version": "4.0.21-beta-23516"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Runtime.InteropServices",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.21-beta-23516",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Security.Claims",
+      "Version": "4.0.1-beta-23516"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Security.Claims",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.1-beta-23516",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Security.Cryptography.Algorithms",
+      "Version": "4.0.0-beta-23516"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Security.Cryptography.Algorithms",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.0-beta-23516",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Security.Cryptography.Encoding",
+      "Version": "4.0.0-beta-23516"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Security.Cryptography.Encoding",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.0-beta-23516",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Security.Cryptography.Primitives",
+      "Version": "4.0.0-beta-23516"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Security.Cryptography.Primitives",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.0-beta-23516",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Security.Cryptography.X509Certificates",
+      "Version": "4.0.0-beta-23516"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Security.Cryptography.X509Certificates",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.0-beta-23516",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Security.Principal",
+      "Version": "4.0.1-beta-23516"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Security.Principal",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.1-beta-23516",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Text.Encoding",
+      "Version": "4.0.0"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Text.Encoding",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.0",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Threading",
+      "Version": "4.0.11-beta-23516"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Threading",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.11-beta-23516",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
+      "Name": "System.Threading.Tasks",
+      "Version": "4.0.11-beta-23516"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "System.Threading.Tasks",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "4.0.11-beta-23516",
+      "ToRevSpec": ""
+    }
+  }
+]

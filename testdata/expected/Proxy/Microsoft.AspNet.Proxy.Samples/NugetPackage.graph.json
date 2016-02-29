@@ -33,7 +33,7 @@
       "TreePath": "Microsoft.AspNet.Proxy.Samples/Microsoft/AspNet/Proxy/Startup"
     },
     {
-      "Path": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Proxy.Samples|IApplicationBuilder)!app",
+      "Path": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Http.Abstractions|Microsoft.AspNet.Builder.IApplicationBuilder)!app",
       "Name": "app",
       "Kind": "param",
       "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
@@ -45,9 +45,9 @@
           "Name": {
             "Unqualified": "IApplicationBuilder app",
             "ScopeQualified": "IApplicationBuilder app",
-            "DepQualified": "IApplicationBuilder app",
-            "RepositoryWideQualified": "IApplicationBuilder app",
-            "LanguageWideQualified": "IApplicationBuilder app"
+            "DepQualified": "Microsoft.AspNet.Builder.IApplicationBuilder app",
+            "RepositoryWideQualified": "Microsoft.AspNet.Builder.IApplicationBuilder app",
+            "LanguageWideQualified": "Microsoft.AspNet.Builder.IApplicationBuilder app"
           },
           "Type": {
             "Unqualified": "param",
@@ -62,10 +62,10 @@
           "Kind": "param"
         }
       },
-      "TreePath": "Microsoft.AspNet.Proxy.Samples/Microsoft/AspNet/Proxy/Startup/Configure(Microsoft.AspNet.Proxy.Samples|IApplicationBuilder)/app"
+      "TreePath": "Microsoft.AspNet.Proxy.Samples/Microsoft/AspNet/Proxy/Startup/Configure(Microsoft.AspNet.Http.Abstractions|Microsoft.AspNet.Builder.IApplicationBuilder)/app"
     },
     {
-      "Path": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Proxy.Samples|IApplicationBuilder)!host$0",
+      "Path": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Http.Abstractions|Microsoft.AspNet.Builder.IApplicationBuilder)!host$0",
       "Name": "host",
       "Kind": "local",
       "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
@@ -94,10 +94,10 @@
           "Kind": "local"
         }
       },
-      "TreePath": "Microsoft.AspNet.Proxy.Samples/Microsoft/AspNet/Proxy/Startup/Configure(Microsoft.AspNet.Proxy.Samples|IApplicationBuilder)/host$0"
+      "TreePath": "Microsoft.AspNet.Proxy.Samples/Microsoft/AspNet/Proxy/Startup/Configure(Microsoft.AspNet.Http.Abstractions|Microsoft.AspNet.Builder.IApplicationBuilder)/host$0"
     },
     {
-      "Path": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Proxy.Samples|IApplicationBuilder)!options$0",
+      "Path": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Http.Abstractions|Microsoft.AspNet.Builder.IApplicationBuilder)!options$0",
       "Name": "options",
       "Kind": "local",
       "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
@@ -126,10 +126,10 @@
           "Kind": "local"
         }
       },
-      "TreePath": "Microsoft.AspNet.Proxy.Samples/Microsoft/AspNet/Proxy/Startup/Configure(Microsoft.AspNet.Proxy.Samples|IApplicationBuilder)/options$0"
+      "TreePath": "Microsoft.AspNet.Proxy.Samples/Microsoft/AspNet/Proxy/Startup/Configure(Microsoft.AspNet.Http.Abstractions|Microsoft.AspNet.Builder.IApplicationBuilder)/options$0"
     },
     {
-      "Path": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Proxy.Samples|IApplicationBuilder)!port$0",
+      "Path": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Http.Abstractions|Microsoft.AspNet.Builder.IApplicationBuilder)!port$0",
       "Name": "port",
       "Kind": "local",
       "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
@@ -158,10 +158,10 @@
           "Kind": "local"
         }
       },
-      "TreePath": "Microsoft.AspNet.Proxy.Samples/Microsoft/AspNet/Proxy/Startup/Configure(Microsoft.AspNet.Proxy.Samples|IApplicationBuilder)/port$0"
+      "TreePath": "Microsoft.AspNet.Proxy.Samples/Microsoft/AspNet/Proxy/Startup/Configure(Microsoft.AspNet.Http.Abstractions|Microsoft.AspNet.Builder.IApplicationBuilder)/port$0"
     },
     {
-      "Path": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Proxy.Samples|IApplicationBuilder)!scheme$0",
+      "Path": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Http.Abstractions|Microsoft.AspNet.Builder.IApplicationBuilder)!scheme$0",
       "Name": "scheme",
       "Kind": "local",
       "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
@@ -190,10 +190,10 @@
           "Kind": "local"
         }
       },
-      "TreePath": "Microsoft.AspNet.Proxy.Samples/Microsoft/AspNet/Proxy/Startup/Configure(Microsoft.AspNet.Proxy.Samples|IApplicationBuilder)/scheme$0"
+      "TreePath": "Microsoft.AspNet.Proxy.Samples/Microsoft/AspNet/Proxy/Startup/Configure(Microsoft.AspNet.Http.Abstractions|Microsoft.AspNet.Builder.IApplicationBuilder)/scheme$0"
     },
     {
-      "Path": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Proxy.Samples|IApplicationBuilder)",
+      "Path": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Http.Abstractions|Microsoft.AspNet.Builder.IApplicationBuilder)",
       "Name": "Configure",
       "Kind": "method",
       "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
@@ -205,9 +205,9 @@
           "Name": {
             "Unqualified": "void Configure(IApplicationBuilder app)",
             "ScopeQualified": "void Startup.Configure(IApplicationBuilder app)",
-            "DepQualified": "void Microsoft.AspNet.Proxy.Startup.Configure(IApplicationBuilder app)",
-            "RepositoryWideQualified": "void Microsoft.AspNet.Proxy.Startup.Configure(IApplicationBuilder app)",
-            "LanguageWideQualified": "void Microsoft.AspNet.Proxy.Startup.Configure(IApplicationBuilder app)"
+            "DepQualified": "void Microsoft.AspNet.Proxy.Startup.Configure(Microsoft.AspNet.Builder.IApplicationBuilder app)",
+            "RepositoryWideQualified": "void Microsoft.AspNet.Proxy.Startup.Configure(Microsoft.AspNet.Builder.IApplicationBuilder app)",
+            "LanguageWideQualified": "void Microsoft.AspNet.Proxy.Startup.Configure(Microsoft.AspNet.Builder.IApplicationBuilder app)"
           },
           "Type": {
             "Unqualified": "method",
@@ -222,77 +222,89 @@
           "Kind": "method"
         }
       },
-      "TreePath": "Microsoft.AspNet.Proxy.Samples/Microsoft/AspNet/Proxy/Startup/Configure(Microsoft.AspNet.Proxy.Samples|IApplicationBuilder)"
+      "TreePath": "Microsoft.AspNet.Proxy.Samples/Microsoft/AspNet/Proxy/Startup/Configure(Microsoft.AspNet.Http.Abstractions|Microsoft.AspNet.Builder.IApplicationBuilder)"
     }
   ],
   "Refs": [
     {
-      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Proxy.Samples|IApplicationBuilder)!app",
+      "DefPath": "Microsoft.AspNet.Builder",
+      "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
+      "Start": 194,
+      "End": 201
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Http.Abstractions|Microsoft.AspNet.Builder.IApplicationBuilder",
+      "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
+      "Start": 300,
+      "End": 319
+    },
+    {
+      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Http.Abstractions|Microsoft.AspNet.Builder.IApplicationBuilder)!app",
       "Def": true,
       "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
       "Start": 320,
       "End": 323
     },
     {
-      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Proxy.Samples|IApplicationBuilder)!app",
+      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Http.Abstractions|Microsoft.AspNet.Builder.IApplicationBuilder)!app",
       "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
       "Start": 640,
       "End": 643
     },
     {
-      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Proxy.Samples|IApplicationBuilder)!host$0",
+      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Http.Abstractions|Microsoft.AspNet.Builder.IApplicationBuilder)!host$0",
       "Def": true,
       "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
       "Start": 403,
       "End": 407
     },
     {
-      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Proxy.Samples|IApplicationBuilder)!host$0",
+      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Http.Abstractions|Microsoft.AspNet.Builder.IApplicationBuilder)!host$0",
       "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
       "Start": 579,
       "End": 583
     },
     {
-      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Proxy.Samples|IApplicationBuilder)!options$0",
+      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Http.Abstractions|Microsoft.AspNet.Builder.IApplicationBuilder)!options$0",
       "Def": true,
       "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
       "Start": 480,
       "End": 487
     },
     {
-      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Proxy.Samples|IApplicationBuilder)!options$0",
+      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Http.Abstractions|Microsoft.AspNet.Builder.IApplicationBuilder)!options$0",
       "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
       "Start": 653,
       "End": 660
     },
     {
-      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Proxy.Samples|IApplicationBuilder)!port$0",
+      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Http.Abstractions|Microsoft.AspNet.Builder.IApplicationBuilder)!port$0",
       "Def": true,
       "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
       "Start": 450,
       "End": 454
     },
     {
-      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Proxy.Samples|IApplicationBuilder)!port$0",
+      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Http.Abstractions|Microsoft.AspNet.Builder.IApplicationBuilder)!port$0",
       "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
       "Start": 608,
       "End": 612
     },
     {
-      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Proxy.Samples|IApplicationBuilder)!scheme$0",
+      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Http.Abstractions|Microsoft.AspNet.Builder.IApplicationBuilder)!scheme$0",
       "Def": true,
       "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
       "Start": 360,
       "End": 366
     },
     {
-      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Proxy.Samples|IApplicationBuilder)!scheme$0",
+      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Http.Abstractions|Microsoft.AspNet.Builder.IApplicationBuilder)!scheme$0",
       "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
       "Start": 548,
       "End": 554
     },
     {
-      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Proxy.Samples|IApplicationBuilder)",
+      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet.Proxy.Startup+Configure(Microsoft.AspNet.Http.Abstractions|Microsoft.AspNet.Builder.IApplicationBuilder)",
       "Def": true,
       "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
       "Start": 290,
@@ -312,28 +324,82 @@
       "End": 236
     },
     {
-      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet",
+      "DefPath": "Microsoft.AspNet",
       "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
       "Start": 187,
       "End": 193
     },
     {
-      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft.AspNet",
+      "DefPath": "Microsoft.AspNet",
       "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
       "Start": 224,
       "End": 230
     },
     {
-      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft",
+      "DefPath": "Microsoft",
       "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
       "Start": 177,
       "End": 186
     },
     {
-      "DefPath": "Microsoft.AspNet.Proxy.Samples|Microsoft",
+      "DefPath": "Microsoft",
       "File": "samples/Microsoft.AspNet.Proxy.Samples/Startup.cs",
       "Start": 214,
       "End": 223
+    },
+    {
+      "DefPath": "System.Reflection",
+      "File": "file://applyprojectinfo.cs/",
+      "Start": 149,
+      "End": 159
+    },
+    {
+      "DefPath": "System.Reflection",
+      "File": "file://applyprojectinfo.cs/",
+      "Start": 17,
+      "End": 27
+    },
+    {
+      "DefPath": "System.Reflection",
+      "File": "file://applyprojectinfo.cs/",
+      "Start": 86,
+      "End": 96
+    },
+    {
+      "DefPath": "System.Runtime|System.Reflection.AssemblyFileVersionAttribute+.ctor(System.Runtime|System.String)",
+      "File": "file://applyprojectinfo.cs/",
+      "Start": 28,
+      "End": 56
+    },
+    {
+      "DefPath": "System.Runtime|System.Reflection.AssemblyInformationalVersionAttribute+.ctor(System.Runtime|System.String)",
+      "File": "file://applyprojectinfo.cs/",
+      "Start": 160,
+      "End": 197
+    },
+    {
+      "DefPath": "System.Runtime|System.Reflection.AssemblyVersionAttribute+.ctor(System.Runtime|System.String)",
+      "File": "file://applyprojectinfo.cs/",
+      "Start": 97,
+      "End": 121
+    },
+    {
+      "DefPath": "System",
+      "File": "file://applyprojectinfo.cs/",
+      "Start": 10,
+      "End": 16
+    },
+    {
+      "DefPath": "System",
+      "File": "file://applyprojectinfo.cs/",
+      "Start": 142,
+      "End": 148
+    },
+    {
+      "DefPath": "System",
+      "File": "file://applyprojectinfo.cs/",
+      "Start": 79,
+      "End": 85
     }
   ]
 }
