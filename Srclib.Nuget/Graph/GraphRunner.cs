@@ -151,7 +151,8 @@ namespace Srclib.Nuget.Graph
                 }
             }
             catch (Exception e)
-            { 
+            {
+
             }
         }
     }
@@ -294,7 +295,7 @@ namespace Srclib.Nuget.Graph
                 if (!string.IsNullOrWhiteSpace(path))
                 {
                     path = Utils.GetRelativePath(path, context.RootPath);
-                    if (!string.IsNullOrWhiteSpace(path) && path.Substring(0, 3) != ".." + Path.DirectorySeparatorChar)
+                    if (!string.IsNullOrWhiteSpace(path) && (path.Substring(0, 3) != ".." + Path.DirectorySeparatorChar) && !path.Equals("file://applyprojectinfo.cs/"))
                     {
                         // this is a source code file we want to grap
                         runner._sm = context.Compilation.GetSemanticModel(st, false);

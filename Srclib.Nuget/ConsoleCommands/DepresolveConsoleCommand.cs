@@ -14,8 +14,6 @@ namespace Srclib.Nuget
   {
     static Lazy<string> _dnuPath;
 
-    private static Dictionary<string, IEnumerable<LibraryDescription>> projDeps = new Dictionary<string, IEnumerable<LibraryDescription>>();
-
     public static void Register(CommandLineApplication cmdApp, Microsoft.Extensions.PlatformAbstractions.IApplicationEnvironment appEnv, Microsoft.Extensions.PlatformAbstractions.IRuntimeEnvironment runtimeEnv)
     {
       if (runtimeEnv.OperatingSystem == "Windows")
@@ -55,39 +53,27 @@ namespace Srclib.Nuget
 
     static async Task<IEnumerable<LibraryDescription>> DepResolve(string dir)
     {
-        if (projDeps.ContainsKey(dir))
+        Project proj;
+        if(!Project.TryGetProject(dir, out proj))
         {
-            return projDeps[dir];
+            throw new Exception("Error reading project.json");
         }
-        else
-        {
-            Project proj;
-            if (!Project.TryGetProject(dir, out proj))
-            {
-                throw new Exception("Error reading project.json");
-            }
-            await RunResolve(dir);
-            var allDeps = GetAllDeps(proj);
-            projDeps[dir] = allDeps;
-            return allDeps;
-        }
+
+        //Console.Error.WriteLine("63 dir=" + dir);
+        await RunResolve(dir);
+        var allDeps = GetAllDeps(proj);
+        return allDeps;
     }
 
 
     public static async Task<IEnumerable<LibraryDescription>> DepResolve(Project proj)
     {
-        if (projDeps.ContainsKey(proj.ProjectDirectory))
-        {
-            return projDeps[proj.ProjectDirectory];
-        }
-        else
-        {
-            await RunResolve(proj.ProjectDirectory);
-            var allDeps = GetAllDeps(proj);
-            projDeps[proj.ProjectDirectory] = allDeps;
-            return allDeps;
-        }
+        //Console.Error.WriteLine("71 dir=" + proj.ProjectDirectory);
+        await RunResolve(proj.ProjectDirectory);
+        var allDeps = GetAllDeps(proj);
+        return allDeps;
     }
+
 
     static IEnumerable<LibraryDescription> GetAllDeps(Project proj) =>
       proj.GetTargetFrameworks().Select(f => f.FrameworkName)
@@ -99,7 +85,7 @@ namespace Srclib.Nuget
             TargetFramework = f
           };
 
-          return ApplicationHostContext.GetRuntimeLibraries(context).Skip(1); // the first one is the self-reference
+          return ApplicationHostContext.GetRuntimeLibraries(context, false).Skip(1); // the first one is the self-reference
         })
         .Distinct(LibraryUtils.Comparer)
         .OrderBy(l => l.Identity?.Name);

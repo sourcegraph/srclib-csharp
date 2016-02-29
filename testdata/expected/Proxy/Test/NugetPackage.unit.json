@@ -1,0 +1,1 @@
+{"Name":"Test","Type":"NugetPackage","Files":["src/Test/Properties/AssemblyInfo.cs","src/Test/Class1.cs"],"Dir":"src/Test","Ops":{"depresolve":null}}
