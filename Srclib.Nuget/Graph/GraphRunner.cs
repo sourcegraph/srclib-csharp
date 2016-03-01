@@ -56,6 +56,7 @@ namespace Srclib.Nuget.Graph
     readonly HashSet<ISymbol> _defined = new HashSet<ISymbol>();
     readonly HashSet<string> keys = new HashSet<string>();
     readonly static Dictionary<string, string> dllToProjectUrl = new Dictionary<string, string>();
+    readonly static Dictionary<string, string> projectUrlToRepo = new Dictionary<string, string>();
 
     SemanticModel _sm;
     string _path;
@@ -63,6 +64,10 @@ namespace Srclib.Nuget.Graph
     private GraphRunner()
       : base(SyntaxWalkerDepth.Token)
     {
+        projectUrlToRepo["http://www.newtonsoft.com/json"] = "github.com/JamesNK/Newtonsoft.Json";
+        projectUrlToRepo["http://autofac.org/"] = "github.com/autofac/Autofac";
+        projectUrlToRepo["http://msdn.com/roslyn"] = "github.com/dotnet/roslyn";
+        projectUrlToRepo["http://www.asp.net/"] = "github.com/aspnet/dnx";//this may not be always correct
     }
 
     /// <summary>
@@ -132,10 +137,16 @@ namespace Srclib.Nuget.Graph
                         if (dllToProjectUrl.ContainsKey(definition.ContainingAssembly.Identity.Name + ".dll"))
                         {
                             string url = dllToProjectUrl[definition.ContainingAssembly.Identity.Name + ".dll"];
-                            if (url.Equals("http://www.newtonsoft.com/json"))
+                            //Console.Error.WriteLine("url=" + url);
+                            if (projectUrlToRepo.ContainsKey(url))
+                            {
+                                url = projectUrlToRepo[url];
+                            }
+                            //Console.Error.WriteLine("url=" + url);
+                            /*if (url.Equals("http://www.newtonsoft.com/json"))
                             {
                                 url = "github.com/JamesNK/Newtonsoft.Json";
-                            }
+                            }*/
                             //filter out non cloneable urls
                             //support only github so far???
                             if (url.IndexOf("github.com") != -1)
