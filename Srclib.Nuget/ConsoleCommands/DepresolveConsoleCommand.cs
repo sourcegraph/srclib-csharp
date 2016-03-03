@@ -14,16 +14,15 @@ namespace Srclib.Nuget
     {
         static Lazy<string> _dnuPath;
 
+        /// <summary>
+        /// Initialization method for depresolve process
+        /// </summary>
+        /// <param name="cmdApp">application to run (srclib-csharp)</param>
+        /// <param name="appEnv">common application information</param>
+        /// <param name="runtimeEnv">environment representation</param>
         public static void Register(CommandLineApplication cmdApp, Microsoft.Extensions.PlatformAbstractions.IApplicationEnvironment appEnv, Microsoft.Extensions.PlatformAbstractions.IRuntimeEnvironment runtimeEnv)
         {
-            if (runtimeEnv.OperatingSystem == "Windows")
-            {
-                _dnuPath = new Lazy<string>(FindDnuWindows);
-            }
-            else
-            {
-                _dnuPath = new Lazy<string>(FindDnuNix);
-            }
+            _dnuPath = new Lazy<string>(FindDnuNix);
 
             cmdApp.Command("depresolve", c => 
             {
@@ -38,7 +37,7 @@ namespace Srclib.Nuget
                     var dir = Path.Combine(Directory.GetCurrentDirectory(), sourceUnit.Dir);
                     var deps = await DepResolve(dir);
                     var result = new List<Resolution>();
-                    foreach(var dep in deps)
+                    foreach (var dep in deps)
                     {
                         result.Add(Resolution.FromLibrary(dep));
                     }
@@ -79,7 +78,8 @@ namespace Srclib.Nuget
                     Project = proj,
                     TargetFramework = f
                 };
-                return ApplicationHostContext.GetRuntimeLibraries(context, false).Skip(1); // the first one is the self-reference
+                // the first library description is always self-reference, so skip it
+                return ApplicationHostContext.GetRuntimeLibraries(context, false).Skip(1);
             })
             .Distinct(LibraryUtils.Comparer)
             .OrderBy(l => l.Identity?.Name);
@@ -100,12 +100,6 @@ namespace Srclib.Nuget
             // it's important to read stdout and stderr, else it might deadlock
             var outs = await Task.WhenAll(p.StandardOutput.ReadToEndAsync(), p.StandardError.ReadToEndAsync());
             p.WaitForExit();
-            // in the future, actually parse output or something
-        }
-
-        static string FindDnuWindows()
-        {
-            return RunForResult(@"C:\Windows\System32\cmd.exe", "/c \"where dnu\"");
         }
 
         static string FindDnuNix()

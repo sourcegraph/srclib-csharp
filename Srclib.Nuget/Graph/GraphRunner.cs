@@ -38,7 +38,12 @@ namespace Srclib.Nuget.Graph
             projectUrlToRepo["http://www.newtonsoft.com/json"] = "github.com/JamesNK/Newtonsoft.Json";
             projectUrlToRepo["http://autofac.org/"] = "github.com/autofac/Autofac";
             projectUrlToRepo["http://msdn.com/roslyn"] = "github.com/dotnet/roslyn";
-            projectUrlToRepo["http://www.asp.net/"] = "github.com/aspnet/dnx";//this may not be always correct
+
+
+            // multiple dlls from different repositories have www.asp.net as projectUrl
+            // so we probably need a multimap here
+            // TODO($ildarisaev): implement a correct mapping for all dlls
+            projectUrlToRepo["http://www.asp.net/"] = "github.com/aspnet/dnx";
         }
 
         /// <summary>
@@ -70,7 +75,7 @@ namespace Srclib.Nuget.Graph
 
         /// <summary>
         /// Scan a collection of resolved tokens and generate a ref for all 
-        /// tokens that have a corresponding def 
+        /// tokens that have a corresponding def or set up a link to external repo
         /// </summary>
         void RunTokens()
         {
@@ -89,10 +94,6 @@ namespace Srclib.Nuget.Graph
                     else
                     {
                         _defined.Add(definition);
-                        //at first encountering
-                        var def = Def.For(symbol: definition, type: "external", name: definition.Name).At(file, token.Span);
-                        //_output.Defs.Add(def);
-                        def.External = true;
                         var reference = Ref.To(definition).At(file, token.Span);
                         if ((definition.ContainingAssembly != null) && (definition.ContainingAssembly.Identity != null) && (definition.ContainingAssembly.Identity.Name != null))
                         {
@@ -103,8 +104,9 @@ namespace Srclib.Nuget.Graph
                                 {
                                     url = projectUrlToRepo[url];
                                 }
-                                //filter out non cloneable urls
-                                //support only github so far???
+                                // Sourcegraph needs to clone a repo, so filter out non cloneable urls
+                                // Currently consider only github urls as cloneable
+                                // TODO($ildarisaev): think of a more sophisticated check
                                 if (url.IndexOf("github.com") != -1)
                                 {
                                     reference.DefRepo = url;
@@ -125,8 +127,6 @@ namespace Srclib.Nuget.Graph
 
         internal static void HandleNuspec(string path, string dll)
         {
-            //for some reason xml parsing libraries doesn't seem to be available for dnx50
-            //parse nuspec manually instead
             string nuspec = DepresolveConsoleCommand.RunForResult("/bin/bash", "-c \"cd " + path + " && find -name '*.nuspec' | head -1\"");
             var content = File.ReadAllText(path + "/" + nuspec);
             int i = content.IndexOf("<projectUrl>");
@@ -170,7 +170,6 @@ namespace Srclib.Nuget.Graph
             context.LibraryExporter = context.CompilationEngine.CreateProjectExporter(context.Project, context.ApplicationHostContext.TargetFramework, "Debug");
             context.Export = context.LibraryExporter.GetExport(context.Project.Name);
 
-            //If other languages are to be supported, this part needs to change.
             if (!(context.Export.MetadataReferences[0] is IRoslynMetadataReference))
             {
                 return new Output();
