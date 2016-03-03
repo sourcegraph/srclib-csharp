@@ -205,7 +205,8 @@ namespace Srclib.Nuget.Graph
                     }
                     else
                     {
-                        path = ld.Path + "/" + DepresolveConsoleCommand.GetDll(ld.Path);
+                        DirectoryInfo di = new DirectoryInfo(ld.Path);
+                        path = DepresolveConsoleCommand.FindDll(di, ld.Identity.Name);
                         HandleNuspec(ld.Path, ld.Identity.Name);
                     }
                     r = MetadataReference.CreateFromFile(path);
@@ -217,13 +218,13 @@ namespace Srclib.Nuget.Graph
                         string name = ld.Identity.Name;
                         string path = ld.Path;
                         string cd = path.Substring(0, path.LastIndexOf('/'));
-                        string newpath = cd + "/" + DepresolveConsoleCommand.GetDll(cd, name);
+                        DirectoryInfo di = new DirectoryInfo(cd);
+                        string newpath = DepresolveConsoleCommand.FindDll(di, ld.Identity.Name);
                         HandleNuspec(cd, ld.Identity.Name);
                         r = MetadataReference.CreateFromFile(newpath);
                     }
                     catch (Exception ee)
                     {
-
                     }
                 }
                 if (r != null)

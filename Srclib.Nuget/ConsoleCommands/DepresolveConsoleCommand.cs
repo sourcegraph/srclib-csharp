@@ -125,14 +125,41 @@ namespace Srclib.Nuget
             return result;
         }
 
-        public static string GetDll(string path)
+        public static string FindDll(DirectoryInfo root, string name)
         {
-            return RunForResult("/bin/bash", "-c \"cd " + path + " && find -name *.dll | head -1\"");
-        }
+            FileInfo[] files = null;
+            DirectoryInfo[] subDirs = null;
 
-        public static string GetDll(string path, string name)
-        {
-            return RunForResult("/bin/bash", "-c \"cd " + path + " && find -name " + name + ".dll | head -1\"");
+            try
+            {
+                files = root.GetFiles("*.dll");
+            }
+            catch (Exception e)
+            {
+            }
+
+            if (files != null)
+            {
+                foreach (FileInfo fi in files)
+                {
+                    if (fi.Name.Equals(name + ".dll"))
+                    {
+                        return fi.FullName;
+                    }
+                }
+            }
+
+            subDirs = root.GetDirectories();
+            foreach (DirectoryInfo dirInfo in subDirs)
+            {
+                // Resursive call for each subdirectory.
+                string res = FindDll(dirInfo, name);
+                if (res != null)
+                {
+                    return res;
+                }
+            }
+            return null;
         }
     }
 }
