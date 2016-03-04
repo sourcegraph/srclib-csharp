@@ -179,7 +179,7 @@ namespace Srclib.Nuget.Graph
             var csCompilation = (CSharpCompilation)compilationRef.Compilation;
             context.Compilation = csCompilation;
 
-            IEnumerable<LibraryDescription> deps = await DepresolveConsoleCommand.DepResolve(context.Project);
+            IEnumerable<LibraryDescription> deps = DepresolveConsoleCommand.DepResolve(context.Project);
             HashSet<PortableExecutableReference> libs = new HashSet<PortableExecutableReference>();
             try
             {

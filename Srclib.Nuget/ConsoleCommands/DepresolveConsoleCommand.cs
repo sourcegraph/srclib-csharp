@@ -35,7 +35,7 @@ namespace Srclib.Nuget
                     var jsonIn = await Console.In.ReadToEndAsync();
                     var sourceUnit = JsonConvert.DeserializeObject<SourceUnit>(jsonIn);
                     var dir = Path.Combine(Directory.GetCurrentDirectory(), sourceUnit.Dir);
-                    var deps = await DepResolve(dir);
+                    var deps = DepResolve(dir);
                     var result = new List<Resolution>();
                     foreach (var dep in deps)
                     {
@@ -47,7 +47,7 @@ namespace Srclib.Nuget
             });
         }
 
-        static async Task<IEnumerable<LibraryDescription>> DepResolve(string dir)
+        static IEnumerable<LibraryDescription> DepResolve(string dir)
         {
             Project proj;
             if(!Project.TryGetProject(dir, out proj))
@@ -55,15 +55,13 @@ namespace Srclib.Nuget
                 throw new Exception("Error reading project.json");
             }
 
-            await RunResolve(dir);
             var allDeps = GetAllDeps(proj);
             return allDeps;
         }
 
 
-        public static async Task<IEnumerable<LibraryDescription>> DepResolve(Project proj)
+        public static IEnumerable<LibraryDescription> DepResolve(Project proj)
         {
-            await RunResolve(proj.ProjectDirectory);
             var allDeps = GetAllDeps(proj);
             return allDeps;
         }
@@ -78,14 +76,24 @@ namespace Srclib.Nuget
                     Project = proj,
                     TargetFramework = f
                 };
+                IList<LibraryDescription> libs = null;
+                while (libs == null) {
+                    try
+                    {
+                        libs = ApplicationHostContext.GetRuntimeLibraries(context);
+                    }
+                    catch (Exception e)
+                    {
+                    }
+                }
                 // the first library description is always self-reference, so skip it
-                return ApplicationHostContext.GetRuntimeLibraries(context, false).Skip(1);
+                return libs.Skip(1);
             })
             .Distinct(LibraryUtils.Comparer)
             .OrderBy(l => l.Identity?.Name);
 
 
-        static async Task RunResolve(string dir)
+        public static async Task RunResolve(string dir)
         {
             var p = new Process();
             p.StartInfo.WorkingDirectory = dir;
