@@ -1,0 +1,90 @@
+{
+  "Defs": [
+    {
+      "Path": "Test|Test.Class1",
+      "Name": "Class1",
+      "Kind": "class",
+      "File": "src/Test/Class1.cs",
+      "DefStart": 249,
+      "DefEnd": 255,
+      "Exported": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": "Class1",
+            "ScopeQualified": "Class1",
+            "DepQualified": "Test.Class1",
+            "RepositoryWideQualified": "Test.Class1",
+            "LanguageWideQualified": "Test.Class1"
+          },
+          "Type": {
+            "Unqualified": "class",
+            "ScopeQualified": "class",
+            "DepQualified": "class",
+            "RepositoryWideQualified": "class",
+            "LanguageWideQualified": "class"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "class"
+        }
+      },
+      "TreePath": "Test/Test/Class1"
+    },
+    {
+      "Path": "Test|Test.Class1+.ctor()",
+      "Name": ".ctor",
+      "Kind": "ctor",
+      "File": "src/Test/Class1.cs",
+      "DefStart": 277,
+      "DefEnd": 283,
+      "Exported": true,
+      "Data": {
+        "FmtStrings": {
+          "Name": {
+            "Unqualified": "Class1()",
+            "ScopeQualified": "Class1.Class1()",
+            "DepQualified": "Test.Class1.Class1()",
+            "RepositoryWideQualified": "Test.Class1.Class1()",
+            "LanguageWideQualified": "Test.Class1.Class1()"
+          },
+          "Type": {
+            "Unqualified": "ctor",
+            "ScopeQualified": "ctor",
+            "DepQualified": "ctor",
+            "RepositoryWideQualified": "ctor",
+            "LanguageWideQualified": "ctor"
+          },
+          "NameAndTypeSeparator": " ",
+          "Language": "C#",
+          "DefKeyword": "",
+          "Kind": "ctor"
+        }
+      },
+      "TreePath": "Test/Test/Class1/.ctor()"
+    }
+  ],
+  "Refs": [
+    {
+      "DefPath": "Test|Test.Class1+.ctor()",
+      "Def": true,
+      "File": "src/Test/Class1.cs",
+      "Start": 277,
+      "End": 283
+    },
+    {
+      "DefPath": "Test|Test.Class1",
+      "Def": true,
+      "File": "src/Test/Class1.cs",
+      "Start": 249,
+      "End": 255
+    },
+    {
+      "DefPath": "Test|Test",
+      "File": "src/Test/Class1.cs",
+      "Start": 10,
+      "End": 14
+    }
+  ]
+}

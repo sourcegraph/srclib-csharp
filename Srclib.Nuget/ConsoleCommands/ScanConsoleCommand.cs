@@ -16,7 +16,7 @@ namespace Srclib.Nuget
 
         c.HelpOption("-?|-h|--help");
 
-        c.OnExecute(() => {
+        c.OnExecute(async () => {
           var dir = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "."));
 
           var sourceUnits = new List<SourceUnit>();
@@ -26,6 +26,8 @@ namespace Srclib.Nuget
           }
 
           Console.WriteLine(JsonConvert.SerializeObject(sourceUnits, Formatting.Indented));
+
+          await DepresolveConsoleCommand.RunResolve(dir);
 
           return 0;
         });
