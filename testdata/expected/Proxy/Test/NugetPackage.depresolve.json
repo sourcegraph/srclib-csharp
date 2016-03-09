@@ -14,6 +14,19 @@
   },
   {
     "Raw": {
+      "Name": "Newtonsoft.Json",
+      "Version": "8.0.2"
+    },
+    "ResolvedTarget": {
+      "ToRepoCloneURL": "",
+      "ToUnit": "Newtonsoft.Json",
+      "ToUnitType": "NugetPackage",
+      "ToVersionString": "8.0.2",
+      "ToRevSpec": ""
+    }
+  },
+  {
+    "Raw": {
       "Name": "System.Collections",
       "Version": "4.0.10"
     },
