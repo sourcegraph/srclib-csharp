@@ -169,5 +169,37 @@ namespace Srclib.Nuget
             }
             return null;
         }
+
+        public static string FindNuspec(DirectoryInfo root)
+        {
+            FileInfo[] files = null;
+            DirectoryInfo[] subDirs = null;
+
+            try
+            {
+                files = root.GetFiles("*.nuspec");
+            }
+            catch (Exception e)
+            {
+            }
+
+            if (files != null)
+            {
+                return files[0].FullName;
+            }
+
+            subDirs = root.GetDirectories();
+            foreach (DirectoryInfo dirInfo in subDirs)
+            {
+                // Resursive call for each subdirectory.
+                string res = FindNuspec(dirInfo);
+                if (res != null)
+                {
+                    return res;
+                }
+            }
+            return null;
+        }
+
     }
 }
