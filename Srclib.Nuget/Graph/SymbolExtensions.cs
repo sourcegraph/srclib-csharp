@@ -88,7 +88,7 @@ namespace Srclib.Nuget.Graph
         return GetGraphKeyImpl(symbol.ContainingSymbol, acc);
 
       if (symbol is IAssemblySymbol)
-        return GetGraphKeyImpl(symbol.ContainingSymbol, acc.Add(Segment.From(symbol, "|")));
+        return GetGraphKeyImpl(symbol.ContainingSymbol, acc);
 
       return GetGraphKeyImpl(symbol.ContainingSymbol, acc.Add(Segment.From(symbol, "!")));
     }
