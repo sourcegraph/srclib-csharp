@@ -127,14 +127,18 @@ namespace Srclib.Nuget.Graph
 
         internal static void HandleNuspec(string path, string dll)
         {
-            string nuspec = DepresolveConsoleCommand.RunForResult("/bin/bash", "-c \"cd " + path + " && find -name '*.nuspec' | head -1\"");
-            var content = File.ReadAllText(path + "/" + nuspec);
-            int i = content.IndexOf("<projectUrl>");
-            if (i != -1)
+            DirectoryInfo di = new DirectoryInfo(path);
+            string nuspec = DepresolveConsoleCommand.FindNuspec(di);
+            if (nuspec != null)
             {
-                int j = content.IndexOf("</projectUrl>");
-                string projectUrl = content.Substring(i + 12, j - i - 12);
-                dllToProjectUrl[dll + ".dll"] = projectUrl;
+                var content = File.ReadAllText(nuspec);
+                int i = content.IndexOf("<projectUrl>");
+                if (i != -1)
+                {
+                    int j = content.IndexOf("</projectUrl>");
+                    string projectUrl = content.Substring(i + 12, j - i - 12);
+                    dllToProjectUrl[dll + ".dll"] = projectUrl;
+                }
             }
         }
 
