@@ -103,8 +103,62 @@ namespace Srclib.Nuget.Graph
         {
           name = method.GenerateUniqueName("-lambda");
         }
+        else if (method.MethodKind == MethodKind.Conversion)
+        {
+          string returnTypeName;
+          if (method.ReturnType is INamedTypeSymbol)
+          {
+            var t = method.ReturnType as INamedTypeSymbol;
+            if (t.TypeArguments.Length > 0)
+            {
+              returnTypeName = $"{t.MetadataName}<{string.Join(",", t.TypeArguments.Select(p => GetGraphKeyImpl(p, allowTypeParameter: true).Key))}>";
+            }
+            else
+            {
+              returnTypeName = t.MetadataName;
+            }
+          }
+          else
+          {
+            returnTypeName = method.ReturnType.MetadataName;
+          }
+          name = returnTypeName + "=" + name;
+        }
+
+        if (method.IsGenericMethod)
+        {
+          name = name + "`" + method.TypeParameters.Length;
+        }
 
         return $"{name}({string.Join(";", method.Parameters.Select(p => GetGraphKeyImpl(p.Type, allowTypeParameter: true).Key))})";
+      }
+
+      if (symbol is INamedTypeSymbol)
+      {
+        var type = symbol as INamedTypeSymbol;
+        var name = type.MetadataName;
+        if (type.TypeArguments.Length > 0)
+        {
+          return $"{name}<{string.Join(",", type.TypeArguments.Select(p => GetGraphKeyImpl(p, allowTypeParameter: true).Key))}>";
+        }
+        else
+        {
+          return symbol.MetadataName;
+        }
+      }
+
+      if (symbol is IArrayTypeSymbol)
+      {
+        var s = symbol as IArrayTypeSymbol;
+        string underlying = GetSymbolName(s.ElementType);
+        int rank = s.Rank;
+        string res = underlying + "[";
+        for (int i = 0; i < rank - 1; i++)
+        {
+          res = res + ",";
+        }
+        res = res + "]";
+        return res;
       }
 
       var local = symbol as ILocalSymbol;
