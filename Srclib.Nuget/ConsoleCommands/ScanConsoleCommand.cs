@@ -25,6 +25,12 @@ namespace Srclib.Nuget
             sourceUnits.Add(SourceUnit.FromProject(proj, dir));
           }
 
+          if (sourceUnits.Count == 0)
+          {
+            //not a DNX project
+            sourceUnits.Add(SourceUnit.FromDirectory("name", dir));
+          }
+
           Console.WriteLine(JsonConvert.SerializeObject(sourceUnits, Formatting.Indented));
 
           await DepresolveConsoleCommand.RunResolve(dir);

@@ -52,7 +52,9 @@ namespace Srclib.Nuget
             Project proj;
             if(!Project.TryGetProject(dir, out proj))
             {
-                throw new Exception("Error reading project.json");
+                //not a DNX project
+                List<LibraryDescription> empty = new List<LibraryDescription>();
+                return empty;
             }
 
             var allDeps = GetAllDeps(proj);
@@ -131,6 +133,29 @@ namespace Srclib.Nuget
             var result = p.StandardOutput.ReadToEnd().Trim();
             p.WaitForExit();
             return result;
+        }
+
+        public static FileInfo[] FindSources(DirectoryInfo root)
+        {
+            FileInfo[] files = null;
+            DirectoryInfo[] subDirs = null;
+
+            try
+            {
+                files = root.GetFiles("*.cs");
+            }
+            catch (Exception e)
+            {
+            }
+
+            subDirs = root.GetDirectories();
+            foreach (DirectoryInfo dirInfo in subDirs)
+            {
+                // Resursive call for each subdirectory.
+                FileInfo[] res = FindSources(dirInfo);
+                files = files.Concat(res).ToArray();
+            }
+            return files;
         }
 
         public static string FindDll(DirectoryInfo root, string name)

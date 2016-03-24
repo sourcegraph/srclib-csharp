@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using Microsoft.Dnx.Runtime;
+using System;
+using System.IO;
 
 namespace Srclib.Nuget
 {
@@ -52,5 +54,28 @@ namespace Srclib.Nuget
 
       return su;
     }
+
+        internal static SourceUnit FromDirectory(string name, string root)
+        {
+            DirectoryInfo di = new DirectoryInfo(root);
+            FileInfo[] sources = DepresolveConsoleCommand.FindSources(di);
+            string[] files = new string[sources.Length];
+            for (int i = 0; i < sources.Length; i++)
+            {
+                files[i] = Utils.GetRelativePath(sources[i].FullName, root);
+            }
+            files.OrderByDescending(p => p);
+            var su = new SourceUnit
+            {
+                Name = name,
+                Dir = root,
+                Files = files,
+                Dependencies = new DependencyInfo[0],
+                Ops = new Dictionary<string, string> { { "depresolve", null } }
+            };
+
+            return su;
+        }
+
   }
 }
