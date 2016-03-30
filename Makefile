@@ -1,8 +1,9 @@
-docker-image:
-	docker build -t srclib/srclib-csharp .
+.PHONY: install dep
 
-release: docker-image
-	docker push srclib/srclib-csharp
+default: install
+
+install:
+	dnu restore
 
 dep:
 	dnu restore Srclib.Nuget/project.json
