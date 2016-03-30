@@ -149,7 +149,57 @@ namespace Srclib.Nuget.Graph
                 Project project;
                 if (!Project.TryGetProject(context.ProjectDirectory, out project))
                 {
-                    throw new InvalidOperationException("Can't find project");
+                    //not a DNX project
+                    DirectoryInfo di = new DirectoryInfo(context.ProjectDirectory);
+                    FileInfo[] fis = DepresolveConsoleCommand.FindSources(di);
+                    string[] files = new string[fis.Length];
+                    for (int i = 0; i < fis.Length; i++)
+                    {
+                        files[i] = fis[i].FullName;
+                    }
+                    Microsoft.CodeAnalysis.Text.SourceText[] sources = new Microsoft.CodeAnalysis.Text.SourceText[files.Length];
+                    SyntaxTree[] trees = new SyntaxTree[files.Length];
+                    Dictionary<SyntaxTree, string> dict = new Dictionary<SyntaxTree, string>();
+                    var compilation = CSharpCompilation.Create("name");
+                    for (int i = 0; i < files.Length; i++)
+                    {
+                        try
+                        {
+                            sources[i] = Microsoft.CodeAnalysis.Text.SourceText.From(new FileStream(files[i], FileMode.Open));
+                            trees[i] = CSharpSyntaxTree.ParseText(sources[i]);
+                            if (trees[i] != null)
+                            {
+                                compilation = compilation.AddSyntaxTrees(trees[i]);
+                                dict[trees[i]] = files[i];
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                        }
+                    }
+
+                    var gr = new GraphRunner();
+                    foreach (var st in compilation.SyntaxTrees)
+                    {
+                        var path = dict[st];
+                        if (!string.IsNullOrWhiteSpace(path))
+                        {
+                            path = Utils.GetRelativePath(path, context.ProjectDirectory);
+                            if (!string.IsNullOrWhiteSpace(path) && (path.Substring(0, 3) != ".." + Path.DirectorySeparatorChar) && !path.Equals("file://applyprojectinfo.cs/"))
+                            {
+                                // this is a source code file we want to grap
+                                gr._sm = compilation.GetSemanticModel(st, false);
+                                gr._path = path;
+                                var root = await st.GetRootAsync();
+                                gr.Visit(root);
+                            }
+                        }
+                    }
+                    gr._sm = null;
+                    gr._path = null;
+                    gr.RunTokens();
+                    return gr._output;
+
                 }
 
                 context.Project = project;
@@ -268,22 +318,28 @@ namespace Srclib.Nuget.Graph
         /// <param name="node">AST node.</param>
         public override void VisitClassDeclaration(ClassDeclarationSyntax node)
         {
-            if (!node.Identifier.Span.IsEmpty)
+            try
             {
-                var symbol = _sm.GetDeclaredSymbol(node);
-                // Classes can be partial, however, currently, srclib only support one definition per symbol
-                if (!_defined.Contains(symbol))
+                if (!node.Identifier.Span.IsEmpty)
                 {
-                    _defined.Add(symbol);
-                    var def = Def.For(symbol: symbol, type: "class", name: symbol.Name).At(_path, node.Identifier.Span);
-                    if (symbol.IsExported())
+                    var symbol = _sm.GetDeclaredSymbol(node);
+                    // Classes can be partial, however, currently, srclib only support one definition per symbol
+                    if (!_defined.Contains(symbol))
                     {
-                        def.Exported = true;
+                        _defined.Add(symbol);
+                        var def = Def.For(symbol: symbol, type: "class", name: symbol.Name).At(_path, node.Identifier.Span);
+                        if (symbol.IsExported())
+                        {
+                            def.Exported = true;
+                        }
+                        AddDef(def, DocProcessor.ForClass(symbol));
                     }
-                    AddDef(def, DocProcessor.ForClass(symbol));
                 }
+                base.VisitClassDeclaration(node);
             }
-            base.VisitClassDeclaration(node);
+            catch (Exception e)
+            {
+            }
         }
 
         /// <summary>
@@ -292,22 +348,28 @@ namespace Srclib.Nuget.Graph
         /// <param name="node">AST node.</param>
         public override void VisitInterfaceDeclaration(InterfaceDeclarationSyntax node)
         {
-            if (!node.Identifier.Span.IsEmpty)
+            try
             {
-                var symbol = _sm.GetDeclaredSymbol(node);
-                // Interfaces can be partial as well: this is a problem
-                if (!_defined.Contains(symbol))
+                if (!node.Identifier.Span.IsEmpty)
                 {
-                    _defined.Add(symbol);
-                    var def = Def.For(symbol: symbol, type: "interface", name: symbol.Name).At(_path, node.Identifier.Span);
-                    if (symbol.IsExported())
+                    var symbol = _sm.GetDeclaredSymbol(node);
+                    // Interfaces can be partial as well: this is a problem
+                    if (!_defined.Contains(symbol))
                     {
-                        def.Exported = true;
+                        _defined.Add(symbol);
+                        var def = Def.For(symbol: symbol, type: "interface", name: symbol.Name).At(_path, node.Identifier.Span);
+                        if (symbol.IsExported())
+                        {
+                            def.Exported = true;
+                        }
+                        AddDef(def, DocProcessor.ForClass(symbol));
                     }
-                    AddDef(def, DocProcessor.ForClass(symbol));
                 }
+                base.VisitInterfaceDeclaration(node);
             }
-            base.VisitInterfaceDeclaration(node);
+            catch (Exception e)
+            {
+            }
         }
 
         /// <summary>
@@ -316,22 +378,28 @@ namespace Srclib.Nuget.Graph
         /// <param name="node">AST node.</param>
         public override void VisitStructDeclaration(StructDeclarationSyntax node)
         {
-            if (!node.Identifier.Span.IsEmpty)
+            try
             {
-                var symbol = _sm.GetDeclaredSymbol(node);
-                // Structs can also be partial
-                if (!_defined.Contains(symbol))
+                if (!node.Identifier.Span.IsEmpty)
                 {
-                    _defined.Add(symbol);
-                    var def = Def.For(symbol: symbol, type: "struct", name: symbol.Name).At(_path, node.Identifier.Span);
-                    if (symbol.IsExported())
+                    var symbol = _sm.GetDeclaredSymbol(node);
+                    // Structs can also be partial
+                    if (!_defined.Contains(symbol))
                     {
-                        def.Exported = true;
+                        _defined.Add(symbol);
+                        var def = Def.For(symbol: symbol, type: "struct", name: symbol.Name).At(_path, node.Identifier.Span);
+                        if (symbol.IsExported())
+                        {
+                            def.Exported = true;
+                        }
+                        AddDef(def, DocProcessor.ForClass(symbol));
                     }
-                    AddDef(def, DocProcessor.ForClass(symbol));
                 }
+                base.VisitStructDeclaration(node);
             }
-            base.VisitStructDeclaration(node);
+            catch (Exception e)
+            {
+            }
         }
 
 
@@ -341,21 +409,27 @@ namespace Srclib.Nuget.Graph
         /// <param name="node">AST node.</param>
         public override void VisitEnumDeclaration(EnumDeclarationSyntax node)
         {
-            if (!node.Identifier.Span.IsEmpty)
+            try
             {
-                var symbol = _sm.GetDeclaredSymbol(node);
-                if (!_defined.Contains(symbol))
+                if (!node.Identifier.Span.IsEmpty)
                 {
-                    _defined.Add(symbol);
-                    var def = Def.For(symbol: symbol, type: "enum", name: symbol.Name).At(_path, node.Identifier.Span);
-                    if (symbol.IsExported())
+                    var symbol = _sm.GetDeclaredSymbol(node);
+                    if (!_defined.Contains(symbol))
                     {
-                        def.Exported = true;
+                        _defined.Add(symbol);
+                        var def = Def.For(symbol: symbol, type: "enum", name: symbol.Name).At(_path, node.Identifier.Span);
+                        if (symbol.IsExported())
+                        {
+                            def.Exported = true;
+                        }
+                        AddDef(def, DocProcessor.ForClass(symbol));
                     }
-                    AddDef(def, DocProcessor.ForClass(symbol));
                 }
+                base.VisitEnumDeclaration(node);
             }
-            base.VisitEnumDeclaration(node);
+            catch (Exception e)
+            {
+            }
         }
 
         /// <summary>
@@ -364,18 +438,24 @@ namespace Srclib.Nuget.Graph
         /// <param name="node">AST node.</param>
         public override void VisitEnumMemberDeclaration(EnumMemberDeclarationSyntax node)
         {
-            if (!node.Identifier.Span.IsEmpty)
+            try
             {
-                var symbol = _sm.GetDeclaredSymbol(node);
-                if (!_defined.Contains(symbol))
+                if (!node.Identifier.Span.IsEmpty)
                 {
-                    _defined.Add(symbol);
-                    var def = Def.For(symbol: symbol, type: "enum field", name: symbol.Name).At(_path, node.Identifier.Span);
-                    def.Exported = true;
-                    AddDef(def);
+                    var symbol = _sm.GetDeclaredSymbol(node);
+                    if (!_defined.Contains(symbol))
+                    {
+                        _defined.Add(symbol);
+                        var def = Def.For(symbol: symbol, type: "enum field", name: symbol.Name).At(_path, node.Identifier.Span);
+                        def.Exported = true;
+                        AddDef(def);
+                    }
                 }
+                base.VisitEnumMemberDeclaration(node);
             }
-            base.VisitEnumMemberDeclaration(node);
+            catch (Exception e)
+            {
+            }
         }
 
 
@@ -385,18 +465,24 @@ namespace Srclib.Nuget.Graph
         /// <param name="node">AST node.</param>
         public override void VisitMethodDeclaration(MethodDeclarationSyntax node)
         {
-            if (!node.Identifier.Span.IsEmpty)
+            try
             {
-                var symbol = _sm.GetDeclaredSymbol(node);
-                _defined.Add(symbol);
-                var def = Def.For(symbol: symbol, type: "method", name: symbol.Name).At(_path, node.Identifier.Span);
-                if (symbol.IsExported())
+                if (!node.Identifier.Span.IsEmpty)
                 {
-                    def.Exported = true;
+                    var symbol = _sm.GetDeclaredSymbol(node);
+                    _defined.Add(symbol);
+                    var def = Def.For(symbol: symbol, type: "method", name: symbol.Name).At(_path, node.Identifier.Span);
+                    if (symbol.IsExported())
+                    {
+                        def.Exported = true;
+                    }
+                    AddDef(def, DocProcessor.ForMethod(symbol));
                 }
-                AddDef(def, DocProcessor.ForMethod(symbol));
+                base.VisitMethodDeclaration(node);
             }
-            base.VisitMethodDeclaration(node);
+            catch (Exception e)
+            {
+            }
         }
 
         /// <summary>
@@ -405,18 +491,24 @@ namespace Srclib.Nuget.Graph
         /// <param name="node">AST node.</param>
         public override void VisitConstructorDeclaration(ConstructorDeclarationSyntax node)
         {
-            if (!node.Identifier.Span.IsEmpty)
+            try
             {
-                var symbol = _sm.GetDeclaredSymbol(node);
-                _defined.Add(symbol);
-                var def = Def.For(symbol: symbol, type: "ctor", name: symbol.Name).At(_path, node.Identifier.Span);
-                if (symbol.IsExported())
+                if (!node.Identifier.Span.IsEmpty)
                 {
-                    def.Exported = true;
+                    var symbol = _sm.GetDeclaredSymbol(node);
+                    _defined.Add(symbol);
+                    var def = Def.For(symbol: symbol, type: "ctor", name: symbol.Name).At(_path, node.Identifier.Span);
+                    if (symbol.IsExported())
+                    {
+                        def.Exported = true;
+                    }
+                    AddDef(def);
                 }
-                AddDef(def);
+                base.VisitConstructorDeclaration(node);
             }
-            base.VisitConstructorDeclaration(node);
+            catch (Exception e)
+            {
+            }
         }
 
         /// <summary>
@@ -425,19 +517,25 @@ namespace Srclib.Nuget.Graph
         /// <param name="node">AST node.</param>
         public override void VisitPropertyDeclaration(PropertyDeclarationSyntax node)
         {
-            if (!node.Identifier.Span.IsEmpty)
+            try
             {
-                var symbol = _sm.GetDeclaredSymbol(node);
-                _defined.Add(symbol);
-                var def = Def.For(symbol: symbol, type: "property", name: symbol.Name).At(_path, node.Identifier.Span);
-
-                if (symbol.IsExported())
+                if (!node.Identifier.Span.IsEmpty)
                 {
-                    def.Exported = true;
+                    var symbol = _sm.GetDeclaredSymbol(node);
+                    _defined.Add(symbol);
+                    var def = Def.For(symbol: symbol, type: "property", name: symbol.Name).At(_path, node.Identifier.Span);
+
+                    if (symbol.IsExported())
+                    {
+                        def.Exported = true;
+                    }
+                    AddDef(def);
                 }
-                AddDef(def);
+                base.VisitPropertyDeclaration(node);
             }
-            base.VisitPropertyDeclaration(node);
+            catch (Exception e)
+            {
+            }
         }
 
         /// <summary>
@@ -446,19 +544,25 @@ namespace Srclib.Nuget.Graph
         /// <param name="node">AST node.</param>
         public override void VisitEventDeclaration(EventDeclarationSyntax node)
         {
-            if (!node.Identifier.Span.IsEmpty)
+            try
             {
-                var symbol = _sm.GetDeclaredSymbol(node);
-                _defined.Add(symbol);
-                var def = Def.For(symbol: symbol, type: "event", name: symbol.Name).At(_path, node.Identifier.Span);
-
-                if (symbol.IsExported())
+                if (!node.Identifier.Span.IsEmpty)
                 {
-                    def.Exported = true;
+                    var symbol = _sm.GetDeclaredSymbol(node);
+                    _defined.Add(symbol);
+                    var def = Def.For(symbol: symbol, type: "event", name: symbol.Name).At(_path, node.Identifier.Span);
+
+                    if (symbol.IsExported())
+                    {
+                        def.Exported = true;
+                    }
+                    AddDef(def);
                 }
-                AddDef(def);
+                base.VisitEventDeclaration(node);
             }
-            base.VisitEventDeclaration(node);
+            catch (Exception e)
+            {
+            }
         }
 
         /// <summary>
@@ -467,15 +571,21 @@ namespace Srclib.Nuget.Graph
         /// <param name="node">AST node.</param>
         public override void VisitParameter(ParameterSyntax node)
         {
-            if (!node.Identifier.Span.IsEmpty)
+            try
             {
-                var symbol = _sm.GetDeclaredSymbol(node);
-                _defined.Add(symbol);
-                var def = Def.For(symbol: symbol, type: "param", name: symbol.Name).At(_path, node.Identifier.Span);
-                def.Local = true;
-                AddDef(def);
+                if (!node.Identifier.Span.IsEmpty)
+                {
+                    var symbol = _sm.GetDeclaredSymbol(node);
+                    _defined.Add(symbol);
+                    var def = Def.For(symbol: symbol, type: "param", name: symbol.Name).At(_path, node.Identifier.Span);
+                    def.Local = true;
+                    AddDef(def);
+                }
+                base.VisitParameter(node);
             }
-            base.VisitParameter(node);
+            catch (Exception e)
+            {
+            }
         }
 
         /// <summary>
@@ -484,15 +594,21 @@ namespace Srclib.Nuget.Graph
         /// <param name="node">AST node.</param>
         public override void VisitTypeParameter(TypeParameterSyntax node)
         {
-            if (!node.Identifier.Span.IsEmpty)
+            try
             {
-                var symbol = _sm.GetDeclaredSymbol(node);
-                _defined.Add(symbol);
-                var def = Def.For(symbol: symbol, type: "typeparam", name: symbol.Name).At(_path, node.Identifier.Span);
-                def.Local = true;
-                AddDef(def);
+                if (!node.Identifier.Span.IsEmpty)
+                {
+                    var symbol = _sm.GetDeclaredSymbol(node);
+                    _defined.Add(symbol);
+                    var def = Def.For(symbol: symbol, type: "typeparam", name: symbol.Name).At(_path, node.Identifier.Span);
+                    def.Local = true;
+                    AddDef(def);
+                }
+                base.VisitTypeParameter(node);
             }
-            base.VisitTypeParameter(node);
+            catch (Exception e)
+            {
+            }
         }
 
         /// <summary>
@@ -501,40 +617,46 @@ namespace Srclib.Nuget.Graph
         /// <param name="node">AST node.</param>
         public override void VisitVariableDeclarator(VariableDeclaratorSyntax node)
         {
-            if (!node.Identifier.Span.IsEmpty)
+            try
             {
-                var symbol = _sm.GetDeclaredSymbol(node);
-                _defined.Add(symbol);
+                if (!node.Identifier.Span.IsEmpty)
+                {
+                    var symbol = _sm.GetDeclaredSymbol(node);
+                    _defined.Add(symbol);
 
-                string type;
-                bool local = false;
-                bool exported = false;
-                if (symbol is ILocalSymbol)
-                {
-                    type = "local";
-                    local = true;
-                }
-                else if (symbol is IFieldSymbol)
-                {
-                    type = "field";
-                    exported = symbol.IsExported();
-                    if (((IFieldSymbol)symbol).IsConst)
+                    string type;
+                    bool local = false;
+                    bool exported = false;
+                    if (symbol is ILocalSymbol)
                     {
-                        type = "const";
+                        type = "local";
+                        local = true;
                     }
-                }
-                else
-                {
-                    goto skip;
-                }
+                    else if (symbol is IFieldSymbol)
+                    {
+                        type = "field";
+                        exported = symbol.IsExported();
+                        if (((IFieldSymbol)symbol).IsConst)
+                        {
+                            type = "const";
+                        }
+                    }
+                    else
+                    {
+                        goto skip;
+                    }
 
-                var def = Def.For(symbol: symbol, type: type, name: symbol.Name).At(_path, node.Identifier.Span);
-                def.Local = local;
-                def.Exported = exported;
-                AddDef(def);
+                    var def = Def.For(symbol: symbol, type: type, name: symbol.Name).At(_path, node.Identifier.Span);
+                    def.Local = local;
+                    def.Exported = exported;
+                    AddDef(def);
+                }
+           skip:
+                base.VisitVariableDeclarator(node);
             }
-       skip:
-            base.VisitVariableDeclarator(node);
+            catch (Exception e)
+            {
+            }
         }
 
         /// <summary>
@@ -543,41 +665,47 @@ namespace Srclib.Nuget.Graph
         /// <param name="token">token to check</param>
         public override void VisitToken(SyntaxToken token)
         {
-            if (token.IsKind(SyntaxKind.IdentifierToken) || token.IsKind(SyntaxKind.IdentifierName))
+            try
             {
-                var node = token.Parent;
-                if (node == null)
+                if (token.IsKind(SyntaxKind.IdentifierToken) || token.IsKind(SyntaxKind.IdentifierName))
                 {
-                    goto skip;
-                }
-
-                var symbol = _sm.GetSymbolInfo(node);
-                if (symbol.Symbol == null)
-                {
-                    if (symbol.CandidateSymbols.Length > 0)
+                    var node = token.Parent;
+                    if (node == null)
                     {
-                        var definition = symbol.CandidateSymbols[0].OriginalDefinition;
+                        goto skip;
+                    }
+
+                    var symbol = _sm.GetSymbolInfo(node);
+                    if (symbol.Symbol == null)
+                    {
+                        if (symbol.CandidateSymbols.Length > 0)
+                        {
+                            var definition = symbol.CandidateSymbols[0].OriginalDefinition;
+                            if (definition != null)
+                            {
+                                _refs.Add(Tuple.Create(token, definition, _path));
+                            }
+                        }
+                        else
+                        {
+                            goto skip;
+                        }
+                    }
+                    else
+                    {
+                        var definition = symbol.Symbol.OriginalDefinition;
                         if (definition != null)
                         {
                             _refs.Add(Tuple.Create(token, definition, _path));
                         }
                     }
-                    else
-                    {
-                        goto skip;
-                    }
                 }
-                else
-                {
-                    var definition = symbol.Symbol.OriginalDefinition;
-                    if (definition != null)
-                    {
-                        _refs.Add(Tuple.Create(token, definition, _path));
-                    }
-                }
+          skip:
+                base.VisitToken(token);
             }
-      skip:
-            base.VisitToken(token);
+            catch (Exception e)
+            {
+            }
         }
     }
 
