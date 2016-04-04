@@ -11,41 +11,44 @@ namespace Srclib.Nuget
   class ScanConsoleCommand
   {
 
+        private static PackageVersions pv = new PackageVersions();
 
         public static void ConvertCsproj(string path)
         {
-            PackageVersions pv = new PackageVersions();
             HashSet<string> names = new HashSet<string>();
             string dir = path.Substring(0, path.LastIndexOf('/'));
-            string input = File.ReadAllText(path);
-            string output = "{\n  \"frameworks\": {\n    \"dnx451\": {\n      \"dependencies\": {\n";
-            int idx = input.IndexOf("<Reference Include=\"");
-            while (idx != -1)
+            if (!File.Exists(dir + "/project.json"))
             {
-                int quote = input.IndexOf('\"', idx + 20);
-                int comma = input.IndexOf(',', idx + 20);
-                if ((comma != -1) && (comma < quote))
+                string input = File.ReadAllText(path);
+                string output = "{\n  \"frameworks\": {\n    \"dnx451\": {\n      \"dependencies\": {\n";
+                int idx = input.IndexOf("<Reference Include=\"");
+                while (idx != -1)
                 {
-                    quote = comma;
-                }
-                string name = input.Substring(idx + 20, quote - idx - 20);
-                if (!names.Contains(name))
-                {
-                    names.Add(name);
-                    string version = pv.GetVersion(name.ToLower());
-                    if (version != null)
+                    int quote = input.IndexOf('\"', idx + 20);
+                    int comma = input.IndexOf(',', idx + 20);
+                    if ((comma != -1) && (comma < quote))
                     {
-                        output = output + "          \"" + name + "\": \"" + version + "\",\n";
+                        quote = comma;
                     }
-                    else
+                    string name = input.Substring(idx + 20, quote - idx - 20);
+                    if (!names.Contains(name))
                     {
-                        output = output + "          \"" + name + "\": \"\",\n";
+                        names.Add(name);
+                        string version = pv.GetVersion(name.ToLower());
+                        if (version != null)
+                        {
+                            output = output + "          \"" + name + "\": \"" + version + "\",\n";
+                        }
+                        else
+                        {
+                            output = output + "          \"" + name + "\": \"\",\n";
+                        }
                     }
+                    idx = input.IndexOf("<Reference Include=\"", quote);
                 }
-                idx = input.IndexOf("<Reference Include=\"", quote);
+                output = output + "      }\n    }\n  }\n}";
+                File.WriteAllText(dir + "/project.json", output);
             }
-            output = output + "      }\n    }\n  }\n}";
-            File.WriteAllText(dir + "/project.json", output);
         }
 
         public static FileInfo[] FindVSProjects(DirectoryInfo root)
