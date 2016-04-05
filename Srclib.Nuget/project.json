@@ -8,7 +8,7 @@
     "Microsoft.Dnx.Compilation": "1.0.0-rc1-final",
     "Microsoft.Dnx.Runtime.Abstractions": "1.0.0-rc1-15838",
     "Microsoft.Dnx.Compilation.CSharp.Abstractions": "1.0.0-rc1-final",
-    "Microsoft.Framework.CommandLineUtils.Sources": {"type": "build", "version": "1.0.0-*"}
+    "Microsoft.Framework.CommandLineUtils.Sources": {"type": "build", "version": "1.0.0-rc1-15779"}
   },
 
   "frameworks": {
@@ -19,13 +19,13 @@
     },
     "dnxcore50": {
       "dependencies": {
-        "System.Console": "4.0.0-*",
-        "System.Collections": "4.0.11-*",
-        "System.IO": "4.0.11-*",
-        "System.IO.FileSystem": "4.0.1-*",
-        "System.Linq": "4.0.1-*",
-        "System.Diagnostics.Process": "4.1.0-*",
-        "System.Globalization": "4.0.11-*"
+        "System.Console": "4.0.0-rc2-23530",
+        "System.Collections": "4.0.11-rc2-23727",
+        "System.IO": "4.0.11-rc2-23530",
+        "System.IO.FileSystem": "4.0.1-rc2-23530",
+        "System.Linq": "4.0.1-rc2-23530",
+        "System.Diagnostics.Process": "4.1.0-rc2-23530",
+        "System.Globalization": "4.0.0.0"
       }
     }
   }
