@@ -668,6 +668,29 @@ namespace Srclib.Nuget.Graph
         }
 
         /// <summary>
+        /// Traverse AST node that represents foreach loop and add a def for a variable declared in its header
+        /// </summary>
+        /// <param name="node">AST node.</param>
+        public override void VisitForEachStatement(ForEachStatementSyntax node)
+        {
+            try
+            {
+                var symbol =  _sm.GetDeclaredSymbol(node);
+                if (symbol != null)
+                {
+                    var def = Def.For(symbol: symbol, type: "field", name: symbol.Name).At(_path, node.Identifier.Span);
+                    def.Local = true;
+                    def.Exported = false;
+                    AddDef(def);
+                }
+                base.VisitForEachStatement(node);
+            }
+            catch (Exception e)
+            {
+            }
+        }
+
+        /// <summary>
         /// If a token is resolved by parser, add a token to collection of resolved tokens
         /// </summary>
         /// <param name="token">token to check</param>
