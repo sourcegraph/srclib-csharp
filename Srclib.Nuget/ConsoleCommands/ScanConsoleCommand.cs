@@ -19,6 +19,9 @@ namespace Srclib.Nuget
             string dir = path.Substring(0, path.LastIndexOf('/'));
             if (!File.Exists(dir + "/project.json"))
             {
+                //gac works correctly only in docker image
+                string gac = "/gac/v4.5/";
+                string global = "";
                 string input = File.ReadAllText(path);
                 string output = "{\n  \"frameworks\": {\n    \"dnx451\": {\n      \"dependencies\": {\n";
                 int idx = input.IndexOf("<Reference Include=\"");
@@ -42,12 +45,20 @@ namespace Srclib.Nuget
                         else
                         {
                             output = output + "          \"" + name + "\": \"\",\n";
+                            if (File.Exists(gac + name + ".dll") && !name.Equals("mscorlib"))
+                            {
+                                global = global + gac + name + ".dll\n";
+                            }
                         }
                     }
                     idx = input.IndexOf("<Reference Include=\"", quote);
                 }
                 output = output + "      }\n    }\n  }\n}";
                 File.WriteAllText(dir + "/project.json", output);
+                if (global.Length > 0)
+                {
+                    File.WriteAllText(dir + "/global.log", global);
+                }
             }
         }
 

@@ -237,6 +237,14 @@ namespace Srclib.Nuget.Graph
             HashSet<PortableExecutableReference> libs = new HashSet<PortableExecutableReference>();
             try
             {
+                if (File.Exists(context.ProjectDirectory + "/global.log"))
+                {
+                    string[] ss = File.ReadAllLines(context.ProjectDirectory + "/global.log");
+                    foreach (string s in ss)
+                    {
+                        libs.Add(MetadataReference.CreateFromFile(s));
+                    }
+                }
                 libs.Add(MetadataReference.CreateFromFile("/opt/DNX_BRANCH/runtimes/dnx-coreclr-linux-x64.1.0.0-rc1-update1/bin/mscorlib.dll"));
             }
             catch (Exception e)
