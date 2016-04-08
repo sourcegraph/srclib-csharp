@@ -114,6 +114,12 @@ namespace Srclib.Nuget.Graph
                                     reference.DefUnitType = "NugetPackage";
                                 }
                             }
+                            else if (definition.ContainingAssembly.Identity.Name.Equals("mscorlib"))
+                            {
+                                reference.DefRepo = "github.com/dotnet/coreclr";
+                                reference.DefUnit = "mscorlib";
+                                reference.DefUnitType = "NugetPackage";
+                            }
                         }
                         _output.Refs.Add(reference);
                     }
