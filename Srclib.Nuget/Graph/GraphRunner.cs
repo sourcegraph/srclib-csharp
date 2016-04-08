@@ -93,7 +93,6 @@ namespace Srclib.Nuget.Graph
                     }
                     else
                     {
-                        _defined.Add(definition);
                         var reference = Ref.To(definition).At(file, token.Span);
                         if ((definition.ContainingAssembly != null) && (definition.ContainingAssembly.Identity != null) && (definition.ContainingAssembly.Identity.Name != null))
                         {
