@@ -34,7 +34,7 @@ namespace Srclib.Nuget
                         quote = comma;
                     }
                     string name = input.Substring(idx + 20, quote - idx - 20);
-                    if (!names.Contains(name))
+                    if ((name.IndexOf('$') == -1) && (name.IndexOf('\\') == -1) && !names.Contains(name))
                     {
                         names.Add(name);
                         string version = pv.GetVersion(name.ToLower());
