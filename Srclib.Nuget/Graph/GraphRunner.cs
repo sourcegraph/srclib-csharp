@@ -210,6 +210,10 @@ namespace Srclib.Nuget.Graph
                 context.Project = project;
             }
 
+            if (context.Project.GetTargetFrameworks().Count() == 0)
+            {
+                return new Output();
+            }
             context.ApplicationHostContext = new ApplicationHostContext
             {
                 ProjectDirectory = context.ProjectDirectory,
