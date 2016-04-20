@@ -91,7 +91,7 @@ namespace Srclib.Nuget.Graph
                         var reference = Ref.To(definition).At(file, token.Span);
                         _output.Refs.Add(reference);
                     }
-                    else
+                    else if (!(definition is INamespaceSymbol))
                     {
                         var reference = Ref.To(definition).At(file, token.Span);
                         if ((definition.ContainingAssembly != null) && (definition.ContainingAssembly.Identity != null) && (definition.ContainingAssembly.Identity.Name != null))
@@ -327,6 +327,32 @@ namespace Srclib.Nuget.Graph
             runner._path = null;
             runner.RunTokens();
             return runner._output;
+        }
+
+        /// <summary>
+        /// Traverse AST node that represents namespace declaration
+        /// </summary>
+        /// <param name="node">AST node.</param>
+        public override void VisitNamespaceDeclaration(NamespaceDeclarationSyntax node)
+        {
+            try
+            {
+                var symbol = _sm.GetDeclaredSymbol(node);
+                if (!_defined.Contains(symbol))
+                {
+                    _defined.Add(symbol);
+                    var def = Def.For(symbol: symbol, type: "namespace", name: symbol.Name).At(_path, node.Name.GetLastToken().Span);
+                    if (symbol.IsExported())
+                    {
+                        def.Exported = true;
+                    }
+                    AddDef(def);
+                }
+                base.VisitNamespaceDeclaration(node);
+            }
+            catch (Exception e)
+            {
+            }
         }
 
         /// <summary>
