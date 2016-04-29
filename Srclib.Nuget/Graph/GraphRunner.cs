@@ -644,6 +644,51 @@ namespace Srclib.Nuget.Graph
         }
 
         /// <summary>
+        /// Traverse AST node that represents delegate declaration
+        /// </summary>
+        /// <param name="node">AST node.</param>
+        public override void VisitDelegateDeclaration(DelegateDeclarationSyntax node)
+        {
+            if (!node.Identifier.Span.IsEmpty)
+            {
+                var symbol = _sm.GetDeclaredSymbol(node);
+                _defined.Add(symbol);
+                var def = Def.For(symbol: symbol, type: "delegate", name: symbol.Name).At(_path, node.Identifier.Span);
+                if (symbol.IsExported())
+                {
+                    def.Exported = true;
+                }
+                AddDef(def, DocProcessor.ForClass(symbol));
+            }
+            base.VisitDelegateDeclaration(node);
+        }
+
+
+        /// <summary>
+        /// Traverse AST node that represents catch clause parameter declaration
+        /// </summary>
+        /// <param name="node">AST node.</param>
+        public override void VisitCatchDeclaration(CatchDeclarationSyntax node)
+        {
+            try
+            {
+                var symbol = _sm.GetDeclaredSymbol(node);
+                if (symbol != null)
+                {
+                    var def = Def.For(symbol: symbol, type: "local", name: symbol.Name).At(_path, node.Identifier.Span);
+                    def.Local = true;
+                    def.Exported = false;
+                    AddDef(def);
+                }
+                base.VisitCatchDeclaration(node);
+            }
+            catch (Exception e)
+            {
+            }
+        }
+
+
+        /// <summary>
         /// Traverse AST node that represents class declaration
         /// </summary>
         /// <param name="node">AST node.</param>
