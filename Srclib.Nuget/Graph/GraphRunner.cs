@@ -649,18 +649,24 @@ namespace Srclib.Nuget.Graph
         /// <param name="node">AST node.</param>
         public override void VisitDelegateDeclaration(DelegateDeclarationSyntax node)
         {
-            if (!node.Identifier.Span.IsEmpty)
+            try
             {
-                var symbol = _sm.GetDeclaredSymbol(node);
-                _defined.Add(symbol);
-                var def = Def.For(symbol: symbol, type: "delegate", name: symbol.Name).At(_path, node.Identifier.Span);
-                if (symbol.IsExported())
+                if (!node.Identifier.Span.IsEmpty)
                 {
-                    def.Exported = true;
+                    var symbol = _sm.GetDeclaredSymbol(node);
+                    _defined.Add(symbol);
+                    var def = Def.For(symbol: symbol, type: "delegate", name: symbol.Name).At(_path, node.Identifier.Span);
+                    if (symbol.IsExported())
+                    {
+                        def.Exported = true;
+                    }
+                    AddDef(def, DocProcessor.ForClass(symbol));
                 }
-                AddDef(def, DocProcessor.ForClass(symbol));
+                base.VisitDelegateDeclaration(node);
             }
-            base.VisitDelegateDeclaration(node);
+            catch (Exception e)
+            {
+            }
         }
 
 
@@ -1016,6 +1022,11 @@ namespace Srclib.Nuget.Graph
                         {
                             type = "const";
                         }
+                    }
+                    else if (symbol is IEventSymbol)
+                    {
+                        type = "field";
+                        exported = symbol.IsExported();
                     }
                     else
                     {
