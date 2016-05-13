@@ -33,7 +33,7 @@ namespace Srclib.Nuget.Graph
         SemanticModel _sm;
         string _path;
 
-        private GraphRunner() : base(SyntaxWalkerDepth.Token)
+        static GraphRunner()
         {
             projectUrlToRepo["http://www.newtonsoft.com/json"] = "github.com/JamesNK/Newtonsoft.Json";
             projectUrlToRepo["http://autofac.org/"] = "github.com/autofac/Autofac";
@@ -44,6 +44,72 @@ namespace Srclib.Nuget.Graph
             // so we probably need a multimap here
             // TODO($ildarisaev): implement a correct mapping for all dlls
             projectUrlToRepo["http://www.asp.net/"] = "github.com/aspnet/dnx";
+
+            dllToProjectUrl["mscorlib.dll"] = "github.com/dotnet/coreclr";
+            dllToProjectUrl["System.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.Activities.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.Activities.Core.Presentation.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.Activities.DurableInstancing.dll"] = "github.com/Microsoft/referencesource";
+
+            dllToProjectUrl["System.Activities.Presentation.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.ComponentModel.DataAnnotations.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.Configuration.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.Core.dll"] = "github.com/Microsoft/referencesource";
+
+            dllToProjectUrl["System.Data.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.Data.DataSetExtensions.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.Data.Entity.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.Data.Entity.Design.dll"] = "github.com/Microsoft/referencesource";
+
+            dllToProjectUrl["System.Data.Linq.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.Data.SqlXml.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.IdentityModel.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.IdentityModel.Selectors.dll"] = "github.com/Microsoft/referencesource";
+
+            dllToProjectUrl["System.Net.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.Numerics.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.Runtime.Caching.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.Runtime.DurableInstancing.dll"] = "github.com/Microsoft/referencesource";
+
+            dllToProjectUrl["System.Runtime.Serialization.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.ServiceModel.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.ServiceModel.Activation.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.ServiceModel.Activities.dll"] = "github.com/Microsoft/referencesource";
+
+            dllToProjectUrl["System.ServiceModel.Channels.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.ServiceModel.Discovery.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.ServiceModel.Internals.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.ServiceModel.Routing.dll"] = "github.com/Microsoft/referencesource";
+
+            dllToProjectUrl["System.ServiceModel.WasHosting.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.ServiceModel.Web.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.Web.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.Web.ApplicationServices.dll"] = "github.com/Microsoft/referencesource";
+
+            dllToProjectUrl["System.Web.DynamicData.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.Web.Entity.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.Web.Entity.Design.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.Web.Extensions.dll"] = "github.com/Microsoft/referencesource";
+
+            dllToProjectUrl["System.Web.Mobile.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.Web.Routing.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.Web.Services.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.Workflow.Activities.dll"] = "github.com/Microsoft/referencesource";
+
+            dllToProjectUrl["System.Workflow.ComponentModel.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.Workflow.Runtime.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.WorkflowServices.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.Xaml.Hosting.dll"] = "github.com/Microsoft/referencesource";
+
+            dllToProjectUrl["System.Xml.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["System.Xml.Linq.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["XamlBuildTask.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl["SMDiagnostics.dll"] = "github.com/Microsoft/referencesource";
+        }
+
+        private GraphRunner() : base(SyntaxWalkerDepth.Token)
+        {
+
         }
 
         /// <summary>
@@ -96,9 +162,10 @@ namespace Srclib.Nuget.Graph
                         var reference = Ref.To(definition).At(file, token.Span);
                         if ((definition.ContainingAssembly != null) && (definition.ContainingAssembly.Identity != null) && (definition.ContainingAssembly.Identity.Name != null))
                         {
-                            if (dllToProjectUrl.ContainsKey(definition.ContainingAssembly.Identity.Name + ".dll"))
+                            string dll = definition.ContainingAssembly.Identity.Name + ".dll";
+                            if (dllToProjectUrl.ContainsKey(dll))
                             {
-                                string url = dllToProjectUrl[definition.ContainingAssembly.Identity.Name + ".dll"];
+                                string url = dllToProjectUrl[dll];
                                 if (projectUrlToRepo.ContainsKey(url))
                                 {
                                     url = projectUrlToRepo[url];
@@ -112,300 +179,6 @@ namespace Srclib.Nuget.Graph
                                     reference.DefUnit = definition.ContainingAssembly.Identity.Name;
                                     reference.DefUnitType = "NugetPackage";
                                 }
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("mscorlib"))
-                            {
-                                reference.DefRepo = "github.com/dotnet/coreclr";
-                                reference.DefUnit = "mscorlib";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Activities"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Activities";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Activities.Core.Presentation"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Activities.Core.Presentation";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Activities.DurableInstancing"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Activities.DurableInstancing";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Activities.Presentation"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Activities.Presentation";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.ComponentModel.DataAnnotations"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.ComponentModel.DataAnnotations";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Configuration"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Configuration";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Core"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Core";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Data"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Data";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Data.DataSetExtensions"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Data.DataSetExtensions";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Data.Entity"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Data.Entity";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Data.Entity.Design"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Data.Entity.Design";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("SSystem.Data.Linq"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Data.Linq";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Data.SqlXml"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Data.SqlXml";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.IdentityModel"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.IdentityModel";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.IdentityModel.Selectors"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.IdentityModel.Selectors";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Net"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Net";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Numerics"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Numerics";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Runtime.Caching"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Runtime.Caching";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Runtime.DurableInstancing"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Runtime.DurableInstancing";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Runtime.Serialization"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Runtime.Serialization";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.ServiceModel"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.ServiceModel";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.ServiceModel.Activation"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.ServiceModel.Activation";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.ServiceModel.Activities"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.ServiceModel.Activities";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.ServiceModel.Channels"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.ServiceModel.Channels";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.ServiceModel.Discovery"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.ServiceModel.Discovery";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.ServiceModel.Internals"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.ServiceModel.Internals";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.ServiceModel.Routing"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.ServiceModel.Routing";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.ServiceModel.WasHosting"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.ServiceModel.WasHosting";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.ServiceModel.Web"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.ServiceModel.Web";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Web"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Web";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Web.ApplicationServices"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Web.ApplicationServices";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Web.DynamicData"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Web.DynamicData";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Web.Entity"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Web.Entity";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Web.Entity.Design"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Web.Entity.Design";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Web.Extensions"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Web.Extensions";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Web.Mobile"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Web.Mobile";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Web.Routing"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Web.Routing";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Web.Services"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Web.Services";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Workflow.Activities"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Workflow.Activities";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Workflow.ComponentModel"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Workflow.ComponentModel";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Workflow.Runtime"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Workflow.Runtime";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.WorkflowServices"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.WorkflowServices";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Xaml.Hosting"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Xaml.Hosting";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Xml"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Xml";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("System.Xml.Linq"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "System.Xml.Linq";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("XamlBuildTask"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "XamlBuildTask";
-                                reference.DefUnitType = "NugetPackage";
-                            }
-                            else if (definition.ContainingAssembly.Identity.Name.Equals("SMDiagnostics"))
-                            {
-                                reference.DefRepo = "github.com/Microsoft/referencesource";
-                                reference.DefUnit = "SMDiagnostics";
-                                reference.DefUnitType = "NugetPackage";
                             }
                         }
                         _output.Refs.Add(reference);
@@ -458,13 +231,15 @@ namespace Srclib.Nuget.Graph
                     {
                         try
                         {
-                            sources[i] = Microsoft.CodeAnalysis.Text.SourceText.From(new FileStream(files[i], FileMode.Open));
+                            FileStream source = new FileStream(files[i], FileMode.Open);
+                            sources[i] = Microsoft.CodeAnalysis.Text.SourceText.From(source);
                             trees[i] = CSharpSyntaxTree.ParseText(sources[i]);
                             if (trees[i] != null)
                             {
                                 compilation = compilation.AddSyntaxTrees(trees[i]);
                                 dict[trees[i]] = files[i];
                             }
+                            source.Dispose();
                         }
                         catch (Exception e)
                         {
