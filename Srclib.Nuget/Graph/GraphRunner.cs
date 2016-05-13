@@ -28,83 +28,89 @@ namespace Srclib.Nuget.Graph
         readonly HashSet<ISymbol> _defined = new HashSet<ISymbol>();
         readonly HashSet<string> keys = new HashSet<string>();
         readonly static Dictionary<string, string> dllToProjectUrl = new Dictionary<string, string>();
-        readonly static Dictionary<string, string> projectUrlToRepo = new Dictionary<string, string>();
+        readonly static Dictionary<string, string> projectUrlToRepo;
 
         SemanticModel _sm;
         string _path;
 
         static GraphRunner()
         {
-            projectUrlToRepo["http://www.newtonsoft.com/json"] = "github.com/JamesNK/Newtonsoft.Json";
-            projectUrlToRepo["http://autofac.org/"] = "github.com/autofac/Autofac";
-            projectUrlToRepo["http://msdn.com/roslyn"] = "github.com/dotnet/roslyn";
+            projectUrlToRepo = new Dictionary<string, string>()
+            {
+                { "http://www.newtonsoft.com/json", "github.com/JamesNK/Newtonsoft.Json" },
+                { "http://autofac.org/", "github.com/autofac/Autofac" },
+                { "http://msdn.com/roslyn", "github.com/dotnet/roslyn" },
 
 
-            // multiple dlls from different repositories have www.asp.net as projectUrl
-            // so we probably need a multimap here
-            // TODO($ildarisaev): implement a correct mapping for all dlls
-            projectUrlToRepo["http://www.asp.net/"] = "github.com/aspnet/dnx";
+                // multiple dlls from different repositories have www.asp.net as projectUrl
+                // so we probably need a multimap here
+                // TODO($ildarisaev): implement a correct mapping for all dlls
+                { "http://www.asp.net/", "github.com/aspnet/dnx" }
+            };
 
-            dllToProjectUrl["mscorlib.dll"] = "github.com/dotnet/coreclr";
-            dllToProjectUrl["System.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.Activities.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.Activities.Core.Presentation.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.Activities.DurableInstancing.dll"] = "github.com/Microsoft/referencesource";
+            dllToProjectUrl = new Dictionary<string, string>()
+            {
+                { "mscorlib.dll", "github.com/dotnet/coreclr" },
+                { "System.dll", "github.com/Microsoft/referencesource" },
+                { "System.Activities.dll", "github.com/Microsoft/referencesource" },
+                { "System.Activities.Core.Presentation.dll", "github.com/Microsoft/referencesource" },
+                { "System.Activities.DurableInstancing.dll", "github.com/Microsoft/referencesource" },
 
-            dllToProjectUrl["System.Activities.Presentation.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.ComponentModel.DataAnnotations.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.Configuration.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.Core.dll"] = "github.com/Microsoft/referencesource";
+                { "System.Activities.Presentation.dll", "github.com/Microsoft/referencesource" },
+                { "System.ComponentModel.DataAnnotations.dll", "github.com/Microsoft/referencesource" },
+                { "System.Configuration.dll", "github.com/Microsoft/referencesource" },
+                { "System.Core.dll", "github.com/Microsoft/referencesource" },
 
-            dllToProjectUrl["System.Data.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.Data.DataSetExtensions.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.Data.Entity.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.Data.Entity.Design.dll"] = "github.com/Microsoft/referencesource";
+                { "System.Data.dll", "github.com/Microsoft/referencesource" },
+                { "System.Data.DataSetExtensions.dll", "github.com/Microsoft/referencesource" },
+                { "System.Data.Entity.dll", "github.com/Microsoft/referencesource" },
+                { "System.Data.Entity.Design.dll", "github.com/Microsoft/referencesource" },
 
-            dllToProjectUrl["System.Data.Linq.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.Data.SqlXml.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.IdentityModel.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.IdentityModel.Selectors.dll"] = "github.com/Microsoft/referencesource";
+                { "System.Data.Linq.dll", "github.com/Microsoft/referencesource" },
+                { "System.Data.SqlXml.dll", "github.com/Microsoft/referencesource" },
+                { "System.IdentityModel.dll", "github.com/Microsoft/referencesource" },
+                { "System.IdentityModel.Selectors.dll", "github.com/Microsoft/referencesource" },
 
-            dllToProjectUrl["System.Net.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.Numerics.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.Runtime.Caching.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.Runtime.DurableInstancing.dll"] = "github.com/Microsoft/referencesource";
+                { "System.Net.dll", "github.com/Microsoft/referencesource" },
+                { "System.Numerics.dll", "github.com/Microsoft/referencesource" },
+                { "System.Runtime.Caching.dll", "github.com/Microsoft/referencesource" },
+                { "System.Runtime.DurableInstancing.dll", "github.com/Microsoft/referencesource" },
 
-            dllToProjectUrl["System.Runtime.Serialization.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.ServiceModel.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.ServiceModel.Activation.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.ServiceModel.Activities.dll"] = "github.com/Microsoft/referencesource";
+                { "System.Runtime.Serialization.dll", "github.com/Microsoft/referencesource" },
+                { "System.ServiceModel.dll", "github.com/Microsoft/referencesource" },
+                { "System.ServiceModel.Activation.dll", "github.com/Microsoft/referencesource" },
+                { "System.ServiceModel.Activities.dll", "github.com/Microsoft/referencesource" },
 
-            dllToProjectUrl["System.ServiceModel.Channels.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.ServiceModel.Discovery.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.ServiceModel.Internals.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.ServiceModel.Routing.dll"] = "github.com/Microsoft/referencesource";
+                { "System.ServiceModel.Channels.dll", "github.com/Microsoft/referencesource" },
+                { "System.ServiceModel.Discovery.dll", "github.com/Microsoft/referencesource" },
+                { "System.ServiceModel.Internals.dll", "github.com/Microsoft/referencesource" },
+                { "System.ServiceModel.Routing.dll", "github.com/Microsoft/referencesource" },
 
-            dllToProjectUrl["System.ServiceModel.WasHosting.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.ServiceModel.Web.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.Web.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.Web.ApplicationServices.dll"] = "github.com/Microsoft/referencesource";
+                { "System.ServiceModel.WasHosting.dll", "github.com/Microsoft/referencesource" },
+                { "System.ServiceModel.Web.dll", "github.com/Microsoft/referencesource" },
+                { "System.Web.dll", "github.com/Microsoft/referencesource" },
+                { "System.Web.ApplicationServices.dll", "github.com/Microsoft/referencesource" },
 
-            dllToProjectUrl["System.Web.DynamicData.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.Web.Entity.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.Web.Entity.Design.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.Web.Extensions.dll"] = "github.com/Microsoft/referencesource";
+                { "System.Web.DynamicData.dll", "github.com/Microsoft/referencesource" },
+                { "System.Web.Entity.dll", "github.com/Microsoft/referencesource" },
+                { "System.Web.Entity.Design.dll", "github.com/Microsoft/referencesource" },
+                { "System.Web.Extensions.dll", "github.com/Microsoft/referencesource" },
 
-            dllToProjectUrl["System.Web.Mobile.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.Web.Routing.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.Web.Services.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.Workflow.Activities.dll"] = "github.com/Microsoft/referencesource";
+                { "System.Web.Mobile.dll", "github.com/Microsoft/referencesource" },
+                { "System.Web.Routing.dll", "github.com/Microsoft/referencesource" },
+                { "System.Web.Services.dll", "github.com/Microsoft/referencesource" },
+                { "System.Workflow.Activities.dll", "github.com/Microsoft/referencesource" },
 
-            dllToProjectUrl["System.Workflow.ComponentModel.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.Workflow.Runtime.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.WorkflowServices.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.Xaml.Hosting.dll"] = "github.com/Microsoft/referencesource";
+                { "System.Workflow.ComponentModel.dll", "github.com/Microsoft/referencesource" },
+                { "System.Workflow.Runtime.dll", "github.com/Microsoft/referencesource" },
+                { "System.WorkflowServices.dll", "github.com/Microsoft/referencesource" },
+                { "System.Xaml.Hosting.dll", "github.com/Microsoft/referencesource" },
 
-            dllToProjectUrl["System.Xml.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["System.Xml.Linq.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["XamlBuildTask.dll"] = "github.com/Microsoft/referencesource";
-            dllToProjectUrl["SMDiagnostics.dll"] = "github.com/Microsoft/referencesource";
+                { "System.Xml.dll", "github.com/Microsoft/referencesource" },
+                { "System.Xml.Linq.dll", "github.com/Microsoft/referencesource" },
+                { "XamlBuildTask.dll", "github.com/Microsoft/referencesource" },
+                { "SMDiagnostics.dll", "github.com/Microsoft/referencesource" }
+            };
         }
 
         private GraphRunner() : base(SyntaxWalkerDepth.Token)
