@@ -27,7 +27,11 @@ namespace Srclib.Nuget.Graph
         readonly List<Tuple<SyntaxToken, ISymbol, string>> _refs = new List<Tuple<SyntaxToken, ISymbol, string>>();
         readonly HashSet<ISymbol> _defined = new HashSet<ISymbol>();
         readonly HashSet<string> keys = new HashSet<string>();
-        readonly static Dictionary<string, string> dllToProjectUrl = new Dictionary<string, string>();
+
+        /// <summary>map from dll name into repo URL</summary>
+        readonly static Dictionary<string, string> dllToProjectUrl;
+
+        /// <summary>map from projectUrl nuspec attribute into repo URL</summary>
         readonly static Dictionary<string, string> projectUrlToRepo;
 
         SemanticModel _sm;
@@ -197,6 +201,11 @@ namespace Srclib.Nuget.Graph
             }
         }
 
+        /// <summary>
+        /// Get a project URL (if present) from a dependency nuspec 
+        /// </summary>
+        /// <param name="path">rependency folder</param>
+        /// <param name="dll">dll name</param>
         internal static void HandleNuspec(string path, string dll)
         {
             DirectoryInfo di = new DirectoryInfo(path);
@@ -214,6 +223,10 @@ namespace Srclib.Nuget.Graph
             }
         }
 
+        /// <summary>
+        /// Main scan method: resolve and load dependencies, run roslyn compiler, emit defs and refs
+        /// </summary>
+        /// <param name="context">Project context.</param>
         internal static async Task<Output> Graph(GraphContext context)
         {
             if (context.Project == null)

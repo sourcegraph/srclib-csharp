@@ -13,6 +13,10 @@ namespace Srclib.Nuget
 
         private static PackageVersions pv = new PackageVersions();
 
+        /// <summary>
+        /// Convert .csproj files into DNX configuration files 
+        /// </summary>
+        /// <param name="path">path to project folder</param>
         public static void ConvertCsproj(string path)
         {
             HashSet<string> names = new HashSet<string>();
@@ -62,6 +66,11 @@ namespace Srclib.Nuget
             }
         }
 
+        /// <summary>
+        /// finds all c# Visual Studio project files in project folder and subfolders
+        /// </summary>
+        /// <param name="root">directory info for project folder</param>
+        /// <returns>returns an array of csproj files</returns>
         public static FileInfo[] FindVSProjects(DirectoryInfo root)
         {
             FileInfo[] files = null;

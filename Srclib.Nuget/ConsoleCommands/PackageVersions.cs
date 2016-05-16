@@ -5,6 +5,16 @@ using System.Threading.Tasks;
 
 namespace Srclib.Nuget
 {
+
+    ///<summary>
+
+    ///Nuget cannot load a package only if both
+    ///name and version are provided, while visual studio configuration files
+    ///hold only dependency name. So this class holds a name->version map for top several 
+    ///hundred most popular nuget packages
+    ///Generated based on https://www.nuget.org/stats/packageversions 
+
+    ///</summary>
     public class PackageVersions
     {
         private Dictionary<string, string> versions;
@@ -323,6 +333,12 @@ namespace Srclib.Nuget
             };
         }
 
+        /// <summary>
+        /// get a version for a certain package name
+        /// </summary>
+        /// <param name="name">Package name.</param>
+        /// <returns>returns a string with package version, if package name is present in a map,
+        /// null otherwise</returns>
         public string GetVersion(string name)
         {
             if (versions.ContainsKey(name))
