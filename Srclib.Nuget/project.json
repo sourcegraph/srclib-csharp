@@ -6,9 +6,9 @@
     "Newtonsoft.Json": "7.0.1",
     "Microsoft.Dnx.Runtime": "1.0.0-rc1-final",
     "Microsoft.Dnx.Compilation": "1.0.0-rc1-final",
-    "Microsoft.Dnx.Runtime.Abstractions": "1.0.0-rc1-15838",
+    "Microsoft.Dnx.Runtime.Abstractions": "1.0.0-beta8",
     "Microsoft.Dnx.Compilation.CSharp.Abstractions": "1.0.0-rc1-final",
-    "Microsoft.Framework.CommandLineUtils.Sources": {"type": "build", "version": "1.0.0-rc1-15779"}
+    "Microsoft.Extensions.CommandLineUtils.Sources": {"type": "build", "version": "1.0.0-rc2-20221"}
   },
 
   "frameworks": {
