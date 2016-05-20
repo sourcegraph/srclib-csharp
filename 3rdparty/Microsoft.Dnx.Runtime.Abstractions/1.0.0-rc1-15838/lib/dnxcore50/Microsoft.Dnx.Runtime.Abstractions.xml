@@ -1,0 +1,342 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.Dnx.Runtime.Abstractions</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Dnx.Runtime.Infrastructure.CallContextServiceLocator">
+            <summary>
+            Exposes the ambient service provider.
+            </summary>
+        </member>
+        <member name="F:Microsoft.Dnx.Runtime.Infrastructure.CallContextServiceLocator.Locator">
+            <summary>
+            Provides access to the <see cref="T:Microsoft.Dnx.Runtime.Infrastructure.IServiceProviderLocator"/>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Dnx.Runtime.Infrastructure.IServiceProviderLocator">
+            <summary>
+            Provides access to the current <see cref="T:System.IServiceProvider"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.Infrastructure.IServiceProviderLocator.ServiceProvider">
+            <summary>
+            Gets or sets the current <see cref="T:System.IServiceProvider"/>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Dnx.Runtime.DiagnosticMessage">
+            <summary>
+            Represents a single diagnostic message, such as a compilation error or a project.json parsing error.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.DiagnosticMessage.ErrorCode">
+            <summary>
+            The moniker associated with the error message
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.DiagnosticMessage.SourceFilePath">
+            <summary>
+            Path of the file that produced the message.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.DiagnosticMessage.Message">
+            <summary>
+            Gets the error message.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.DiagnosticMessage.Severity">
+            <summary>
+            Gets the <see cref="T:Microsoft.Dnx.Runtime.DiagnosticMessageSeverity"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.DiagnosticMessage.StartLine">
+            <summary>
+            Gets the one-based line index for the start of the compilation error.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.DiagnosticMessage.StartColumn">
+            <summary>
+            Gets the zero-based column index for the start of the compilation error.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.DiagnosticMessage.EndLine">
+            <summary>
+            Gets the one-based line index for the end of the compilation error.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.DiagnosticMessage.EndColumn">
+            <summary>
+            Gets the zero-based column index for the end of the compilation error.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.DiagnosticMessage.FormattedMessage">
+            <summary>
+            Gets the formatted error message.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.DiagnosticMessage.Source">
+            <summary>
+            Gets the source of this message
+            </summary>
+        </member>
+        <member name="M:Microsoft.Dnx.Runtime.DiagnosticMessageExtensions.HasErrors(System.Collections.Generic.IEnumerable{Microsoft.Dnx.Runtime.DiagnosticMessage})">
+            <summary>
+            Returns true if <paramref name="messages"/> has at least one message with <see cref="F:Microsoft.Dnx.Runtime.DiagnosticMessageSeverity.Error"/>.
+            </summary>
+            <param name="messages">Sequence of <see cref="T:Microsoft.Dnx.Runtime.DiagnosticMessage"/> objects.</param>
+            <returns><c>true</c> if any messages is an error message, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="T:Microsoft.Dnx.Runtime.DiagnosticMessageSeverity">
+            <summary>
+            Specifies the severity of a <see cref="T:Microsoft.Dnx.Runtime.DiagnosticMessage"/>.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Dnx.Runtime.IApplicationEnvironment">
+            <summary>
+            Provides access to common application information.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.IApplicationEnvironment.ApplicationName">
+            <summary>
+            Gets the application name.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.IApplicationEnvironment.ApplicationVersion">
+            <summary>
+            Gets the version of the application, as specified in the project.json file.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.IApplicationEnvironment.ApplicationBasePath">
+            <summary>
+            Gets the base directory of the application, defined as the path to the directory containing the project.json file.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.IApplicationEnvironment.Configuration">
+            <summary>
+            Gets the configuration. This should only be used for runtime compilation.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.IApplicationEnvironment.RuntimeFramework">
+            <summary>
+            Gets the target version and profile of the .NET Framework for the application.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Dnx.Runtime.IApplicationEnvironment.GetData(System.String)">
+            <summary>
+            Gets the specified value from Application Global Data.
+            </summary>
+            <remarks>
+            <para>
+            Application Global Data is a collection of name-value pairs that is stored in a global set of data shared by the entire
+            application. On Desktop CLR, this is backed by the <see cref="!:System.AppDomain.GetData(string)"/> and <see cref="!:System.AppDomain.SetData(string, object)"/>
+            methods, and provides access to the same data. In other environments, such as CoreCLR, where AppDomains are not available,
+            this data set is backed by a specially created global dictionary controlled by the implementor of this interface.
+            </para>
+            <para>
+            On Desktop CLR, this method can be used to retrieve predefined application domain properties. See <see cref="!:System.AppDomain.GetData(string)"/>
+            for a complete list.
+            </para>
+            </remarks>
+            <param name="name">The name of the Application Global Data item to retrieve.</param>
+            <returns>The value of the item identified by <paramref name="name"/>, or null if no item exists.</returns>
+        </member>
+        <member name="M:Microsoft.Dnx.Runtime.IApplicationEnvironment.SetData(System.String,System.Object)">
+            <summary>
+            Sets the specified value in Application Global Data.
+            </summary>
+            <remarks>
+            <para>
+            Application Global Data is a collection of name-value pairs that is stored in a global set of data shared by the entire
+            application. On Desktop CLR, this is backed by the <see cref="!:System.AppDomain.GetData(string)"/> and <see cref="!:System.AppDomain.SetData(string, object)"/>
+            methods, and provides access to the same data. In other environments, such as CoreCLR, where AppDomains are not available,
+            this data set is backed by a specially created global dictionary controlled by the implementor of this interface.
+            </para>
+            <para>
+            On Desktop CLR, this method can be used to modify SOME predefined application domain properties. See <see cref="!:System.AppDomain.SetData(string, object)"/>
+            for a complete list.
+            </para>
+            </remarks>
+            <param name="name">The name of the Application Global Data item to set.</param>
+            <param name="value">The value to store in Application Global Data.</param>
+        </member>
+        <member name="T:Microsoft.Dnx.Runtime.IApplicationShutdown">
+            <summary>
+            Exposes methods that allow control over the application lifetime.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Dnx.Runtime.IApplicationShutdown.RequestShutdown">
+            <summary>
+            Requests termination the current application.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.IApplicationShutdown.ShutdownRequested">
+            <summary>
+            Gets a <see cref="T:System.Threading.CancellationToken"/> that is signaled when application shutdown is requested.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Dnx.Runtime.IAssemblyLoadContext">
+            <summary>
+            A context in which assemblies can be loaded.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Dnx.Runtime.IAssemblyLoadContext.Load(System.Reflection.AssemblyName)">
+            <summary>
+            Load an assembly by name.
+            </summary>
+            <param name="assemblyName">The name of the assembly.</param>
+            <returns>The loaded assembly.</returns>
+        </member>
+        <member name="M:Microsoft.Dnx.Runtime.IAssemblyLoadContext.LoadFile(System.String)">
+            <summary>
+            Loads the assembly located at the provided file system path.
+            </summary>
+            <param name="path">The fully qualified path of the file to load.</param>
+            <returns>The loaded assembly.</returns>
+        </member>
+        <member name="M:Microsoft.Dnx.Runtime.IAssemblyLoadContext.LoadStream(System.IO.Stream,System.IO.Stream)">
+            <summary>
+            Loads the assembly with a common object file format (COFF)-based image containing an emitted assembly, optionally including symbols for the assembly.
+            </summary>
+            <param name="assemblyStream">The stream representing the assembly.</param>
+            <param name="assemblySymbols">The stream representing the symbols.</param>
+            <returns>The loaded assembly.</returns>
+        </member>
+        <member name="T:Microsoft.Dnx.Runtime.IAssemblyLoadContextAccessor">
+            <summary>
+            Provides access to created <see cref="T:Microsoft.Dnx.Runtime.IAssemblyLoadContext"/>
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.IAssemblyLoadContextAccessor.Default">
+            <summary>
+            Gets the default <see cref="T:Microsoft.Dnx.Runtime.IAssemblyLoadContext"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Dnx.Runtime.IAssemblyLoadContextAccessor.GetLoadContext(System.Reflection.Assembly)">
+            <summary>
+            Gets the <see cref="T:Microsoft.Dnx.Runtime.IAssemblyLoadContext"/> associated with the specified <see cref="T:System.Reflection.Assembly"/>.
+            </summary>
+            <param name="assembly">The assembly.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Dnx.Runtime.IAssemblyLoader">
+            <summary>
+            Defines a contract for an assembly loader. This is an extension point that can be used to implement custom assembly loading logic.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Dnx.Runtime.IAssemblyLoader.Load(System.Reflection.AssemblyName)">
+            <summary>
+            Load an assembly by name.
+            </summary>
+            <param name="assemblyName">The name of the assembly.</param>
+            <returns>The loaded assembly.</returns>
+        </member>
+        <member name="T:Microsoft.Dnx.Runtime.IAssemblyLoaderContainer">
+            <summary>
+            Provides access to assembly loaders used for runtime assembly resolution.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Dnx.Runtime.IAssemblyLoaderContainer.AddLoader(Microsoft.Dnx.Runtime.IAssemblyLoader)">
+            <summary>
+            Adds an <see cref="T:Microsoft.Dnx.Runtime.IAssemblyLoader"/> to the runtime.
+            </summary>
+            <param name="loader">The loader to add.</param>
+            <returns>A disposable object representing the registration of the loader. Disposing it removes the loader from the runtime.</returns>
+        </member>
+        <member name="T:Microsoft.Dnx.Runtime.ICompilerOptions">
+            <summary>
+            Provides an interface to well-known Compiler Options like "defines" and "optimize", as well as a
+            general-purpose interface for reading from the 'compilerOptions' section.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Dnx.Runtime.ILibraryManager">
+            <summary>
+            Provides access to the complete graph of dependencies for the application.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Dnx.Runtime.IRuntimeEnvironment">
+            <summary>
+            Provides access to the runtime environment.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.IRuntimeEnvironment.OperatingSystem">
+            <summary>
+            Gets the current operating system name.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.IRuntimeEnvironment.OperatingSystemVersion">
+            <summary>
+            Gets the current operating system version.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.IRuntimeEnvironment.RuntimeType">
+            <summary>
+            Gets the runtime type. Common values include CLR, CoreCLR and Mono.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.IRuntimeEnvironment.RuntimeArchitecture">
+            <summary>
+            Gets the runtime architecture. Common values include x86 and x64.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.IRuntimeEnvironment.RuntimeVersion">
+            <summary>
+            Gets the runtime version.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.IRuntimeEnvironment.RuntimePath">
+            <summary>
+            Gets the path to the runtime foler.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Dnx.Runtime.IRuntimeServices">
+            <summary>
+            Provides a list of service types exposed by the runtime.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.IRuntimeServices.Services">
+            <summary>
+            Gets the list of exposed service types.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Dnx.Runtime.Library">
+            <summary>
+            Exposes information about a library which can be an assembly, project, or a package.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.Library.Name">
+            <summary>
+            Gets the name of the library.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.Library.Version">
+            <summary>
+             Gets the version of the library.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.Library.Path">
+            <summary>
+            Gets the path to the library. For projects, this is a path to the project.json file.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.Library.Type">
+            <summary>
+            Gets the type of library. Common values include Project, Package, and Assembly.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.Library.Dependencies">
+            <summary>
+            Gets a list of dependencies for the library. The dependencies are names of other <see cref="T:Microsoft.Dnx.Runtime.Library"/> objects.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Dnx.Runtime.Library.Assemblies">
+            <summary>
+            Gets a list of assembly names from the library that can be loaded. Packages can contain multiple assemblies.
+            </summary>
+        </member>
+        <member name="T:Microsoft.Dnx.Runtime.RuntimeOptions">
+            <summary>
+            Represents the options passed into the runtime on boot
+            </summary>
+        </member>
+    </members>
+</doc>

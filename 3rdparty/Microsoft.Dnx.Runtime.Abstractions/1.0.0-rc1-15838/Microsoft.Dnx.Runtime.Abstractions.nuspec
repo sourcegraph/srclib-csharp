@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.Dnx.Runtime.Abstractions</id>
+    <version>1.0.0-rc1-15838</version>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>http://www.microsoft.com/web/webpi/eula/net_library_eula_enu.htm</licenseUrl>
+    <projectUrl>http://www.asp.net/</projectUrl>
+    <iconUrl>http://go.microsoft.com/fwlink/?LinkID=288859</iconUrl>
+    <description>ASP.NET 5 interfaces to take advantage of capabilities exposed by the runtime.</description>
+    <copyright>Copyright © Microsoft Corporation</copyright>
+    <dependencies>
+      <group targetFramework="DNX4.5.1" />
+      <group targetFramework="DNXCore5.0">
+        <dependency id="System.Collections" version="4.0.11-beta-23405" />
+        <dependency id="System.ComponentModel" version="4.0.1-beta-23405" />
+        <dependency id="System.IO" version="4.0.11-beta-23405" />
+        <dependency id="System.Linq" version="4.0.1-beta-23405" />
+        <dependency id="System.Reflection" version="4.1.0-beta-23225" />
+        <dependency id="System.Runtime" version="4.0.21-beta-23405" />
+        <dependency id="System.Runtime.Extensions" version="4.0.11-beta-23405" />
+        <dependency id="System.Threading.Tasks" version="4.0.11-beta-23405" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="mscorlib" targetFramework="DNX4.5.1" />
+      <frameworkAssembly assemblyName="System" targetFramework="DNX4.5.1" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework="DNX4.5.1" />
+      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework="DNX4.5.1" />
+    </frameworkAssemblies>
+  </metadata>
+</package>

@@ -3,7 +3,7 @@
 default: install
 
 install:
-	dnu restore
+	cd Srclib.Nuget && dnu restore
 
 dep:
 	dnu restore Srclib.Nuget/project.json
