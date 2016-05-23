@@ -12,7 +12,7 @@ namespace Srclib.Nuget
   public class Output
   {
     [JsonProperty]
-    public HashSet<Def> Defs { get; set; } = new HashSet<Def>();
+    public List<Def> Defs { get; set; } = new List<Def>();
 
     [JsonProperty]
     public List<Ref> Refs { get; set; } = new List<Ref>();
@@ -133,11 +133,6 @@ namespace Srclib.Nuget
       DefEnd = (uint)span.End;
       return this;
     }
-
-     public override int GetHashCode()
-     {
-       return DefKey.GetHashCode();
-     }
   }
 
   public class Ref

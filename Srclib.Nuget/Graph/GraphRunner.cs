@@ -26,6 +26,7 @@ namespace Srclib.Nuget.Graph
         readonly Output _output = new Output();
         readonly List<Tuple<SyntaxToken, ISymbol, string>> _refs = new List<Tuple<SyntaxToken, ISymbol, string>>();
         readonly HashSet<ISymbol> _defined = new HashSet<ISymbol>();
+        readonly HashSet<string> keys = new HashSet<string>();
 
         /// <summary>map from dll name into repo URL</summary>
         readonly static Dictionary<string, string> dllToProjectUrl;
@@ -130,16 +131,21 @@ namespace Srclib.Nuget.Graph
         /// <param name="symbol">The symbol the def was created from.</param>
         void AddDef(Def def, Doc doc = null)
         {
-            var r = Ref.AtDef(def);
-            _output.Defs.Add(def);
-            _output.Refs.Add(r);
-
-            if (doc != null)
+            string key = def.DefKey;
+            if (!keys.Contains(key))
             {
-                doc.UnitType = r.DefUnitType;
-                doc.Unit = r.DefUnit;
-                doc.Path = r.DefPath;
-                _output.Docs.Add(doc);
+                keys.Add(key);
+                var r = Ref.AtDef(def);
+                _output.Defs.Add(def);
+                _output.Refs.Add(r);
+
+                if (doc != null)
+                {
+                    doc.UnitType = r.DefUnitType;
+                    doc.Unit = r.DefUnit;
+                    doc.Path = r.DefPath;
+                    _output.Docs.Add(doc);
+                }
             }
         }
 
