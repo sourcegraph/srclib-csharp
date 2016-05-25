@@ -1,1 +1,1 @@
-{"Name":"Test","Type":"NugetPackage","Files":["src/Test/Properties/AssemblyInfo.cs","src/Test/Class2.cs","src/Test/Class1.cs"],"Dir":"src/Test","Dependencies":[{"Identity":null,"Name":"Newtonsoft.Json","Range":"Newtonsoft.Json \u003e= 8.0.2"}],"Ops":{"depresolve":null}}
+{"Name":"Test","Type":"NugetPackage","Files":["src/Test/Properties/AssemblyInfo.cs","src/Test/Class2.cs","src/Test/Class1.cs"],"Dir":"src/Test","Dependencies":[{"Version":"Newtonsoft.Json \u003e= 8.0.2","Name":"Newtonsoft.Json"}]}

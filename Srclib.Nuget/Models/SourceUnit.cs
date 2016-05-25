@@ -38,9 +38,6 @@ namespace Srclib.Nuget
     [JsonProperty]
     public SourceUnit Data { get; set; }
 
-    [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-    public Dictionary<string, string> Ops { get; set; }
-
     internal static SourceUnit FromProject(Project project, string root)
     {
       var su = new SourceUnit
@@ -49,7 +46,6 @@ namespace Srclib.Nuget
         Dir = Utils.GetRelativePath(project.ProjectDirectory, root),
         Files = project.Files.SourceFiles.Select(p => Utils.GetRelativePath(p, root)).OrderByDescending(p => p).ToArray(),
         Dependencies = project.Dependencies.Select(DependencyInfo.FromLibraryDependency).ToArray(),
-        Ops = new Dictionary<string, string> { { "depresolve", null } }
       };
 
       return su;
@@ -71,7 +67,6 @@ namespace Srclib.Nuget
                 Dir = root,
                 Files = files,
                 Dependencies = new DependencyInfo[0],
-                Ops = new Dictionary<string, string> { { "depresolve", null } }
             };
 
             return su;

@@ -10,17 +10,13 @@ namespace Srclib.Nuget
     public string Name { get; set; }
 
     [JsonProperty]
-    public string Range { get; set; }
-
-    [JsonProperty]
-    public string Identity { get; set; }
+    public string Version { get; set; }
 
     public static DependencyInfo FromLibraryDependency(LibraryDependency lib)
     {
       return new DependencyInfo {
         Name = lib.Name,
-        Range = lib.LibraryRange.ToString(),
-        Identity = lib.Library?.ToString()
+        Version = lib.LibraryRange.ToString()
       };
     }
   }
