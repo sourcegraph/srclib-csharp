@@ -140,6 +140,8 @@ namespace Srclib.Nuget
                 Console.Error.WriteLine("special case referencesource");
                 string json = "{\n  \"frameworks\": {\n    \"dnx451\": {\n      \"dependencies\": {\n      }\n    }\n  }\n}";
 
+                File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "./mscorlib/project.json"), json);
+
                 File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "./System.Activities/project.json"), json);
                 File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "./System.Xml.Linq/project.json"), json);
                 File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "./System.Numerics/project.json"), json);

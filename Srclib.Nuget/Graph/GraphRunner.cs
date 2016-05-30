@@ -54,7 +54,7 @@ namespace Srclib.Nuget.Graph
 
             dllToProjectUrl = new Dictionary<string, string>()
             {
-                { "mscorlib.dll", "github.com/dotnet/coreclr" },
+                { "mscorlib.dll", "github.com/Microsoft/referencesource" },
                 { "System.dll", "github.com/Microsoft/referencesource" },
                 { "System.Activities.dll", "github.com/Microsoft/referencesource" },
                 { "System.Activities.Core.Presentation.dll", "github.com/Microsoft/referencesource" },
