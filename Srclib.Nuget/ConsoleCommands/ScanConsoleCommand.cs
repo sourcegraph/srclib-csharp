@@ -128,14 +128,14 @@ namespace Srclib.Nuget
         c.OnExecute(async () => {
 
             string url = getGitUrl();
-            if (url.Equals("https://github.com/dotnet/coreclr"))
+            if (url.EndsWith("github.com/dotnet/coreclr"))
             {
                 Console.Error.WriteLine("special case coreclr");
                 DepresolveConsoleCommand.RunForResult("/bin/bash", "-c \"rm `find -name project.json`\"");
                 DepresolveConsoleCommand.RunForResult("/bin/bash", "-c \"rm `find -name '*.csproj'`\"");
                 File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "./src/mscorlib/project.json"), "{\n  \"frameworks\": {\n    \"dnx451\": {\n      \"dependencies\": {\n      }\n    }\n  }\n}");
             }
-            else if (url.Equals("https://github.com/Microsoft/referencesource"))
+            else if (url.EndsWith("github.com/Microsoft/referencesource"))
             {
                 Console.Error.WriteLine("special case referencesource");
                 string json = "{\n  \"frameworks\": {\n    \"dnx451\": {\n      \"dependencies\": {\n      }\n    }\n  }\n}";
