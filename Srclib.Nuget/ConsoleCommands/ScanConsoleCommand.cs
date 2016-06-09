@@ -202,6 +202,10 @@ namespace Srclib.Nuget
                 File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "./Microsoft.Bcl.Async/Microsoft.Threading.Tasks/project.json"), json);
                 File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "./Microsoft.Bcl.Async/Microsoft.Threading.Tasks.Extensions.Silverlight/project.json"), json);
             }
+            else if (url.EndsWith("github.com/AutoMapper/AutoMapper"))
+            {
+                DepresolveConsoleCommand.RunForResult("/bin/bash", @"-c ""sed 's/..\\\\/..\//g' -i `find -name project.json`""");
+            }
 
 
           var dir = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "."));
